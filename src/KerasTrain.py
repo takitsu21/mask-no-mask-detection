@@ -8,11 +8,12 @@ from tensorflow.keras.applications.resnet50 import preprocess_input, decode_pred
 from PIL import Image
 from keras.preprocessing import image
 import numpy as np
+from tensorflow.python.keras.backend import repeat
 
 
 def load_image(img_path, show=False):
 
-    img = image.load_img(img_path, target_size=(256, 256))
+    img = image.load_img(img_path, target_size=(150, 150))
     # (height, width, channels)
     img_tensor = image.img_to_array(img)
     # (1, height, width, channels), add a dimension because the model expects this shape: (batch_size, height, width, channels)
@@ -39,11 +40,19 @@ class KerasTrain(object):
         data_generator = ImageDataGenerator()
         train_ds = data_generator.flow_from_directory(
             "converted-images/",
-            target_size=(256, 256),
+            target_size=(150, 150),
             batch_size=32,
             class_mode='categorical',
             classes=["Masque", "Pas masque"],
             shuffle=True)
+
+        val_data = data_generator.flow_from_directory(
+            "converted-images/",
+            target_size=(150, 150),
+            batch_size=32,
+            class_mode='categorical',
+            shuffle=True)
+
         print(train_ds.classes)
 
         # validation_generator = data_generator.flow_from_directory(
@@ -68,7 +77,7 @@ class KerasTrain(object):
         x_test, y_test = next(iter(train_ds))
 
         model: Sequential = keras.Sequential()
-        model.add(keras.Input(shape=(256, 256, 3)))  # 250x250 RGB images
+        model.add(keras.Input(shape=(150, 150, 3)))  # 250x250 RGB images
         model.add(layers.Conv2D(32, 5, strides=2, activation="relu"))
         model.add(layers.Conv2D(32, 3, activation="relu"))
         model.add(layers.MaxPooling2D(3))
@@ -104,12 +113,22 @@ class KerasTrain(object):
         model.compile(loss=tf.keras.losses.categorical_crossentropy,
                       optimizer=tf.keras.optimizers.Adam(learning_rate=1e-3),
                       metrics=['accuracy'])
-        model.fit(x_train, y_train, epochs=30, validation_data=(x_test, y_test), workers=8,
-                  use_multiprocessing=True, verbose=1, callbacks=[tensorboard_callback])
+        model.fit(x_train,
+                  y_train,
+                  epochs=10,
+                  workers=8,
+                  use_multiprocessing=True,
+                  verbose=1,
+                  callbacks=[tensorboard_callback],
+                #   steps_per_epoch=train_ds.samples/50,
+                #   validation_steps=val_data.samples/50,
+                  validation_data=val_data,
+                  batch_size=32)
         model.save("model.h5")
         imageToPredict = load_image(imgPath)
 
-        prediction = model.predict(imageToPredict, callbacks=[tensorboard_callback])
+        prediction = model.predict(imageToPredict,
+                                   callbacks=[tensorboard_callback])
         print(prediction)
         # print(decode_predictions(prediction, top=3)[0])
 
