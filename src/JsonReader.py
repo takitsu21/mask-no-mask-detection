@@ -105,5 +105,5 @@ class JsonReader(object):
 
 
 if __name__ == "__main__":
-    reader = JsonReader("img/tests/tests-annotation2.json")
+    reader = JsonReader("img/tests/mainlynomask.json")
     reader.parseJson()

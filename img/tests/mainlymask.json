@@ -1,0 +1,4886 @@
+{
+  "images101": {
+    "annotations": [
+      {
+        "id": "3f2abbf3-5370-4166-aeaa-3c53fb6d421e",
+        "path": "img\\tests\\Masque\\images101.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 116,
+          "beginY": 53,
+          "destinationX": 194,
+          "destinationY": 153
+        },
+        "img-size": {
+          "width": 276,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images103": {
+    "annotations": [
+      {
+        "id": "3ad20854-a825-4330-b6db-38a50a1c0c0b",
+        "path": "img\\tests\\Masque\\images103.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 36,
+          "beginY": 14,
+          "destinationX": 114,
+          "destinationY": 114
+        },
+        "img-size": {
+          "width": 318,
+          "height": 159
+        }
+      },
+      {
+        "id": "6d60dc16-e7cf-4d35-b0f4-2923dbbfda0e",
+        "path": "img\\tests\\Masque\\images103.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 200,
+          "beginY": 13,
+          "destinationX": 225,
+          "destinationY": 50
+        },
+        "img-size": {
+          "width": 318,
+          "height": 159
+        }
+      },
+      {
+        "id": "73143a9b-01e8-480c-b6a2-57d13cc00c49",
+        "path": "img\\tests\\Masque\\images103.png",
+        "categorie": "Pas Masque",
+        "categorie_id": 1,
+        "coords": {
+          "beginX": 216,
+          "beginY": 77,
+          "destinationX": 241,
+          "destinationY": 98
+        },
+        "img-size": {
+          "width": 318,
+          "height": 159
+        }
+      },
+      {
+        "id": "a0eae2c7-a2ae-4552-9b06-0aba41aca905",
+        "path": "img\\tests\\Masque\\images103.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 246,
+          "beginY": 58,
+          "destinationX": 273,
+          "destinationY": 91
+        },
+        "img-size": {
+          "width": 318,
+          "height": 159
+        }
+      }
+    ]
+  },
+  "images105": {
+    "annotations": [
+      {
+        "id": "3c4e214d-f108-40fe-8a22-391e5a298902",
+        "path": "img\\tests\\Masque\\images105.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 40,
+          "beginY": 5,
+          "destinationX": 173,
+          "destinationY": 151
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images107": {
+    "annotations": [
+      {
+        "id": "c7dfc6b9-e0c0-40db-8ee8-05acec0ef424",
+        "path": "img\\tests\\Masque\\images107.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 29,
+          "beginY": 35,
+          "destinationX": 56,
+          "destinationY": 71
+        },
+        "img-size": {
+          "width": 318,
+          "height": 159
+        }
+      },
+      {
+        "id": "37384457-c858-47df-bca5-68666ce7bf58",
+        "path": "img\\tests\\Masque\\images107.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 66,
+          "beginY": 52,
+          "destinationX": 108,
+          "destinationY": 102
+        },
+        "img-size": {
+          "width": 318,
+          "height": 159
+        }
+      },
+      {
+        "id": "5bbfec8c-b05e-4b81-952a-b280d109edf0",
+        "path": "img\\tests\\Masque\\images107.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 111,
+          "beginY": 34,
+          "destinationX": 133,
+          "destinationY": 66
+        },
+        "img-size": {
+          "width": 318,
+          "height": 159
+        }
+      },
+      {
+        "id": "ec916205-b160-4eb4-80eb-aaa2c85759c8",
+        "path": "img\\tests\\Masque\\images107.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 149,
+          "beginY": 14,
+          "destinationX": 171,
+          "destinationY": 49
+        },
+        "img-size": {
+          "width": 318,
+          "height": 159
+        }
+      },
+      {
+        "id": "bbd6696d-8612-455e-b1a8-1f62ae823759",
+        "path": "img\\tests\\Masque\\images107.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 215,
+          "beginY": 21,
+          "destinationX": 247,
+          "destinationY": 58
+        },
+        "img-size": {
+          "width": 318,
+          "height": 159
+        }
+      },
+      {
+        "id": "92d40d7d-4fe2-4a59-9004-0db6aca02dd7",
+        "path": "img\\tests\\Masque\\images107.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 244,
+          "beginY": 67,
+          "destinationX": 287,
+          "destinationY": 101
+        },
+        "img-size": {
+          "width": 318,
+          "height": 159
+        }
+      }
+    ]
+  },
+  "images108": {
+    "annotations": [
+      {
+        "id": "7153cddc-463e-404f-a445-b3a5b26f21e3",
+        "path": "img\\tests\\Masque\\images108.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 91,
+          "beginY": 36,
+          "destinationX": 116,
+          "destinationY": 66
+        },
+        "img-size": {
+          "width": 310,
+          "height": 163
+        }
+      },
+      {
+        "id": "2e025fb5-b894-4e32-b464-27e5053f37df",
+        "path": "img\\tests\\Masque\\images108.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 145,
+          "beginY": 38,
+          "destinationX": 188,
+          "destinationY": 81
+        },
+        "img-size": {
+          "width": 310,
+          "height": 163
+        }
+      },
+      {
+        "id": "d7b4f88f-cb75-4c87-8b00-9847b10e58fb",
+        "path": "img\\tests\\Masque\\images108.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 187,
+          "beginY": 44,
+          "destinationX": 276,
+          "destinationY": 119
+        },
+        "img-size": {
+          "width": 310,
+          "height": 163
+        }
+      }
+    ]
+  },
+  "images109": {
+    "annotations": [
+      {
+        "id": "05235524-32ea-47f6-8cb4-eca32d38c62d",
+        "path": "img\\tests\\Masque\\images109.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 58,
+          "beginY": 30,
+          "destinationX": 124,
+          "destinationY": 100
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      },
+      {
+        "id": "cc928d86-b2e3-40cb-a949-7df77a0a5f8c",
+        "path": "img\\tests\\Masque\\images109.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 173,
+          "beginY": 17,
+          "destinationX": 251,
+          "destinationY": 105
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images112": {
+    "annotations": [
+      {
+        "id": "05199b7e-3f5f-4331-a50e-b41387c5e6d8",
+        "path": "img\\tests\\Masque\\images112.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 155,
+          "beginY": 2,
+          "destinationX": 212,
+          "destinationY": 75
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images113": {
+    "annotations": [
+      {
+        "id": "33b8ca39-6f3f-46f1-9f71-067e8f5d33a0",
+        "path": "img\\tests\\Masque\\images113.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 122,
+          "beginY": 69,
+          "destinationX": 144,
+          "destinationY": 103
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "21dbd813-7981-4a2d-be94-c6b69adec8c3",
+        "path": "img\\tests\\Masque\\images113.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 171,
+          "beginY": 79,
+          "destinationX": 194,
+          "destinationY": 99
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "cea1d98d-c3d9-43e8-8df3-819b4c9f5cb4",
+        "path": "img\\tests\\Masque\\images113.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 149,
+          "beginY": 87,
+          "destinationX": 171,
+          "destinationY": 115
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images114": {
+    "annotations": [
+      {
+        "id": "4ea9f450-7584-4a2e-86b9-a5b10170ec8e",
+        "path": "img\\tests\\Masque\\images114.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 72,
+          "beginY": 47,
+          "destinationX": 101,
+          "destinationY": 85
+        },
+        "img-size": {
+          "width": 270,
+          "height": 186
+        }
+      }
+    ]
+  },
+  "images115": {
+    "annotations": [
+      {
+        "id": "ecce1225-22d3-4829-978b-fdf1004d7c22",
+        "path": "img\\tests\\Masque\\images115.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 70,
+          "beginY": 36,
+          "destinationX": 93,
+          "destinationY": 62
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images117": {
+    "annotations": [
+      {
+        "id": "be945d2a-c26d-4b44-8ed0-23b15ade1997",
+        "path": "img\\tests\\Masque\\images117.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 19,
+          "beginY": 41,
+          "destinationX": 108,
+          "destinationY": 160
+        },
+        "img-size": {
+          "width": 225,
+          "height": 225
+        }
+      }
+    ]
+  },
+  "images118": {
+    "annotations": [
+      {
+        "id": "ac80ff3a-5525-4495-9cbe-3925acad68c0",
+        "path": "img\\tests\\Masque\\images118.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 54,
+          "beginY": 108,
+          "destinationX": 109,
+          "destinationY": 161
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "5a91d7a6-55f2-446e-b098-cc5e9ca1c228",
+        "path": "img\\tests\\Masque\\images118.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 165,
+          "beginY": 70,
+          "destinationX": 216,
+          "destinationY": 128
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images119": {
+    "annotations": [
+      {
+        "id": "b4fa447c-290d-4467-aa5a-af18de31bf68",
+        "path": "img\\tests\\Masque\\images119.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 119,
+          "beginY": 11,
+          "destinationX": 186,
+          "destinationY": 94
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      },
+      {
+        "id": "055cfac4-4575-4170-8c15-cbb3f75b3ddd",
+        "path": "img\\tests\\Masque\\images119.png",
+        "categorie": "Pas Masque",
+        "categorie_id": 1,
+        "coords": {
+          "beginX": 242,
+          "beginY": 23,
+          "destinationX": 286,
+          "destinationY": 80
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images120": {
+    "annotations": [
+      {
+        "id": "5c268f7d-6155-43aa-b9a2-ce47b06613f7",
+        "path": "img\\tests\\Masque\\images120.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 94,
+          "beginY": 44,
+          "destinationX": 118,
+          "destinationY": 76
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "a5c1f694-0e4d-473c-a296-08743cd084c2",
+        "path": "img\\tests\\Masque\\images120.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 151,
+          "beginY": 39,
+          "destinationX": 179,
+          "destinationY": 65
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "653799bd-aa15-4216-9c23-e992d8e749af",
+        "path": "img\\tests\\Masque\\images120.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 124,
+          "beginY": 13,
+          "destinationX": 149,
+          "destinationY": 45
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "0d960ac7-24df-483c-8619-2e52d2c5f265",
+        "path": "img\\tests\\Masque\\images120.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 197,
+          "beginY": 17,
+          "destinationX": 229,
+          "destinationY": 53
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images121": {
+    "annotations": [
+      {
+        "id": "099e9746-e4ac-40c4-972d-68ad26bc85a3",
+        "path": "img\\tests\\Masque\\images121.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 63,
+          "beginY": 55,
+          "destinationX": 103,
+          "destinationY": 113
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "2c7ee11b-ee83-440e-9b97-38f5eeb472d3",
+        "path": "img\\tests\\Masque\\images121.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 27,
+          "beginY": 65,
+          "destinationX": 55,
+          "destinationY": 96
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "89b499e3-b1bf-4666-bcf4-7601d6756e6c",
+        "path": "img\\tests\\Masque\\images121.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 102,
+          "beginY": 42,
+          "destinationX": 140,
+          "destinationY": 93
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "cddcc73f-4847-467c-a8d7-9fe81553da42",
+        "path": "img\\tests\\Masque\\images121.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 169,
+          "beginY": 50,
+          "destinationX": 195,
+          "destinationY": 84
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images122": {
+    "annotations": [
+      {
+        "id": "069c1688-a628-4bed-bf67-187ff44a864d",
+        "path": "img\\tests\\Masque\\images122.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 26,
+          "beginY": 25,
+          "destinationX": 56,
+          "destinationY": 71
+        },
+        "img-size": {
+          "width": 265,
+          "height": 190
+        }
+      },
+      {
+        "id": "fb42b8bc-bc68-4248-ad84-67e3b9256d03",
+        "path": "img\\tests\\Masque\\images122.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 56,
+          "beginY": 39,
+          "destinationX": 81,
+          "destinationY": 83
+        },
+        "img-size": {
+          "width": 265,
+          "height": 190
+        }
+      },
+      {
+        "id": "df68b6fa-6cd6-42d3-b539-e915d1d0e838",
+        "path": "img\\tests\\Masque\\images122.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 103,
+          "beginY": 20,
+          "destinationX": 139,
+          "destinationY": 54
+        },
+        "img-size": {
+          "width": 265,
+          "height": 190
+        }
+      },
+      {
+        "id": "15229511-e890-4573-9f27-bd782c5ea5da",
+        "path": "img\\tests\\Masque\\images122.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 125,
+          "beginY": 54,
+          "destinationX": 156,
+          "destinationY": 92
+        },
+        "img-size": {
+          "width": 265,
+          "height": 190
+        }
+      },
+      {
+        "id": "76aaf0ff-62a2-45a2-a26e-6bb1c8959a63",
+        "path": "img\\tests\\Masque\\images122.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 189,
+          "beginY": 49,
+          "destinationX": 212,
+          "destinationY": 88
+        },
+        "img-size": {
+          "width": 265,
+          "height": 190
+        }
+      },
+      {
+        "id": "0501cca2-9348-45fe-adbf-ca2531dac079",
+        "path": "img\\tests\\Masque\\images122.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 203,
+          "beginY": 17,
+          "destinationX": 240,
+          "destinationY": 56
+        },
+        "img-size": {
+          "width": 265,
+          "height": 190
+        }
+      }
+    ]
+  },
+  "images123": {
+    "annotations": [
+      {
+        "id": "ee70a25f-8531-4d18-8b99-6c8273f06772",
+        "path": "img\\tests\\Masque\\images123.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 52,
+          "beginY": 4,
+          "destinationX": 76,
+          "destinationY": 40
+        },
+        "img-size": {
+          "width": 258,
+          "height": 195
+        }
+      },
+      {
+        "id": "9a508cc0-baf3-4491-b5d5-d16e8a178a4d",
+        "path": "img\\tests\\Masque\\images123.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 86,
+          "beginY": 28,
+          "destinationX": 111,
+          "destinationY": 63
+        },
+        "img-size": {
+          "width": 258,
+          "height": 195
+        }
+      },
+      {
+        "id": "f7d6a43c-f7bc-4a1a-93ce-14c306b80a66",
+        "path": "img\\tests\\Masque\\images123.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 119,
+          "beginY": 29,
+          "destinationX": 147,
+          "destinationY": 57
+        },
+        "img-size": {
+          "width": 258,
+          "height": 195
+        }
+      },
+      {
+        "id": "4f5909e8-70a6-4735-b9bc-84d54ae630a0",
+        "path": "img\\tests\\Masque\\images123.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 156,
+          "beginY": 23,
+          "destinationX": 196,
+          "destinationY": 61
+        },
+        "img-size": {
+          "width": 258,
+          "height": 195
+        }
+      }
+    ]
+  },
+  "images124": {
+    "annotations": [
+      {
+        "id": "e0d327b3-d94b-48ab-8024-d982b2669220",
+        "path": "img\\tests\\Masque\\images124.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 13,
+          "beginY": 5,
+          "destinationX": 52,
+          "destinationY": 65
+        },
+        "img-size": {
+          "width": 290,
+          "height": 174
+        }
+      },
+      {
+        "id": "42efba40-0300-482d-a5fc-450b2cdca472",
+        "path": "img\\tests\\Masque\\images124.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 83,
+          "beginY": 3,
+          "destinationX": 128,
+          "destinationY": 58
+        },
+        "img-size": {
+          "width": 290,
+          "height": 174
+        }
+      },
+      {
+        "id": "55cfac53-ecf1-40f6-84fa-f114dd07d681",
+        "path": "img\\tests\\Masque\\images124.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 150,
+          "beginY": 3,
+          "destinationX": 206,
+          "destinationY": 65
+        },
+        "img-size": {
+          "width": 290,
+          "height": 174
+        }
+      },
+      {
+        "id": "bc59691e-bafe-4892-a15a-15101ce1553b",
+        "path": "img\\tests\\Masque\\images124.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 221,
+          "beginY": 6,
+          "destinationX": 269,
+          "destinationY": 59
+        },
+        "img-size": {
+          "width": 290,
+          "height": 174
+        }
+      },
+      {
+        "id": "8dafacb6-25b5-476d-b93b-97ccf057882a",
+        "path": "img\\tests\\Masque\\images124.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 14,
+          "beginY": 98,
+          "destinationX": 59,
+          "destinationY": 162
+        },
+        "img-size": {
+          "width": 290,
+          "height": 174
+        }
+      },
+      {
+        "id": "81ab1778-d54f-420a-83b0-75f667c1ad2a",
+        "path": "img\\tests\\Masque\\images124.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 90,
+          "beginY": 92,
+          "destinationX": 130,
+          "destinationY": 148
+        },
+        "img-size": {
+          "width": 290,
+          "height": 174
+        }
+      },
+      {
+        "id": "f7402202-33e2-4a89-9f3d-b6c1e8ba4437",
+        "path": "img\\tests\\Masque\\images124.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 156,
+          "beginY": 87,
+          "destinationX": 204,
+          "destinationY": 153
+        },
+        "img-size": {
+          "width": 290,
+          "height": 174
+        }
+      },
+      {
+        "id": "e74aae9f-e929-4c4a-ad57-840d6b6b452b",
+        "path": "img\\tests\\Masque\\images124.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 225,
+          "beginY": 94,
+          "destinationX": 265,
+          "destinationY": 148
+        },
+        "img-size": {
+          "width": 290,
+          "height": 174
+        }
+      }
+    ]
+  },
+  "images134": {
+    "annotations": [
+      {
+        "id": "e17d4ebe-e8aa-41ca-9420-2527d9a9e5a1",
+        "path": "img\\tests\\Masque\\images134.png",
+        "categorie": "Pas Masque",
+        "categorie_id": 1,
+        "coords": {
+          "beginX": 52,
+          "beginY": 14,
+          "destinationX": 93,
+          "destinationY": 69
+        },
+        "img-size": {
+          "width": 267,
+          "height": 189
+        }
+      },
+      {
+        "id": "89a5e354-97d5-4438-b4e1-9b87ed192375",
+        "path": "img\\tests\\Masque\\images134.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 96,
+          "beginY": 15,
+          "destinationX": 142,
+          "destinationY": 74
+        },
+        "img-size": {
+          "width": 267,
+          "height": 189
+        }
+      },
+      {
+        "id": "23dfcaee-6d37-404b-9fc8-9f1c1c38eda2",
+        "path": "img\\tests\\Masque\\images134.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 178,
+          "beginY": 52,
+          "destinationX": 220,
+          "destinationY": 94
+        },
+        "img-size": {
+          "width": 267,
+          "height": 189
+        }
+      },
+      {
+        "id": "f1b5654b-2bc0-4a6b-9abc-7925fd172ac6",
+        "path": "img\\tests\\Masque\\images134.png",
+        "categorie": "Pas Masque",
+        "categorie_id": 1,
+        "coords": {
+          "beginX": 231,
+          "beginY": 42,
+          "destinationX": 263,
+          "destinationY": 82
+        },
+        "img-size": {
+          "width": 267,
+          "height": 189
+        }
+      }
+    ]
+  },
+  "images136": {
+    "annotations": [
+      {
+        "id": "bc089b90-9e10-4c86-ab95-f0481a88129b",
+        "path": "img\\tests\\Masque\\images136.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 101,
+          "beginY": 5,
+          "destinationX": 154,
+          "destinationY": 69
+        },
+        "img-size": {
+          "width": 259,
+          "height": 194
+        }
+      }
+    ]
+  },
+  "images139": {
+    "annotations": [
+      {
+        "id": "db6ac1d9-fd78-49fd-9873-1752cb1f0fbe",
+        "path": "img\\tests\\Masque\\images139.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 102,
+          "beginY": 62,
+          "destinationX": 136,
+          "destinationY": 113
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images141": {
+    "annotations": [
+      {
+        "id": "3bdcd789-e87e-4093-a2a0-9adc96b5515f",
+        "path": "img\\tests\\Masque\\images141.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 1,
+          "beginY": 11,
+          "destinationX": 24,
+          "destinationY": 55
+        },
+        "img-size": {
+          "width": 303,
+          "height": 166
+        }
+      },
+      {
+        "id": "b23b2f0f-b8fe-409c-a20f-204345d14ff8",
+        "path": "img\\tests\\Masque\\images141.png",
+        "categorie": "Pas Masque",
+        "categorie_id": 1,
+        "coords": {
+          "beginX": 38,
+          "beginY": 5,
+          "destinationX": 72,
+          "destinationY": 46
+        },
+        "img-size": {
+          "width": 303,
+          "height": 166
+        }
+      },
+      {
+        "id": "76cdbb55-33b1-453e-a3ce-b0a1b1e81899",
+        "path": "img\\tests\\Masque\\images141.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 104,
+          "beginY": 8,
+          "destinationX": 137,
+          "destinationY": 51
+        },
+        "img-size": {
+          "width": 303,
+          "height": 166
+        }
+      },
+      {
+        "id": "a8d7b35a-deb0-48c1-985e-3b56c31e3966",
+        "path": "img\\tests\\Masque\\images141.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 133,
+          "beginY": 34,
+          "destinationX": 169,
+          "destinationY": 89
+        },
+        "img-size": {
+          "width": 303,
+          "height": 166
+        }
+      },
+      {
+        "id": "1221f34d-e318-4f3f-8450-87316a02910e",
+        "path": "img\\tests\\Masque\\images141.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 200,
+          "beginY": 24,
+          "destinationX": 235,
+          "destinationY": 74
+        },
+        "img-size": {
+          "width": 303,
+          "height": 166
+        }
+      },
+      {
+        "id": "7bbfadd2-5fbf-47ae-a074-be055faed4d9",
+        "path": "img\\tests\\Masque\\images141.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 237,
+          "beginY": 23,
+          "destinationX": 280,
+          "destinationY": 68
+        },
+        "img-size": {
+          "width": 303,
+          "height": 166
+        }
+      }
+    ]
+  },
+  "images142": {
+    "annotations": [
+      {
+        "id": "40509d53-1efa-42d4-a7f2-41561ea99fdf",
+        "path": "img\\tests\\Masque\\images142.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 51,
+          "beginY": 44,
+          "destinationX": 108,
+          "destinationY": 108
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      },
+      {
+        "id": "b469d03a-1ea2-475e-aae2-b29345cb14ae",
+        "path": "img\\tests\\Masque\\images142.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 194,
+          "beginY": 45,
+          "destinationX": 229,
+          "destinationY": 94
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images133": {
+    "annotations": [
+      {
+        "id": "07869272-ddd3-47bd-b98d-ed67b5c006b7",
+        "path": "img\\tests\\Masque\\images133.png",
+        "categorie": "Pas Masque",
+        "categorie_id": 1,
+        "coords": {
+          "beginX": 100,
+          "beginY": 53,
+          "destinationX": 113,
+          "destinationY": 74
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images143": {
+    "annotations": [
+      {
+        "id": "77e1a706-2b09-4e76-ae04-f7020370707a",
+        "path": "img\\tests\\Masque\\images143.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 80,
+          "beginY": 50,
+          "destinationX": 104,
+          "destinationY": 88
+        },
+        "img-size": {
+          "width": 226,
+          "height": 223
+        }
+      },
+      {
+        "id": "f5e932da-7977-4670-8220-533935b63b06",
+        "path": "img\\tests\\Masque\\images143.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 135,
+          "beginY": 37,
+          "destinationX": 168,
+          "destinationY": 87
+        },
+        "img-size": {
+          "width": 226,
+          "height": 223
+        }
+      }
+    ]
+  },
+  "images144": {
+    "annotations": [
+      {
+        "id": "cd571387-c1ba-401c-9284-c7a59cafa0ff",
+        "path": "img\\tests\\Masque\\images144.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 140,
+          "beginY": 44,
+          "destinationX": 164,
+          "destinationY": 75
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "5312ef68-cce2-4326-acb2-849c2a662503",
+        "path": "img\\tests\\Masque\\images144.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 208,
+          "beginY": 35,
+          "destinationX": 238,
+          "destinationY": 75
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "4ad8835e-9388-484b-99f8-d0219fe9a8db",
+        "path": "img\\tests\\Masque\\images144.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 78,
+          "beginY": 30,
+          "destinationX": 106,
+          "destinationY": 68
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images146": {
+    "annotations": [
+      {
+        "id": "d01861c9-b32f-4f60-bee2-30868851161b",
+        "path": "img\\tests\\Masque\\images146.png",
+        "categorie": "Pas Masque",
+        "categorie_id": 1,
+        "coords": {
+          "beginX": 102,
+          "beginY": 7,
+          "destinationX": 150,
+          "destinationY": 68
+        },
+        "img-size": {
+          "width": 315,
+          "height": 160
+        }
+      }
+    ]
+  },
+  "images149": {
+    "annotations": [
+      {
+        "id": "267a71d1-18d9-4dee-ac7a-09f7f357a7e7",
+        "path": "img\\tests\\Masque\\images149.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 59,
+          "beginY": 89,
+          "destinationX": 123,
+          "destinationY": 166
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      },
+      {
+        "id": "39813035-26c0-474b-a85f-e062c2a4f098",
+        "path": "img\\tests\\Masque\\images149.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 132,
+          "beginY": 45,
+          "destinationX": 180,
+          "destinationY": 122
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      },
+      {
+        "id": "364d1a16-e622-4060-b1e5-9477d9fa6255",
+        "path": "img\\tests\\Masque\\images149.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 240,
+          "beginY": 87,
+          "destinationX": 288,
+          "destinationY": 151
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      },
+      {
+        "id": "b22f792b-cd93-4c3e-8520-d2c6e70613c8",
+        "path": "img\\tests\\Masque\\images149.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 162,
+          "beginY": 1,
+          "destinationX": 207,
+          "destinationY": 48
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      },
+      {
+        "id": "65922043-aad5-422b-bab2-ea48413a6519",
+        "path": "img\\tests\\Masque\\images149.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 31,
+          "beginY": 23,
+          "destinationX": 78,
+          "destinationY": 81
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images153": {
+    "annotations": [
+      {
+        "id": "5e27e6a0-7bb8-4e26-b3ac-64c111c03bab",
+        "path": "img\\tests\\Masque\\images153.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 28,
+          "beginY": 29,
+          "destinationX": 43,
+          "destinationY": 53
+        },
+        "img-size": {
+          "width": 248,
+          "height": 203
+        }
+      },
+      {
+        "id": "eb535504-3488-434f-8f69-6a875eebddff",
+        "path": "img\\tests\\Masque\\images153.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 63,
+          "beginY": 29,
+          "destinationX": 89,
+          "destinationY": 49
+        },
+        "img-size": {
+          "width": 248,
+          "height": 203
+        }
+      },
+      {
+        "id": "2a9c7a7e-a2aa-44d2-afab-e7ef951cc1d6",
+        "path": "img\\tests\\Masque\\images153.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 152,
+          "beginY": 40,
+          "destinationX": 185,
+          "destinationY": 72
+        },
+        "img-size": {
+          "width": 248,
+          "height": 203
+        }
+      }
+    ]
+  },
+  "images154": {
+    "annotations": [
+      {
+        "id": "55ab84f2-1891-4f35-a5c9-9706770fe7d7",
+        "path": "img\\tests\\Masque\\images154.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 159,
+          "beginY": 27,
+          "destinationX": 188,
+          "destinationY": 60
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "a47057c7-2be4-4c9c-9419-e1a0b6e9af26",
+        "path": "img\\tests\\Masque\\images154.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 0,
+          "beginY": 25,
+          "destinationX": 21,
+          "destinationY": 95
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "b9fb1dc8-822f-4e92-af9c-1795819955c8",
+        "path": "img\\tests\\Masque\\images154.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 94,
+          "beginY": 63,
+          "destinationX": 116,
+          "destinationY": 86
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images156": {
+    "annotations": [
+      {
+        "id": "767c013e-73c6-4110-b5ba-376d3f8927b8",
+        "path": "img\\tests\\Masque\\images156.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 136,
+          "beginY": 77,
+          "destinationX": 161,
+          "destinationY": 99
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images157": {
+    "annotations": [
+      {
+        "id": "b73e5122-de69-4608-a53a-bf996a923dd5",
+        "path": "img\\tests\\Masque\\images157.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 121,
+          "beginY": 29,
+          "destinationX": 182,
+          "destinationY": 105
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images158": {
+    "annotations": [
+      {
+        "id": "6b99e64c-670d-476b-979e-cc7d59d18daa",
+        "path": "img\\tests\\Masque\\images158.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 57,
+          "beginY": 34,
+          "destinationX": 226,
+          "destinationY": 135
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images159": {
+    "annotations": [
+      {
+        "id": "82883d00-cc1c-44cf-8bd7-2cb9c90f7f23",
+        "path": "img\\tests\\Masque\\images159.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 122,
+          "beginY": 46,
+          "destinationX": 188,
+          "destinationY": 108
+        },
+        "img-size": {
+          "width": 307,
+          "height": 164
+        }
+      },
+      {
+        "id": "0b196524-ecae-48b5-82f9-8c73bbbacb0c",
+        "path": "img\\tests\\Masque\\images159.png",
+        "categorie": "Pas Masque",
+        "categorie_id": 1,
+        "coords": {
+          "beginX": 209,
+          "beginY": 46,
+          "destinationX": 284,
+          "destinationY": 106
+        },
+        "img-size": {
+          "width": 307,
+          "height": 164
+        }
+      }
+    ]
+  },
+  "images160": {
+    "annotations": [
+      {
+        "id": "1d824a9d-e192-4388-8d31-e0ec7b2de710",
+        "path": "img\\tests\\Masque\\images160.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 107,
+          "beginY": 10,
+          "destinationX": 212,
+          "destinationY": 149
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images161": {
+    "annotations": [
+      {
+        "id": "0dd46d56-dd74-43ea-8e5b-b28e320586aa",
+        "path": "img\\tests\\Masque\\images161.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 97,
+          "beginY": 18,
+          "destinationX": 118,
+          "destinationY": 45
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images162": {
+    "annotations": [
+      {
+        "id": "5c252ffc-27ce-4b58-a5c7-cd344641e6dd",
+        "path": "img\\tests\\Masque\\images162.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 102,
+          "beginY": 8,
+          "destinationX": 139,
+          "destinationY": 52
+        },
+        "img-size": {
+          "width": 318,
+          "height": 159
+        }
+      },
+      {
+        "id": "8f80c36e-e829-4f76-aab2-5b63d60c9f95",
+        "path": "img\\tests\\Masque\\images162.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 56,
+          "beginY": 0,
+          "destinationX": 97,
+          "destinationY": 42
+        },
+        "img-size": {
+          "width": 318,
+          "height": 159
+        }
+      }
+    ]
+  },
+  "images163": {
+    "annotations": [
+      {
+        "id": "7cf550ec-d6a4-45e4-8b81-0ee1c392a476",
+        "path": "img\\tests\\Masque\\images163.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 119,
+          "beginY": 5,
+          "destinationX": 189,
+          "destinationY": 87
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images181": {
+    "annotations": [
+      {
+        "id": "03ac1195-f7d0-4173-b676-d4e7f21b96b5",
+        "path": "img\\tests\\Masque\\images181.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 69,
+          "beginY": 63,
+          "destinationX": 111,
+          "destinationY": 105
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images182": {
+    "annotations": [
+      {
+        "id": "6b585b39-921c-4835-905b-10e414ceaf02",
+        "path": "img\\tests\\Masque\\images182.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 42,
+          "beginY": 73,
+          "destinationX": 86,
+          "destinationY": 128
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images186": {
+    "annotations": [
+      {
+        "id": "fcbfd19c-393c-4fdf-b510-cd26a74ac503",
+        "path": "img\\tests\\Masque\\images186.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 165,
+          "beginY": 42,
+          "destinationX": 206,
+          "destinationY": 90
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "ef0f89f8-fc76-4a9c-86ff-2f3285e27b32",
+        "path": "img\\tests\\Masque\\images186.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 60,
+          "beginY": 35,
+          "destinationX": 133,
+          "destinationY": 111
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images187": {
+    "annotations": [
+      {
+        "id": "8e8a1976-4ea3-48a6-a089-e960a272a09f",
+        "path": "img\\tests\\Masque\\images187.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 97,
+          "beginY": 1,
+          "destinationX": 159,
+          "destinationY": 88
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "8d607945-3c63-417f-98ea-88da8a371b69",
+        "path": "img\\tests\\Masque\\images187.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 168,
+          "beginY": 42,
+          "destinationX": 239,
+          "destinationY": 137
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images188": {
+    "annotations": [
+      {
+        "id": "76aad525-ab5e-4bd4-b697-e1c18af4ff5b",
+        "path": "img\\tests\\Masque\\images188.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 20,
+          "beginY": 9,
+          "destinationX": 62,
+          "destinationY": 54
+        },
+        "img-size": {
+          "width": 318,
+          "height": 159
+        }
+      },
+      {
+        "id": "3adb227d-194e-421e-9125-cda7df3c1031",
+        "path": "img\\tests\\Masque\\images188.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 138,
+          "beginY": 27,
+          "destinationX": 185,
+          "destinationY": 83
+        },
+        "img-size": {
+          "width": 318,
+          "height": 159
+        }
+      }
+    ]
+  },
+  "images190": {
+    "annotations": [
+      {
+        "id": "8fd0f667-ba06-4378-8255-34f8b8849384",
+        "path": "img\\tests\\Masque\\images190.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 189,
+          "beginY": 5,
+          "destinationX": 239,
+          "destinationY": 65
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      },
+      {
+        "id": "b7d139e1-03c8-4167-9c99-bb9c8b7b34d2",
+        "path": "img\\tests\\Masque\\images190.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 73,
+          "beginY": 18,
+          "destinationX": 127,
+          "destinationY": 61
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images191": {
+    "annotations": [
+      {
+        "id": "24fc1342-677b-432b-8eb9-10b047d08b47",
+        "path": "img\\tests\\Masque\\images191.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 90,
+          "beginY": 6,
+          "destinationX": 200,
+          "destinationY": 162
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images192": {
+    "annotations": [
+      {
+        "id": "5c0b9320-7340-4ab6-8d44-dffbac266b86",
+        "path": "img\\tests\\Masque\\images192.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 112,
+          "beginY": 7,
+          "destinationX": 213,
+          "destinationY": 117
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images195": {
+    "annotations": [
+      {
+        "id": "ed8c6fb1-a71e-4211-aaa5-25f23c54ccee",
+        "path": "img\\tests\\Masque\\images195.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 39,
+          "beginY": 11,
+          "destinationX": 86,
+          "destinationY": 77
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      },
+      {
+        "id": "391d95a2-d43f-410e-b0aa-d19ef40dccd0",
+        "path": "img\\tests\\Masque\\images195.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 254,
+          "beginY": 40,
+          "destinationX": 277,
+          "destinationY": 74
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images196": {
+    "annotations": [
+      {
+        "id": "fd699d2a-d458-4df5-bf62-8f25573d777d",
+        "path": "img\\tests\\Masque\\images196.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 21,
+          "beginY": 3,
+          "destinationX": 97,
+          "destinationY": 94
+        },
+        "img-size": {
+          "width": 225,
+          "height": 225
+        }
+      },
+      {
+        "id": "a62a17f6-e677-4811-95b8-fa45ac224bb9",
+        "path": "img\\tests\\Masque\\images196.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 133,
+          "beginY": 10,
+          "destinationX": 201,
+          "destinationY": 96
+        },
+        "img-size": {
+          "width": 225,
+          "height": 225
+        }
+      },
+      {
+        "id": "fa31d7a0-0e3b-401c-9863-e64e7b783397",
+        "path": "img\\tests\\Masque\\images196.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 21,
+          "beginY": 120,
+          "destinationX": 94,
+          "destinationY": 213
+        },
+        "img-size": {
+          "width": 225,
+          "height": 225
+        }
+      },
+      {
+        "id": "f03dcb02-7e21-46fe-aa4a-6b34fd5ac310",
+        "path": "img\\tests\\Masque\\images196.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 126,
+          "beginY": 118,
+          "destinationX": 208,
+          "destinationY": 205
+        },
+        "img-size": {
+          "width": 225,
+          "height": 225
+        }
+      }
+    ]
+  },
+  "images200": {
+    "annotations": [
+      {
+        "id": "08ca218c-054f-4ea9-9e65-25a7a979653f",
+        "path": "img\\tests\\Masque\\images200.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 59,
+          "beginY": 1,
+          "destinationX": 176,
+          "destinationY": 119
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images201": {
+    "annotations": [
+      {
+        "id": "44140e89-3cd4-4d10-bdcd-f6efdcc23de8",
+        "path": "img\\tests\\Masque\\images201.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 173,
+          "beginY": 72,
+          "destinationX": 195,
+          "destinationY": 109
+        },
+        "img-size": {
+          "width": 257,
+          "height": 196
+        }
+      }
+    ]
+  },
+  "images212": {
+    "annotations": [
+      {
+        "id": "3137a469-15f6-4610-963f-37fc13ed74ad",
+        "path": "img\\tests\\Masque\\images212.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 61,
+          "beginY": 20,
+          "destinationX": 89,
+          "destinationY": 51
+        },
+        "img-size": {
+          "width": 277,
+          "height": 182
+        }
+      },
+      {
+        "id": "2b2d796d-8456-45cc-a821-aac8efb6bb7a",
+        "path": "img\\tests\\Masque\\images212.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 193,
+          "beginY": 27,
+          "destinationX": 216,
+          "destinationY": 53
+        },
+        "img-size": {
+          "width": 277,
+          "height": 182
+        }
+      }
+    ]
+  },
+  "images213": {
+    "annotations": [
+      {
+        "id": "f517d04f-ebd9-4eae-8b2b-44ced8cefe66",
+        "path": "img\\tests\\Masque\\images213.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 55,
+          "beginY": 63,
+          "destinationX": 90,
+          "destinationY": 108
+        },
+        "img-size": {
+          "width": 311,
+          "height": 162
+        }
+      }
+    ]
+  },
+  "images215": {
+    "annotations": [
+      {
+        "id": "7a00be55-17a8-481d-9765-22a14b59b497",
+        "path": "img\\tests\\Masque\\images215.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 34,
+          "beginY": 34,
+          "destinationX": 67,
+          "destinationY": 91
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      },
+      {
+        "id": "1f65a44a-8f26-4cc2-896d-664c450c2e97",
+        "path": "img\\tests\\Masque\\images215.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 114,
+          "beginY": 27,
+          "destinationX": 155,
+          "destinationY": 76
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      },
+      {
+        "id": "ae4df7ba-99f3-4e02-be9a-c1f4101123ff",
+        "path": "img\\tests\\Masque\\images215.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 244,
+          "beginY": 31,
+          "destinationX": 272,
+          "destinationY": 83
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images216": {
+    "annotations": [
+      {
+        "id": "45cc18f6-c723-454a-8ae6-03c6a11c00ba",
+        "path": "img\\tests\\Masque\\images216.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 21,
+          "beginY": 30,
+          "destinationX": 58,
+          "destinationY": 67
+        },
+        "img-size": {
+          "width": 225,
+          "height": 225
+        }
+      },
+      {
+        "id": "e08c6e5e-8fc2-479c-8b75-48c409243aaa",
+        "path": "img\\tests\\Masque\\images216.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 172,
+          "beginY": 38,
+          "destinationX": 208,
+          "destinationY": 71
+        },
+        "img-size": {
+          "width": 225,
+          "height": 225
+        }
+      }
+    ]
+  },
+  "images217": {
+    "annotations": [
+      {
+        "id": "d347d8e7-30c9-4bd5-a06b-c545e5a0ebfb",
+        "path": "img\\tests\\Masque\\images217.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 35,
+          "beginY": 17,
+          "destinationX": 52,
+          "destinationY": 44
+        },
+        "img-size": {
+          "width": 290,
+          "height": 174
+        }
+      }
+    ]
+  },
+  "images226": {
+    "annotations": [
+      {
+        "id": "03d7859a-08ab-435d-9ad9-eb8ae5ba0b4a",
+        "path": "img\\tests\\Masque\\images226.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 118,
+          "beginY": 2,
+          "destinationX": 186,
+          "destinationY": 75
+        },
+        "img-size": {
+          "width": 259,
+          "height": 194
+        }
+      }
+    ]
+  },
+  "images223": {
+    "annotations": [
+      {
+        "id": "a0f64935-5de9-47e7-a146-76100d474747",
+        "path": "img\\tests\\Masque\\images223.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 70,
+          "beginY": 39,
+          "destinationX": 115,
+          "destinationY": 120
+        },
+        "img-size": {
+          "width": 265,
+          "height": 190
+        }
+      },
+      {
+        "id": "bc9ac255-4ba5-4ced-ae0e-e149dc9e3380",
+        "path": "img\\tests\\Masque\\images223.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 130,
+          "beginY": 32,
+          "destinationX": 177,
+          "destinationY": 111
+        },
+        "img-size": {
+          "width": 265,
+          "height": 190
+        }
+      },
+      {
+        "id": "0308532e-edf9-4c09-9e72-d6de4c3de0a1",
+        "path": "img\\tests\\Masque\\images223.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 192,
+          "beginY": 8,
+          "destinationX": 259,
+          "destinationY": 114
+        },
+        "img-size": {
+          "width": 265,
+          "height": 190
+        }
+      }
+    ]
+  },
+  "images221": {
+    "annotations": [
+      {
+        "id": "3d7744b6-f1ed-4ccb-a871-be83dce08b26",
+        "path": "img\\tests\\Masque\\images221.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 199,
+          "beginY": 31,
+          "destinationX": 253,
+          "destinationY": 104
+        },
+        "img-size": {
+          "width": 330,
+          "height": 153
+        }
+      }
+    ]
+  },
+  "images222": {
+    "annotations": [
+      {
+        "id": "d8f6ce9d-d18b-4ff0-8d83-a6d301b0e59b",
+        "path": "img\\tests\\Masque\\images222.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 61,
+          "beginY": 9,
+          "destinationX": 104,
+          "destinationY": 64
+        },
+        "img-size": {
+          "width": 260,
+          "height": 194
+        }
+      },
+      {
+        "id": "a27cf72d-e443-4aa8-88e7-3d9d3237450b",
+        "path": "img\\tests\\Masque\\images222.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 180,
+          "beginY": 34,
+          "destinationX": 214,
+          "destinationY": 68
+        },
+        "img-size": {
+          "width": 260,
+          "height": 194
+        }
+      }
+    ]
+  },
+  "images229": {
+    "annotations": [
+      {
+        "id": "5205d399-fcd0-4ed4-85b2-3263238d5ac7",
+        "path": "img\\tests\\Masque\\images229.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 192,
+          "beginY": 45,
+          "destinationX": 225,
+          "destinationY": 96
+        },
+        "img-size": {
+          "width": 245,
+          "height": 206
+        }
+      },
+      {
+        "id": "537a8eda-43cf-4ac9-ace3-12184dbd4e4f",
+        "path": "img\\tests\\Masque\\images229.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 94,
+          "beginY": 60,
+          "destinationX": 131,
+          "destinationY": 106
+        },
+        "img-size": {
+          "width": 245,
+          "height": 206
+        }
+      },
+      {
+        "id": "b30e78f1-4339-4c04-9f47-210c2434bf70",
+        "path": "img\\tests\\Masque\\images229.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 15,
+          "beginY": 90,
+          "destinationX": 58,
+          "destinationY": 144
+        },
+        "img-size": {
+          "width": 245,
+          "height": 206
+        }
+      }
+    ]
+  },
+  "images230": {
+    "annotations": [
+      {
+        "id": "810c757d-d016-45f8-bb49-e60d0d2953cc",
+        "path": "img\\tests\\Masque\\images230.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 195,
+          "beginY": 32,
+          "destinationX": 222,
+          "destinationY": 65
+        },
+        "img-size": {
+          "width": 344,
+          "height": 146
+        }
+      },
+      {
+        "id": "75418b33-26e7-4d15-9761-85b134179e89",
+        "path": "img\\tests\\Masque\\images230.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 97,
+          "beginY": 27,
+          "destinationX": 128,
+          "destinationY": 60
+        },
+        "img-size": {
+          "width": 344,
+          "height": 146
+        }
+      }
+    ]
+  },
+  "images231": {
+    "annotations": [
+      {
+        "id": "1014fb8c-1ba4-46a6-bc75-28209b122cb6",
+        "path": "img\\tests\\Masque\\images231.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 66,
+          "beginY": 4,
+          "destinationX": 113,
+          "destinationY": 78
+        },
+        "img-size": {
+          "width": 287,
+          "height": 175
+        }
+      },
+      {
+        "id": "7a84460e-0ba2-4347-9b93-9f770bd940cf",
+        "path": "img\\tests\\Masque\\images231.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 181,
+          "beginY": 14,
+          "destinationX": 247,
+          "destinationY": 96
+        },
+        "img-size": {
+          "width": 287,
+          "height": 175
+        }
+      }
+    ]
+  },
+  "images233": {
+    "annotations": [
+      {
+        "id": "9d06f8d0-9065-424d-a1d2-76a5a151cd54",
+        "path": "img\\tests\\Masque\\images233.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 167,
+          "beginY": 43,
+          "destinationX": 232,
+          "destinationY": 115
+        },
+        "img-size": {
+          "width": 297,
+          "height": 170
+        }
+      },
+      {
+        "id": "e99352a5-621d-489e-8aee-79a329bb2069",
+        "path": "img\\tests\\Masque\\images233.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 106,
+          "beginY": 76,
+          "destinationX": 134,
+          "destinationY": 117
+        },
+        "img-size": {
+          "width": 297,
+          "height": 170
+        }
+      }
+    ]
+  },
+  "images234": {
+    "annotations": [
+      {
+        "id": "24447fac-7057-40ef-a3b1-2b667c3d9586",
+        "path": "img\\tests\\Masque\\images234.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 55,
+          "beginY": 22,
+          "destinationX": 88,
+          "destinationY": 68
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      },
+      {
+        "id": "c7b791dc-6b33-429d-9b31-3c77640292a7",
+        "path": "img\\tests\\Masque\\images234.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 105,
+          "beginY": 30,
+          "destinationX": 134,
+          "destinationY": 69
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images236": {
+    "annotations": [
+      {
+        "id": "f803fd0d-e8c7-49ca-bd90-1583fc5f17be",
+        "path": "img\\tests\\Masque\\images236.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 197,
+          "beginY": 33,
+          "destinationX": 247,
+          "destinationY": 94
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images238": {
+    "annotations": [
+      {
+        "id": "47cfeb71-b3b4-482c-9095-e3169803f4cf",
+        "path": "img\\tests\\Masque\\images238.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 128,
+          "beginY": 13,
+          "destinationX": 168,
+          "destinationY": 70
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images240": {
+    "annotations": [
+      {
+        "id": "bbb479d4-d0b1-4801-b5bd-b6bc11086da8",
+        "path": "img\\tests\\Masque\\images240.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 113,
+          "beginY": 23,
+          "destinationX": 132,
+          "destinationY": 47
+        },
+        "img-size": {
+          "width": 284,
+          "height": 177
+        }
+      },
+      {
+        "id": "42629ef7-592f-4043-884a-7b59c1746692",
+        "path": "img\\tests\\Masque\\images240.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 57,
+          "beginY": 1,
+          "destinationX": 87,
+          "destinationY": 38
+        },
+        "img-size": {
+          "width": 284,
+          "height": 177
+        }
+      }
+    ]
+  },
+  "images242": {
+    "annotations": [
+      {
+        "id": "5043077d-931a-40bf-b2e6-055d5ebfcaac",
+        "path": "img\\tests\\Masque\\images242.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 22,
+          "beginY": 1,
+          "destinationX": 68,
+          "destinationY": 51
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      },
+      {
+        "id": "e7223fa6-ad18-46f3-b631-c1a8cb0cd324",
+        "path": "img\\tests\\Masque\\images242.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 102,
+          "beginY": 32,
+          "destinationX": 125,
+          "destinationY": 71
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      },
+      {
+        "id": "4d7558b0-db56-4959-a1f6-a8391076aff8",
+        "path": "img\\tests\\Masque\\images242.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 178,
+          "beginY": 102,
+          "destinationX": 207,
+          "destinationY": 148
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      },
+      {
+        "id": "81f88b1c-46ee-46cb-b2d2-7a41770744e4",
+        "path": "img\\tests\\Masque\\images242.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 154,
+          "beginY": 42,
+          "destinationX": 177,
+          "destinationY": 69
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      },
+      {
+        "id": "e9580225-ed90-4535-aea0-ec593637c334",
+        "path": "img\\tests\\Masque\\images242.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 235,
+          "beginY": 51,
+          "destinationX": 252,
+          "destinationY": 83
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images243": {
+    "annotations": [
+      {
+        "id": "9fe71c55-d7cb-4cac-8512-cc8b74439104",
+        "path": "img\\tests\\Masque\\images243.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 20,
+          "beginY": 3,
+          "destinationX": 80,
+          "destinationY": 92
+        },
+        "img-size": {
+          "width": 264,
+          "height": 191
+        }
+      },
+      {
+        "id": "572543cc-6b90-4bb5-9761-25db79ddf97d",
+        "path": "img\\tests\\Masque\\images243.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 90,
+          "beginY": 16,
+          "destinationX": 130,
+          "destinationY": 94
+        },
+        "img-size": {
+          "width": 264,
+          "height": 191
+        }
+      },
+      {
+        "id": "2cebd90d-8bb4-4e02-ac84-9336f74081ab",
+        "path": "img\\tests\\Masque\\images243.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 139,
+          "beginY": 31,
+          "destinationX": 172,
+          "destinationY": 90
+        },
+        "img-size": {
+          "width": 264,
+          "height": 191
+        }
+      },
+      {
+        "id": "cb7a2dd5-9136-486c-a11e-5b8f72555a44",
+        "path": "img\\tests\\Masque\\images243.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 180,
+          "beginY": 34,
+          "destinationX": 253,
+          "destinationY": 137
+        },
+        "img-size": {
+          "width": 264,
+          "height": 191
+        }
+      }
+    ]
+  },
+  "images246": {
+    "annotations": [
+      {
+        "id": "1b1e56e3-db17-4c81-aff9-393bcdf5537a",
+        "path": "img\\tests\\Masque\\images246.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 155,
+          "beginY": 25,
+          "destinationX": 189,
+          "destinationY": 70
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images248": {
+    "annotations": [
+      {
+        "id": "11681e7d-90a8-420a-b489-32ab7dd800bc",
+        "path": "img\\tests\\Masque\\images248.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 98,
+          "beginY": 0,
+          "destinationX": 185,
+          "destinationY": 101
+        },
+        "img-size": {
+          "width": 311,
+          "height": 162
+        }
+      }
+    ]
+  },
+  "images249": {
+    "annotations": [
+      {
+        "id": "5813e174-c5dc-4814-84ca-d0a1dfe815a8",
+        "path": "img\\tests\\Masque\\images249.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 52,
+          "beginY": 27,
+          "destinationX": 95,
+          "destinationY": 81
+        },
+        "img-size": {
+          "width": 288,
+          "height": 175
+        }
+      },
+      {
+        "id": "b734ad50-615b-4131-bfee-012666519987",
+        "path": "img\\tests\\Masque\\images249.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 148,
+          "beginY": 5,
+          "destinationX": 184,
+          "destinationY": 61
+        },
+        "img-size": {
+          "width": 288,
+          "height": 175
+        }
+      },
+      {
+        "id": "5d88bd8c-8796-4f14-9df4-4f021217e68f",
+        "path": "img\\tests\\Masque\\images249.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 185,
+          "beginY": 77,
+          "destinationX": 214,
+          "destinationY": 124
+        },
+        "img-size": {
+          "width": 288,
+          "height": 175
+        }
+      },
+      {
+        "id": "525dfbc0-0ea2-4860-9e33-40e484b28e9d",
+        "path": "img\\tests\\Masque\\images249.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 202,
+          "beginY": 30,
+          "destinationX": 228,
+          "destinationY": 68
+        },
+        "img-size": {
+          "width": 288,
+          "height": 175
+        }
+      }
+    ]
+  },
+  "images250": {
+    "annotations": [
+      {
+        "id": "d5243d14-8f0f-4680-a0a8-a20e655268ff",
+        "path": "img\\tests\\Masque\\images250.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 69,
+          "beginY": 33,
+          "destinationX": 123,
+          "destinationY": 98
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images251": {
+    "annotations": [
+      {
+        "id": "f3e9aa08-47ab-4551-b03e-56af47d97339",
+        "path": "img\\tests\\Masque\\images251.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 122,
+          "beginY": 38,
+          "destinationX": 145,
+          "destinationY": 89
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "807c9b9e-4a76-4539-b8cb-71c79d39df41",
+        "path": "img\\tests\\Masque\\images251.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 225,
+          "beginY": 7,
+          "destinationX": 259,
+          "destinationY": 68
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "bac08f5f-d9bb-4939-89bb-4a9772fc85d7",
+        "path": "img\\tests\\Masque\\images251.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 166,
+          "beginY": 17,
+          "destinationX": 206,
+          "destinationY": 69
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images253": {
+    "annotations": [
+      {
+        "id": "6b45935d-6ee9-4801-80cb-6088f5db3870",
+        "path": "img\\tests\\Masque\\images253.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 9,
+          "beginY": 38,
+          "destinationX": 70,
+          "destinationY": 139
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "fb264b3e-f319-4868-a715-094f6272895e",
+        "path": "img\\tests\\Masque\\images253.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 74,
+          "beginY": 45,
+          "destinationX": 104,
+          "destinationY": 127
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "afcb790b-71e4-4593-8507-ae6e2249c222",
+        "path": "img\\tests\\Masque\\images253.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 175,
+          "beginY": 87,
+          "destinationX": 237,
+          "destinationY": 163
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "99c0e640-26f7-4dcf-a84c-2a2cba9029ea",
+        "path": "img\\tests\\Masque\\images253.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 175,
+          "beginY": 33,
+          "destinationX": 223,
+          "destinationY": 84
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "949f9275-2b65-437a-80e8-e63c376a3380",
+        "path": "img\\tests\\Masque\\images253.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 229,
+          "beginY": 35,
+          "destinationX": 259,
+          "destinationY": 73
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images254": {
+    "annotations": [
+      {
+        "id": "34b70e6a-4d66-48a3-8c44-44326515acda",
+        "path": "img\\tests\\Masque\\images254.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 124,
+          "beginY": 4,
+          "destinationX": 168,
+          "destinationY": 64
+        },
+        "img-size": {
+          "width": 290,
+          "height": 174
+        }
+      },
+      {
+        "id": "9bd45797-930c-45aa-826b-307b684c72f3",
+        "path": "img\\tests\\Masque\\images254.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 211,
+          "beginY": 13,
+          "destinationX": 256,
+          "destinationY": 51
+        },
+        "img-size": {
+          "width": 290,
+          "height": 174
+        }
+      }
+    ]
+  },
+  "images255": {
+    "annotations": [
+      {
+        "id": "c1e8c809-1200-45ad-b57a-f2ef61b536f8",
+        "path": "img\\tests\\Masque\\images255.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 91,
+          "beginY": 11,
+          "destinationX": 131,
+          "destinationY": 62
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images259": {
+    "annotations": [
+      {
+        "id": "e5d4535f-045c-4090-821a-dfaaeeac4e80",
+        "path": "img\\tests\\Masque\\images259.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 51,
+          "beginY": 30,
+          "destinationX": 78,
+          "destinationY": 69
+        },
+        "img-size": {
+          "width": 257,
+          "height": 196
+        }
+      },
+      {
+        "id": "305f3acf-b402-436a-a3f0-32182165899a",
+        "path": "img\\tests\\Masque\\images259.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 142,
+          "beginY": 48,
+          "destinationX": 164,
+          "destinationY": 83
+        },
+        "img-size": {
+          "width": 257,
+          "height": 196
+        }
+      }
+    ]
+  },
+  "images262": {
+    "annotations": [
+      {
+        "id": "2e2ae77a-1866-458f-9cab-db74fdc12af6",
+        "path": "img\\tests\\Masque\\images262.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 48,
+          "beginY": 47,
+          "destinationX": 92,
+          "destinationY": 104
+        },
+        "img-size": {
+          "width": 311,
+          "height": 162
+        }
+      },
+      {
+        "id": "9d3dde37-1555-47f3-9e55-62f612fdc63f",
+        "path": "img\\tests\\Masque\\images262.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 189,
+          "beginY": 63,
+          "destinationX": 243,
+          "destinationY": 140
+        },
+        "img-size": {
+          "width": 311,
+          "height": 162
+        }
+      }
+    ]
+  },
+  "images263": {
+    "annotations": [
+      {
+        "id": "98604d26-3c5d-4672-b0b4-ad4f9a4488ac",
+        "path": "img\\tests\\Masque\\images263.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 39,
+          "beginY": 52,
+          "destinationX": 115,
+          "destinationY": 129
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images264": {
+    "annotations": [
+      {
+        "id": "2c3d235d-6319-4160-af2d-d6e80bbfdc3f",
+        "path": "img\\tests\\Masque\\images264.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 80,
+          "beginY": 37,
+          "destinationX": 128,
+          "destinationY": 169
+        },
+        "img-size": {
+          "width": 252,
+          "height": 200
+        }
+      },
+      {
+        "id": "17dee8b7-7836-477c-a323-e64d841bdf5c",
+        "path": "img\\tests\\Masque\\images264.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 143,
+          "beginY": 4,
+          "destinationX": 190,
+          "destinationY": 147
+        },
+        "img-size": {
+          "width": 252,
+          "height": 200
+        }
+      }
+    ]
+  },
+  "images265": {
+    "annotations": [
+      {
+        "id": "2d148cd0-13d7-4183-9b15-c736c2ad19ee",
+        "path": "img\\tests\\Masque\\images265.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 78,
+          "beginY": 34,
+          "destinationX": 115,
+          "destinationY": 80
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      },
+      {
+        "id": "55eb12e3-299c-46a6-b30d-cc3538527a11",
+        "path": "img\\tests\\Masque\\images265.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 143,
+          "beginY": 8,
+          "destinationX": 175,
+          "destinationY": 49
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      },
+      {
+        "id": "c1e686cb-db69-4424-a320-131004c4c0eb",
+        "path": "img\\tests\\Masque\\images265.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 264,
+          "beginY": 18,
+          "destinationX": 296,
+          "destinationY": 82
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      },
+      {
+        "id": "e7d66b11-e27e-4c29-8a68-cc9a42a71f8d",
+        "path": "img\\tests\\Masque\\images265.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 20,
+          "beginY": 13,
+          "destinationX": 46,
+          "destinationY": 41
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images266": {
+    "annotations": [
+      {
+        "id": "174faec0-1671-4c7b-8a82-1c6dd2770a5a",
+        "path": "img\\tests\\Masque\\images266.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 89,
+          "beginY": 26,
+          "destinationX": 166,
+          "destinationY": 139
+        },
+        "img-size": {
+          "width": 260,
+          "height": 194
+        }
+      }
+    ]
+  },
+  "images267": {
+    "annotations": [
+      {
+        "id": "f567ffaf-fd2f-43af-9048-8d0fd3c8d989",
+        "path": "img\\tests\\Masque\\images267.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 62,
+          "beginY": 47,
+          "destinationX": 94,
+          "destinationY": 92
+        },
+        "img-size": {
+          "width": 279,
+          "height": 181
+        }
+      },
+      {
+        "id": "20d14afe-a0d1-4ae3-ac49-1be4cba9d575",
+        "path": "img\\tests\\Masque\\images267.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 135,
+          "beginY": 63,
+          "destinationX": 158,
+          "destinationY": 98
+        },
+        "img-size": {
+          "width": 279,
+          "height": 181
+        }
+      },
+      {
+        "id": "dafe5fcd-1b6c-45ce-9c52-41e00ba60832",
+        "path": "img\\tests\\Masque\\images267.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 236,
+          "beginY": 52,
+          "destinationX": 261,
+          "destinationY": 96
+        },
+        "img-size": {
+          "width": 279,
+          "height": 181
+        }
+      }
+    ]
+  },
+  "images268": {
+    "annotations": [
+      {
+        "id": "843b12c8-19dd-4077-a1c8-5d7f10c89b71",
+        "path": "img\\tests\\Masque\\images268.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 4,
+          "beginY": 1,
+          "destinationX": 140,
+          "destinationY": 183
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images269": {
+    "annotations": [
+      {
+        "id": "d58b0683-b26c-433a-827a-067da42bed1e",
+        "path": "img\\tests\\Masque\\images269.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 63,
+          "beginY": 3,
+          "destinationX": 154,
+          "destinationY": 154
+        },
+        "img-size": {
+          "width": 225,
+          "height": 225
+        }
+      }
+    ]
+  },
+  "images270": {
+    "annotations": [
+      {
+        "id": "44558339-122e-43f9-926a-01b7c67bb048",
+        "path": "img\\tests\\Masque\\images270.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 157,
+          "beginY": 6,
+          "destinationX": 262,
+          "destinationY": 111
+        },
+        "img-size": {
+          "width": 290,
+          "height": 174
+        }
+      }
+    ]
+  },
+  "images273": {
+    "annotations": [
+      {
+        "id": "615a3078-03bd-458f-8cce-17f790ab8c13",
+        "path": "img\\tests\\Masque\\images273.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 33,
+          "beginY": 9,
+          "destinationX": 132,
+          "destinationY": 144
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "afb5709d-6833-47cf-8a53-d07d0b57e35c",
+        "path": "img\\tests\\Masque\\images273.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 164,
+          "beginY": 68,
+          "destinationX": 229,
+          "destinationY": 152
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images274": {
+    "annotations": [
+      {
+        "id": "abe200f2-d9c3-4cb7-95af-76ec65dcf011",
+        "path": "img\\tests\\Masque\\images274.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 19,
+          "beginY": 16,
+          "destinationX": 83,
+          "destinationY": 75
+        },
+        "img-size": {
+          "width": 277,
+          "height": 182
+        }
+      },
+      {
+        "id": "56483697-42a3-4928-9c30-535cce4872c0",
+        "path": "img\\tests\\Masque\\images274.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 103,
+          "beginY": 28,
+          "destinationX": 126,
+          "destinationY": 63
+        },
+        "img-size": {
+          "width": 277,
+          "height": 182
+        }
+      },
+      {
+        "id": "74b1a39b-a77c-40cf-8ba9-cbd72252a279",
+        "path": "img\\tests\\Masque\\images274.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 161,
+          "beginY": 23,
+          "destinationX": 191,
+          "destinationY": 71
+        },
+        "img-size": {
+          "width": 277,
+          "height": 182
+        }
+      },
+      {
+        "id": "d92c0964-6373-47a9-b5ad-3837ce43e883",
+        "path": "img\\tests\\Masque\\images274.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 195,
+          "beginY": 15,
+          "destinationX": 224,
+          "destinationY": 58
+        },
+        "img-size": {
+          "width": 277,
+          "height": 182
+        }
+      }
+    ]
+  },
+  "images275": {
+    "annotations": [
+      {
+        "id": "3e02ded1-d092-4dd6-a233-6af1ce46128c",
+        "path": "img\\tests\\Masque\\images275.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 115,
+          "beginY": 4,
+          "destinationX": 265,
+          "destinationY": 149
+        },
+        "img-size": {
+          "width": 320,
+          "height": 157
+        }
+      }
+    ]
+  },
+  "images276": {
+    "annotations": [
+      {
+        "id": "1b17bebe-0508-4697-becd-b9c44a86e58b",
+        "path": "img\\tests\\Masque\\images276.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 41,
+          "beginY": 22,
+          "destinationX": 84,
+          "destinationY": 82
+        },
+        "img-size": {
+          "width": 291,
+          "height": 173
+        }
+      },
+      {
+        "id": "a9ed2566-644d-4e8b-8649-28455e93d953",
+        "path": "img\\tests\\Masque\\images276.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 207,
+          "beginY": 31,
+          "destinationX": 237,
+          "destinationY": 81
+        },
+        "img-size": {
+          "width": 291,
+          "height": 173
+        }
+      }
+    ]
+  },
+  "images278": {
+    "annotations": [
+      {
+        "id": "eb9f056d-6768-4b52-88ce-ad9ff8dcb356",
+        "path": "img\\tests\\Masque\\images278.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 59,
+          "beginY": 21,
+          "destinationX": 120,
+          "destinationY": 88
+        },
+        "img-size": {
+          "width": 277,
+          "height": 182
+        }
+      },
+      {
+        "id": "a28c4cca-7872-4aed-a082-d5e2c2a6cda6",
+        "path": "img\\tests\\Masque\\images278.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 143,
+          "beginY": 39,
+          "destinationX": 207,
+          "destinationY": 118
+        },
+        "img-size": {
+          "width": 277,
+          "height": 182
+        }
+      }
+    ]
+  },
+  "images279": {
+    "annotations": [
+      {
+        "id": "f1d76609-3692-49d5-adab-4a26929e31dd",
+        "path": "img\\tests\\Masque\\images279.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 36,
+          "beginY": 33,
+          "destinationX": 56,
+          "destinationY": 72
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images280": {
+    "annotations": [
+      {
+        "id": "063b16f5-125d-4430-b459-9c0e3d23874e",
+        "path": "img\\tests\\Masque\\images280.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 37,
+          "beginY": 45,
+          "destinationX": 59,
+          "destinationY": 78
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "52f3de4e-0da1-4c48-92c9-b7eb4dd8ade5",
+        "path": "img\\tests\\Masque\\images280.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 70,
+          "beginY": 59,
+          "destinationX": 95,
+          "destinationY": 101
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "dd6fa7a1-797d-45ac-a9a8-d4a6f81a5693",
+        "path": "img\\tests\\Masque\\images280.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 109,
+          "beginY": 41,
+          "destinationX": 151,
+          "destinationY": 90
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "efed6499-7542-4f11-89ee-16cc5a3bb676",
+        "path": "img\\tests\\Masque\\images280.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 162,
+          "beginY": 46,
+          "destinationX": 184,
+          "destinationY": 93
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "65022729-d20f-403b-850a-216ed609370d",
+        "path": "img\\tests\\Masque\\images280.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 210,
+          "beginY": 30,
+          "destinationX": 239,
+          "destinationY": 65
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images281": {
+    "annotations": [
+      {
+        "id": "e0fec4d0-eda1-46a6-8d9e-087f9cde8140",
+        "path": "img\\tests\\Masque\\images281.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 72,
+          "beginY": 4,
+          "destinationX": 125,
+          "destinationY": 74
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images283": {
+    "annotations": [
+      {
+        "id": "3c6bdb8f-c36c-4a94-943d-52eade86a6a5",
+        "path": "img\\tests\\Masque\\images283.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 131,
+          "beginY": 28,
+          "destinationX": 165,
+          "destinationY": 69
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "0a0eba71-fe84-4181-8d77-acbd52c95022",
+        "path": "img\\tests\\Masque\\images283.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 218,
+          "beginY": 41,
+          "destinationX": 241,
+          "destinationY": 71
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "5d2f7102-2289-4af3-8c83-dc2139c5f5b7",
+        "path": "img\\tests\\Masque\\images283.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 84,
+          "beginY": 32,
+          "destinationX": 110,
+          "destinationY": 58
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "93365824-78c0-4c1b-a56f-c5ac3a3178f0",
+        "path": "img\\tests\\Masque\\images283.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 48,
+          "beginY": 30,
+          "destinationX": 72,
+          "destinationY": 58
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images284": {
+    "annotations": [
+      {
+        "id": "42d799cf-42b5-4d5b-a700-b3fdf327f06a",
+        "path": "img\\tests\\Masque\\images284.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 112,
+          "beginY": 46,
+          "destinationX": 173,
+          "destinationY": 138
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images293": {
+    "annotations": [
+      {
+        "id": "7aaa0e61-54e9-4816-a212-73f473a2d205",
+        "path": "img\\tests\\Masque\\images293.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 120,
+          "beginY": 1,
+          "destinationX": 185,
+          "destinationY": 106
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images292": {
+    "annotations": [
+      {
+        "id": "3b6e423b-2c80-41ea-be49-96fcba8f683e",
+        "path": "img\\tests\\Masque\\images292.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 56,
+          "beginY": 26,
+          "destinationX": 119,
+          "destinationY": 96
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "4d685e36-bd7b-405e-b023-2477335531a6",
+        "path": "img\\tests\\Masque\\images292.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 145,
+          "beginY": 11,
+          "destinationX": 189,
+          "destinationY": 70
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images288": {
+    "annotations": [
+      {
+        "id": "e0ad4d17-e1c8-4b12-93a6-9603c6102733",
+        "path": "img\\tests\\Masque\\images288.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 83,
+          "beginY": 23,
+          "destinationX": 141,
+          "destinationY": 92
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      },
+      {
+        "id": "54276271-1440-4e58-b863-93f06e68fca6",
+        "path": "img\\tests\\Masque\\images288.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 165,
+          "beginY": 50,
+          "destinationX": 202,
+          "destinationY": 92
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images287": {
+    "annotations": [
+      {
+        "id": "7c01c6ee-9317-4369-b3d7-c7426db12ac0",
+        "path": "img\\tests\\Masque\\images287.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 85,
+          "beginY": 72,
+          "destinationX": 131,
+          "destinationY": 138
+        },
+        "img-size": {
+          "width": 277,
+          "height": 182
+        }
+      },
+      {
+        "id": "9da47a6e-fbd5-4497-9ed4-744f09f5ec70",
+        "path": "img\\tests\\Masque\\images287.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 189,
+          "beginY": 61,
+          "destinationX": 251,
+          "destinationY": 132
+        },
+        "img-size": {
+          "width": 277,
+          "height": 182
+        }
+      }
+    ]
+  },
+  "images294": {
+    "annotations": [
+      {
+        "id": "1bc6bcb0-e98b-417d-8a89-0e99a3a2bfc3",
+        "path": "img\\tests\\Masque\\images294.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 151,
+          "beginY": 57,
+          "destinationX": 179,
+          "destinationY": 90
+        },
+        "img-size": {
+          "width": 271,
+          "height": 186
+        }
+      },
+      {
+        "id": "1fe1f8d8-661b-4386-8145-53b582b9c752",
+        "path": "img\\tests\\Masque\\images294.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 193,
+          "beginY": 32,
+          "destinationX": 227,
+          "destinationY": 73
+        },
+        "img-size": {
+          "width": 271,
+          "height": 186
+        }
+      },
+      {
+        "id": "51624a14-72c5-4a4d-9a44-0ce8d57efd77",
+        "path": "img\\tests\\Masque\\images294.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 64,
+          "beginY": 31,
+          "destinationX": 93,
+          "destinationY": 66
+        },
+        "img-size": {
+          "width": 271,
+          "height": 186
+        }
+      }
+    ]
+  },
+  "images295": {
+    "annotations": [
+      {
+        "id": "f5c05d59-2186-4887-9602-fea7c050bf23",
+        "path": "img\\tests\\Masque\\images295.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 88,
+          "beginY": 21,
+          "destinationX": 122,
+          "destinationY": 72
+        },
+        "img-size": {
+          "width": 259,
+          "height": 194
+        }
+      },
+      {
+        "id": "31dce184-ed28-49dd-bdf3-4bf862680b04",
+        "path": "img\\tests\\Masque\\images295.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 25,
+          "beginY": 34,
+          "destinationX": 66,
+          "destinationY": 86
+        },
+        "img-size": {
+          "width": 259,
+          "height": 194
+        }
+      },
+      {
+        "id": "1f3792d4-3a27-483f-ba36-c6cbd8dab298",
+        "path": "img\\tests\\Masque\\images295.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 131,
+          "beginY": 15,
+          "destinationX": 180,
+          "destinationY": 70
+        },
+        "img-size": {
+          "width": 259,
+          "height": 194
+        }
+      },
+      {
+        "id": "649ea99e-14f3-471d-9f86-50994cca88e3",
+        "path": "img\\tests\\Masque\\images295.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 189,
+          "beginY": 5,
+          "destinationX": 244,
+          "destinationY": 76
+        },
+        "img-size": {
+          "width": 259,
+          "height": 194
+        }
+      }
+    ]
+  },
+  "images296": {
+    "annotations": [
+      {
+        "id": "b48304fe-76f7-41d5-8c6e-cbb4294e5d9e",
+        "path": "img\\tests\\Masque\\images296.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 170,
+          "beginY": 1,
+          "destinationX": 202,
+          "destinationY": 45
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "b47a3781-9d54-46ba-8d4b-ea0431d54176",
+        "path": "img\\tests\\Masque\\images296.png",
+        "categorie": "Pas Masque",
+        "categorie_id": 1,
+        "coords": {
+          "beginX": 104,
+          "beginY": 23,
+          "destinationX": 128,
+          "destinationY": 55
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "faf23837-61fb-4316-8a97-1b24d9bd12bd",
+        "path": "img\\tests\\Masque\\images296.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 32,
+          "beginY": 30,
+          "destinationX": 48,
+          "destinationY": 57
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "c67b11c3-3d85-490d-9038-b0150de49cb5",
+        "path": "img\\tests\\Masque\\images296.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 65,
+          "beginY": 27,
+          "destinationX": 78,
+          "destinationY": 50
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "4260892a-dd8e-439a-bffa-ef905fb552cb",
+        "path": "img\\tests\\Masque\\images296.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 0,
+          "beginY": 27,
+          "destinationX": 24,
+          "destinationY": 61
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images297": {
+    "annotations": [
+      {
+        "id": "7853bcf1-29ba-4c6b-91ba-993741ed7bd5",
+        "path": "img\\tests\\Masque\\images297.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 78,
+          "beginY": 1,
+          "destinationX": 119,
+          "destinationY": 49
+        },
+        "img-size": {
+          "width": 320,
+          "height": 157
+        }
+      },
+      {
+        "id": "b25fd0ba-729b-4416-9671-98027326643d",
+        "path": "img\\tests\\Masque\\images297.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 122,
+          "beginY": 37,
+          "destinationX": 144,
+          "destinationY": 78
+        },
+        "img-size": {
+          "width": 320,
+          "height": 157
+        }
+      },
+      {
+        "id": "69c1cb64-2ccd-4b35-aff8-dd49c007723e",
+        "path": "img\\tests\\Masque\\images297.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 191,
+          "beginY": 11,
+          "destinationX": 284,
+          "destinationY": 117
+        },
+        "img-size": {
+          "width": 320,
+          "height": 157
+        }
+      }
+    ]
+  },
+  "images298": {
+    "annotations": [
+      {
+        "id": "60add7a2-5e1e-47a8-9ac4-523f070e59f4",
+        "path": "img\\tests\\Masque\\images298.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 69,
+          "beginY": 18,
+          "destinationX": 187,
+          "destinationY": 189
+        },
+        "img-size": {
+          "width": 225,
+          "height": 225
+        }
+      }
+    ]
+  },
+  "images301": {
+    "annotations": [
+      {
+        "id": "d2b17355-d8ed-4df6-ad61-461a55fd3035",
+        "path": "img\\tests\\Masque\\images301.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 29,
+          "beginY": 14,
+          "destinationX": 163,
+          "destinationY": 226
+        },
+        "img-size": {
+          "width": 194,
+          "height": 259
+        }
+      }
+    ]
+  },
+  "images302": {
+    "annotations": [
+      {
+        "id": "d0e64900-767f-4a9c-9f59-87b007b2b71c",
+        "path": "img\\tests\\Masque\\images302.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 130,
+          "beginY": 3,
+          "destinationX": 211,
+          "destinationY": 67
+        },
+        "img-size": {
+          "width": 299,
+          "height": 169
+        }
+      }
+    ]
+  },
+  "images303": {
+    "annotations": [
+      {
+        "id": "8d7460bb-fe33-4565-a3ff-1795fb05b74a",
+        "path": "img\\tests\\Masque\\images303.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 118,
+          "beginY": 39,
+          "destinationX": 173,
+          "destinationY": 133
+        },
+        "img-size": {
+          "width": 232,
+          "height": 217
+        }
+      }
+    ]
+  },
+  "images304": {
+    "annotations": [
+      {
+        "id": "88728fef-987c-4c63-9de6-2275f55922ac",
+        "path": "img\\tests\\Masque\\images304.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 60,
+          "beginY": 4,
+          "destinationX": 190,
+          "destinationY": 197
+        },
+        "img-size": {
+          "width": 236,
+          "height": 213
+        }
+      }
+    ]
+  },
+  "images305": {
+    "annotations": [
+      {
+        "id": "719ed808-22ad-4616-a397-71dc37bf2e39",
+        "path": "img\\tests\\Masque\\images305.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 55,
+          "beginY": 30,
+          "destinationX": 98,
+          "destinationY": 96
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "59814e02-41aa-4d71-91fb-647d2dd2d49f",
+        "path": "img\\tests\\Masque\\images305.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 134,
+          "beginY": 13,
+          "destinationX": 199,
+          "destinationY": 94
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images307": {
+    "annotations": [
+      {
+        "id": "395cf7e5-f5bc-4afa-a2fd-d5da62b82a95",
+        "path": "img\\tests\\Masque\\images307.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 48,
+          "beginY": 7,
+          "destinationX": 189,
+          "destinationY": 162
+        },
+        "img-size": {
+          "width": 266,
+          "height": 190
+        }
+      }
+    ]
+  },
+  "images308": {
+    "annotations": [
+      {
+        "id": "5697eb24-b354-4b0f-8bd3-578836221e56",
+        "path": "img\\tests\\Masque\\images308.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 60,
+          "beginY": 7,
+          "destinationX": 90,
+          "destinationY": 40
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      },
+      {
+        "id": "6b5d8263-df2d-479d-b17c-1cf8b9d34688",
+        "path": "img\\tests\\Masque\\images308.png",
+        "categorie": "Pas Masque",
+        "categorie_id": 1,
+        "coords": {
+          "beginX": 219,
+          "beginY": 9,
+          "destinationX": 243,
+          "destinationY": 36
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      },
+      {
+        "id": "3099c77c-0e8f-4263-bd1e-988a2f72b760",
+        "path": "img\\tests\\Masque\\images308.png",
+        "categorie": "Pas Masque",
+        "categorie_id": 1,
+        "coords": {
+          "beginX": 44,
+          "beginY": 106,
+          "destinationX": 76,
+          "destinationY": 139
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      },
+      {
+        "id": "bf2f4be5-1259-490e-beee-0d10f942aa60",
+        "path": "img\\tests\\Masque\\images308.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 216,
+          "beginY": 103,
+          "destinationX": 248,
+          "destinationY": 140
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images313": {
+    "annotations": [
+      {
+        "id": "15f5f002-9892-4dae-81cb-521c8f9fccff",
+        "path": "img\\tests\\Masque\\images313.png",
+        "categorie": "Pas Masque",
+        "categorie_id": 1,
+        "coords": {
+          "beginX": 34,
+          "beginY": 8,
+          "destinationX": 153,
+          "destinationY": 196
+        },
+        "img-size": {
+          "width": 187,
+          "height": 270
+        }
+      }
+    ]
+  },
+  "images312": {
+    "annotations": [
+      {
+        "id": "c4ac56ae-3239-4140-a174-dddd7520936b",
+        "path": "img\\tests\\Masque\\images312.png",
+        "categorie": "Pas Masque",
+        "categorie_id": 1,
+        "coords": {
+          "beginX": 120,
+          "beginY": 19,
+          "destinationX": 166,
+          "destinationY": 85
+        },
+        "img-size": {
+          "width": 291,
+          "height": 173
+        }
+      }
+    ]
+  },
+  "images326": {
+    "annotations": [
+      {
+        "id": "8f07f9c3-c222-4281-995e-609f41646ab3",
+        "path": "img\\tests\\Masque\\images326.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 123,
+          "beginY": 9,
+          "destinationX": 165,
+          "destinationY": 72
+        },
+        "img-size": {
+          "width": 299,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images331": {
+    "annotations": [
+      {
+        "id": "b0c8e19a-808c-49d7-a14d-b9a95ce76e80",
+        "path": "img\\tests\\Masque\\images331.png",
+        "categorie": "Pas Masque",
+        "categorie_id": 1,
+        "coords": {
+          "beginX": 51,
+          "beginY": 56,
+          "destinationX": 171,
+          "destinationY": 195
+        },
+        "img-size": {
+          "width": 183,
+          "height": 275
+        }
+      }
+    ]
+  },
+  "images324": {
+    "annotations": [
+      {
+        "id": "94906b98-229e-4cb2-b035-92eaecd35cad",
+        "path": "img\\tests\\Masque\\images324.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 79,
+          "beginY": 12,
+          "destinationX": 193,
+          "destinationY": 180
+        },
+        "img-size": {
+          "width": 257,
+          "height": 196
+        }
+      }
+    ]
+  },
+  "images351": {
+    "annotations": [
+      {
+        "id": "c369f828-4045-44f0-a8f5-063acec718e2",
+        "path": "img\\tests\\Masque\\images351.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 109,
+          "beginY": 1,
+          "destinationX": 225,
+          "destinationY": 169
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images352": {
+    "annotations": [
+      {
+        "id": "fc4816f8-548a-4f66-9cfb-8136898b4478",
+        "path": "img\\tests\\Masque\\images352.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 50,
+          "beginY": 13,
+          "destinationX": 154,
+          "destinationY": 159
+        },
+        "img-size": {
+          "width": 190,
+          "height": 266
+        }
+      }
+    ]
+  },
+  "images353": {
+    "annotations": [
+      {
+        "id": "c174bec5-c246-4d7d-b809-a4d98af0b730",
+        "path": "img\\tests\\Masque\\images353.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 34,
+          "beginY": 17,
+          "destinationX": 141,
+          "destinationY": 170
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      },
+      {
+        "id": "8f26a60f-54f8-4043-a1b2-85e50ba18810",
+        "path": "img\\tests\\Masque\\images353.png",
+        "categorie": "Pas Masque",
+        "categorie_id": 1,
+        "coords": {
+          "beginX": 204,
+          "beginY": 5,
+          "destinationX": 251,
+          "destinationY": 48
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images354": {
+    "annotations": [
+      {
+        "id": "a24ca888-6bf9-4ded-bd95-65ad6499c166",
+        "path": "img\\tests\\Masque\\images354.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 13,
+          "beginY": 4,
+          "destinationX": 85,
+          "destinationY": 133
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "938bd497-f193-490e-8bf3-3b03e03a7517",
+        "path": "img\\tests\\Masque\\images354.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 88,
+          "beginY": 19,
+          "destinationX": 132,
+          "destinationY": 100
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      },
+      {
+        "id": "96c6baaa-b40d-422b-91c2-6467491edac2",
+        "path": "img\\tests\\Masque\\images354.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 171,
+          "beginY": 4,
+          "destinationX": 228,
+          "destinationY": 61
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images343": {
+    "annotations": [
+      {
+        "id": "5faefb3d-3756-4966-894f-bd223848c5c5",
+        "path": "img\\tests\\Masque\\images343.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 130,
+          "beginY": 16,
+          "destinationX": 199,
+          "destinationY": 119
+        },
+        "img-size": {
+          "width": 310,
+          "height": 163
+        }
+      }
+    ]
+  },
+  "images365": {
+    "annotations": [
+      {
+        "id": "939748fc-92ad-41ea-90c7-f121d86b6eb4",
+        "path": "img\\tests\\Masque\\images365.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 127,
+          "beginY": 3,
+          "destinationX": 223,
+          "destinationY": 116
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images363": {
+    "annotations": [
+      {
+        "id": "0f1cdd78-8f2b-4535-9993-a1cd0107efbc",
+        "path": "img\\tests\\Masque\\images363.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 114,
+          "beginY": 16,
+          "destinationX": 217,
+          "destinationY": 145
+        },
+        "img-size": {
+          "width": 280,
+          "height": 180
+        }
+      }
+    ]
+  },
+  "images362": {
+    "annotations": [
+      {
+        "id": "21fc829a-30fd-4fa6-8b7d-59d5d16b38aa",
+        "path": "img\\tests\\Masque\\images362.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 70,
+          "beginY": 114,
+          "destinationX": 103,
+          "destinationY": 148
+        },
+        "img-size": {
+          "width": 225,
+          "height": 225
+        }
+      }
+    ]
+  },
+  "images366": {
+    "annotations": [
+      {
+        "id": "35c71972-0a8d-433f-b8fa-1f1ebe04b4cc",
+        "path": "img\\tests\\Masque\\images366.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 49,
+          "beginY": 14,
+          "destinationX": 171,
+          "destinationY": 166
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images367": {
+    "annotations": [
+      {
+        "id": "d5a5adbf-e055-4f54-9aeb-7eeb3db11f5c",
+        "path": "img\\tests\\Masque\\images367.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 100,
+          "beginY": 23,
+          "destinationX": 137,
+          "destinationY": 85
+        },
+        "img-size": {
+          "width": 311,
+          "height": 162
+        }
+      }
+    ]
+  },
+  "images376": {
+    "annotations": [
+      {
+        "id": "86792191-29b2-4b87-ad5c-0c15f04bf424",
+        "path": "img\\tests\\Masque\\images376.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 97,
+          "beginY": 20,
+          "destinationX": 149,
+          "destinationY": 103
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images374": {
+    "annotations": [
+      {
+        "id": "69d6a181-ba99-430b-8399-d6056b61fce4",
+        "path": "img\\tests\\Masque\\images374.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 78,
+          "beginY": 45,
+          "destinationX": 170,
+          "destinationY": 155
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images373": {
+    "annotations": [
+      {
+        "id": "fd2c5f11-2bcd-4850-9243-68886e5e8884",
+        "path": "img\\tests\\Masque\\images373.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 122,
+          "beginY": 43,
+          "destinationX": 204,
+          "destinationY": 163
+        },
+        "img-size": {
+          "width": 300,
+          "height": 168
+        }
+      }
+    ]
+  },
+  "images381": {
+    "annotations": [
+      {
+        "id": "4afedacc-f574-42a0-a992-7c296cc873db",
+        "path": "img\\tests\\Masque\\images381.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 107,
+          "beginY": 9,
+          "destinationX": 192,
+          "destinationY": 129
+        },
+        "img-size": {
+          "width": 275,
+          "height": 183
+        }
+      }
+    ]
+  },
+  "images369": {
+    "annotations": [
+      {
+        "id": "88520088-ce67-415d-9815-6ebf44b57843",
+        "path": "img\\tests\\Masque\\images369.png",
+        "categorie": "Masque",
+        "categorie_id": 0,
+        "coords": {
+          "beginX": 138,
+          "beginY": 55,
+          "destinationX": 184,
+          "destinationY": 130
+        },
+        "img-size": {
+          "width": 259,
+          "height": 194
+        }
+      }
+    ]
+  }
+}
