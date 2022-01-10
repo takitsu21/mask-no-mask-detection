@@ -107,14 +107,14 @@ class KerasTrain(object):
         model.fit(x_train, y_train, epochs=30, validation_data=(x_test, y_test), workers=8,
                   use_multiprocessing=True, verbose=1, callbacks=[tensorboard_callback])
         model.save("model.h5")
-        imageToPredict = load_image()
+        imageToPredict = load_image(imgPath)
 
-        prediction = model.predict(imageToPredict)
+        prediction = model.predict(imageToPredict, callbacks=[tensorboard_callback])
         print(prediction)
         # print(decode_predictions(prediction, top=3)[0])
 
 
 if __name__ == "__main__":
-    imgPath = "img/tests/Masque/images102.png"
+    imgPath = "converted-images/Masque/images107-bb-29x35-27-36.png"
     kerasTrain = KerasTrain()
     kerasTrain.train(imgPath)
