@@ -28,8 +28,8 @@ def train():
         shuffle = True)
 
     model = tf.keras.models.Sequential([
-        Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3)),
-        Conv2D(32, (3, 3), activation='relu'),
+        Conv2D(128, (3, 3), activation='relu', input_shape=(150, 150, 3)),
+        Conv2D(128, (3, 3), activation='relu'),
         BatchNormalization(),
         MaxPool2D(),
         Conv2D(64, (3, 3), activation='relu'),
@@ -42,7 +42,7 @@ def train():
         MaxPool2D(),
         Flatten(),
         Dense(128, activation='relu'),
-        Dense(2, activation='softmax')
+        Dense(3, activation='softmax')
     ])
 
     model.compile(loss=tf.keras.losses.categorical_crossentropy,
