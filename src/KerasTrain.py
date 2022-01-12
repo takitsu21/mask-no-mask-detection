@@ -118,7 +118,7 @@ class KerasTrain(object):
         self.model.add(layers.Conv2D(128, 3, activation="relu"))
         self.model.add(layers.MaxPooling2D(2))
         self.model.add(layers.GlobalMaxPooling2D())
-        self.model.add(layers.Dense(4, activation=tf.nn.softmax))
+        self.model.add(layers.Dense(5, activation=tf.nn.softmax))
 
 
 
@@ -306,11 +306,12 @@ def graph_keras_train():
 
 
 if __name__ == "__main__":
-    imgPathMasque = "converted-images/Masque/images307-bb-48x7-141-155.png"
-    imgPathPasMasque = "converted-images/Pas masque/images159-bb-209x46-75-60.png"
-    imgPathMasque2 = "converted-images/Masque/images124-bb-225x94-40-54.png"
-    telechargement = "img/tele.png"
-    kerasTrain = KerasTrain(epochs=25, batch_size=50, use_multiprocessing=True, workers=8)
+    imgPathMasque = "converted-images/Masque chirurgical/images226-bb-118x2-68-73.png"
+    imgPathMasqueTissu = "converted-images/Masque en tissu/44.png"
+    imgPathMasqueFFP2 = "converted-images/Masque FFP2/699.png"
+    imgPathMasqueMalPorter = "converted-images/Masque mal porter/15.png"
+    imgPathPasMasque = "converted-images/Pas masque/13.png"
+    kerasTrain = KerasTrain(epochs=150, batch_size=150, use_multiprocessing=True, workers=8)
     # kerasTrain.testBatchSize()
 
 
@@ -336,7 +337,8 @@ if __name__ == "__main__":
     # print(kerasClassLoad.__classes)
 
     model.predict(imgPathMasque)
+    model.predict(imgPathMasqueTissu)
+    model.predict(imgPathMasqueFFP2)
+    model.predict(imgPathMasqueMalPorter)
     model.predict(imgPathPasMasque)
-    model.predict(imgPathMasque2)
-    model.predict(telechargement)
     # graph_keras_train()
