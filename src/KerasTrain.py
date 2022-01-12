@@ -118,7 +118,7 @@ class KerasTrain(object):
         self.model.add(layers.Conv2D(128, 3, activation="relu"))
         self.model.add(layers.MaxPooling2D(2))
         self.model.add(layers.GlobalMaxPooling2D())
-        self.model.add(layers.Dense(2, activation=tf.nn.softmax))
+        self.model.add(layers.Dense(4, activation=tf.nn.softmax))
 
 
 
@@ -310,24 +310,24 @@ if __name__ == "__main__":
     imgPathPasMasque = "converted-images/Pas masque/images159-bb-209x46-75-60.png"
     imgPathMasque2 = "converted-images/Masque/images124-bb-225x94-40-54.png"
     telechargement = "img/tele.png"
-    # kerasTrain = KerasTrain(epochs=1, batch_size=15, use_multiprocessing=True, workers=8)
+    kerasTrain = KerasTrain(epochs=25, batch_size=50, use_multiprocessing=True, workers=8)
     # kerasTrain.testBatchSize()
 
 
 
     # print(model.model.__dict__)
-    # kerasTrain.train(
-    #     dict(
-    #         rescale=1./255,
-    #         shear_range=0.2,
-    #         zoom_range=0.2,
-    #         horizontal_flip=True
-    #     )
-    # )
+    kerasTrain.train(
+        dict(
+            rescale=1./255,
+            shear_range=0.2,
+            zoom_range=0.2,
+            horizontal_flip=True
+        )
+    )
     # kerasTrain.save("model")
 
-    model = KerasTrain().loadModel("model-200-epochs.h5")
-    model.graphPredictDirectory()
+    model = KerasTrain().loadModel()
+    # model.graphPredictDirectory()
     # model = loadPickle()
 
     # print(model.model_classes_)
