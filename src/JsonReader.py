@@ -19,7 +19,7 @@ class Spec(object):
         self.imgSize = imgSize
 
     def __repr__(self) -> str:
-        return f"{self.categorie} {self.begin} {self.dest} {self.imgSize}"
+        return f"<{self.categorie} {self.begin} {self.dest} {self.imgSize}>"
 
 
 class MyImage(object):
@@ -93,8 +93,10 @@ class JsonReader(object):
                 dX, dY = spec.dest
 
                 cropped = image.crop((bX, bY, dX, dY))
+                if not os.path.exists(f"{os.getcwd()}/converted-images/{spec.categorie}"):
+                    os.makedirs(f"{os.getcwd()}/converted-images/{spec.categorie}")
                 imgName = f"{img.name}-bb-{bX}x{bY}-{dX-bX}-{dY-bY}.png"
-                pathToSave = Path(f"{os.getcwd()}/converted-images/{imgName}")
+                pathToSave = Path(f"{os.getcwd()}/converted-images/{spec.categorie}/{imgName}")
                 cropped.save(pathToSave)
 
                 print(f"{spec.categorie} Annotated {imgName} has been converted.")
@@ -105,5 +107,5 @@ class JsonReader(object):
 
 
 if __name__ == "__main__":
-    reader = JsonReader("img/tests/mainlynomask.json")
+    reader = JsonReader("img/tests/mainlymask.json")
     reader.parseJson()

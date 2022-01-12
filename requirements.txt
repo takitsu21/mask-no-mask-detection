@@ -1,2 +1,4 @@
 NumPy
 TensorFlow
+pillow
+matplotlib
