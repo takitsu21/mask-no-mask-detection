@@ -15,6 +15,7 @@ from keras.utils.vis_utils import plot_model
 from tensorflow.python.ops.gen_math_ops import mod
 from tqdm import trange
 
+
 class KerasTrain(object):
     def __init__(self, batch_size=32, epochs=10, workers=8) -> None:
         super().__init__()
@@ -131,7 +132,7 @@ class KerasTrain(object):
                             epochs=self.epochs,
                             workers=self.workers,
                             use_multiprocessing=True,
-                            verbose=0,
+                            verbose=1,
                             callbacks=[self.tensorboard_callback],
                             #   steps_per_epoch=train_ds.samples/train_ds.batch_size,
                             #   validation_steps=val_data.samples/val_data.batch_size,
@@ -267,21 +268,20 @@ if __name__ == "__main__":
     imgPathMasque = "converted-images/Masque/images112-bb-155x2-57-73.png"
     imgPathPasMasque = "converted-images/Pas masque/images242-bb-80x17-88-136.png"
     kerasTrain = KerasTrain(epochs=200)
-    kerasTrain.testBatchSize()
+    # kerasTrain.testBatchSize()
 
     #model = kerasTrain.loadModel("model.h5")
 
+    kerasTrain.train(
+        dict(
+            rescale=1./255,
+            shear_range=0.2,
+            zoom_range=0.2,
+            horizontal_flip=True
+        )
+    )
 
-    # kerasTrain.train(
-    #     dict(
-    #         rescale = 1./255,
-    #         shear_range = 0.2,
-    #         zoom_range = 0.2,
-    #         horizontal_flip = True
-    #     )
-    # )
-
-    # kerasTrain.predict(imgPathMasque)
-    # kerasTrain.predict(imgPathPasMasque)
+    kerasTrain.predict(imgPathMasque)
+    kerasTrain.predict(imgPathPasMasque)
 
     # graph_keras_train()
