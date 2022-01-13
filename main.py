@@ -10,52 +10,52 @@ import tensorflow as tf
 from tensorflow.keras.layers import Conv2D, BatchNormalization, Flatten, Dense, MaxPool2D, Dropout
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from keras.models import load_model
-
-def train():
-    data_generator = ImageDataGenerator()
-    train_data = data_generator.flow_from_directory(
-        "converted-images/",
-        target_size=(150, 150),
-        batch_size = 32,
-        class_mode = 'categorical',
-        shuffle = True)
-
-    val_data = data_generator.flow_from_directory(
-        "converted-images/",
-        target_size=(150, 150),
-        batch_size=32,
-        class_mode = 'categorical',
-        shuffle = True)
-
-    model = tf.keras.models.Sequential([
-        Conv2D(128, (3, 3), activation='relu', input_shape=(150, 150, 3)),
-        Conv2D(128, (3, 3), activation='relu'),
-        BatchNormalization(),
-        MaxPool2D(),
-        Conv2D(64, (3, 3), activation='relu'),
-        Conv2D(64, (3, 3), activation='relu'),
-        BatchNormalization(),
-        MaxPool2D(),
-        Conv2D(128, (3, 3), activation='relu'),
-        Conv2D(128, (3, 3), activation='relu'),
-        BatchNormalization(),
-        MaxPool2D(),
-        Flatten(),
-        Dense(128, activation='relu'),
-        Dense(3, activation='softmax')
-    ])
-
-    model.compile(loss=tf.keras.losses.categorical_crossentropy,
-              optimizer=tf.keras.optimizers.Adam(learning_rate=0.0001),
-                             metrics=['accuracy'])
-
-    model.fit(train_data,
-          steps_per_epoch=train_data.samples/32,
-          validation_data=val_data,
-          validation_steps=val_data.samples/32,
-          batch_size=32,
-          epochs=5,
-          )
+import argparse
+from src.KerasTrain import KerasTrain
 
 if __name__ == "__main__":
-    train()
+
+    parser = argparse.ArgumentParser(description='Predict classes of an image')
+    parser.add_argument('-i', '--image', type=str,
+                        help="Image path", dest="img_path", default=None)
+    parser.add_argument('-d', '--description', type=str,
+                        help="Description of the movie", dest="description", default=None)
+    parser.add_argument('-tr', '--train', type=bool,
+                        help="Train the model", dest="train", default=False)
+    parser.add_argument('-mp', '--model_path', type=str, help="Path to the model",
+                        dest="model_path", default="model.h5")
+
+    parser.add_argument('-e', '--epochs', type=int,
+                        help="Epoch size (recommended size for more accuracy: 150)", dest="epochs", default=30)
+    parser.add_argument('-b', '--batch_size', type=float,
+                        help="Batch size", dest="batch_size", default=75)
+    parser.add_argument("-w", "--workers", type=int,
+                        help="Number of workers", dest="workers", default=1)
+    parser.add_argument("-dir", "--dir_predict_path", type=str,
+                        help="Path to the directory with images", dest="dir_predict_path", default=None)
+    args = parser.parse_args()
+    if args.train:
+        kerasTrain = KerasTrain(epochs=args.epochs, batch_size=args.batch_size,
+                                use_multiprocessing=True if args.workers > 1 else False, workers=args.workers)
+        kerasTrain.train(
+            dict(
+                rotation_range=20,
+                zoom_range=0.15,
+                width_shift_range=0.2,
+                height_shift_range=0.2,
+                shear_range=0.15,
+                horizontal_flip=True,
+                fill_mode="nearest"
+            ),
+            modelPath=args.model_path
+        )
+    # kerasTrain.save("model")
+    if args.img_path is not None:
+        model = KerasTrain().loadModel(path=args.model_path)
+        model.predict(args.img_path)
+
+    if args.dir_predict_path is not None:
+        model = KerasTrain().loadModel(path=args.img_path)
+        model.predictDirectory(dirPath=args.dir_predict_path)
+
+    # graph_keras_train()
