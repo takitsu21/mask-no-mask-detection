@@ -1,4 +1,6 @@
 NumPy
 TensorFlow
+tensorflow_hub
 pillow
 matplotlib
+tabulate
