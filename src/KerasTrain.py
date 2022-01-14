@@ -49,7 +49,7 @@ class KerasTrain(object):
         self.workers = workers
         self.use_multiprocessing = use_multiprocessing
         self.model_classes_ = {}
-        self.size = (300, 300)
+        self.size = (150, 150)
         self.lr = 1e-5
         self.log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
         self.tensorboard_callback = tf.keras.callbacks.TensorBoard(
@@ -137,7 +137,7 @@ class KerasTrain(object):
                                                               test_size=0.20, stratify=labels, random_state=42)
 
         baseModel = MobileNetV2(weights="imagenet", include_top=False,
-                                input_tensor=Input(shape=(300, 300, 3)))
+                                input_tensor=Input(shape=(150, 150, 3)))
 
         # construct the head of the model that will be placed on top of the
         # the base model
@@ -399,7 +399,7 @@ class KerasTrain(object):
 
                 face = image[startY:endY, startX:endX]
                 face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
-                face = cv2.resize(face, (300, 300))
+                face = cv2.resize(face, self.size)
                 face = img_to_array(face)
                 face = preprocess_input(face)
                 face = np.expand_dims(face, axis=0)
@@ -418,7 +418,7 @@ class KerasTrain(object):
                 cv2.rectangle(image, (startX, startY), (endX, endY), color, 1)
 
         cv2.imwrite(output_path, image)
-        # cv2.waitKey(0)
+        cv2.waitKey(0)
 
     def testBatchSize(self):
         batches = []

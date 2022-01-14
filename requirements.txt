@@ -6,3 +6,4 @@ matplotlib
 tabulate
 sklearn
 opencv-python
+pyside6
