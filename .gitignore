@@ -131,3 +131,4 @@ dmypy.json
 
 logs/
 .DS_STORE
+*.h5
