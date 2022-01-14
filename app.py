@@ -13,29 +13,21 @@ from PySide6.QtCore import QDir, QSize
 from typing import Optional
 import PySide6
 from PySide6 import QtWidgets, QtCore, QtGui
+from sys import platform
 
-class PredictorVisualize(QMainWindow):
-    def __init__(self) -> None:
-        super().__init__()
+class MultiView(QtWidgets.QWidget):
 
 
-        self.setWindowTitle("Image Detector")
-        self.resize(1280, 720)
-
+    def __init__(self, parent: Optional[QtWidgets.QWidget] = ...) -> None:
+        super().__init__(parent=parent)
+        self.setAcceptDrops(True)
+        self.layout: QVBoxLayout = QtWidgets.QVBoxLayout(self)
         self.label = QtWidgets.QLabel(self)
         self.pixmap = QPixmap("./ressources/assets/DRAGNDROP.png")
         self.label.setPixmap(self.pixmap)
-        self.layout: QVBoxLayout = QtWidgets.QVBoxLayout(self)
+        self.layout.addWidget(self.label, alignment=QtCore.Qt.AlignCenter)
         self.setLayout(self.layout)
-        self.label.layout.addWidget(self.label, alignment=QtCore.Qt.AlignCenter)
-        # self.layout.addWidget(self.label, alignment=QtCore.Qt.AlignCenter)
-        self.setCentralWidget(self.label)
-        self.edit = QLineEdit()
-        self.edit.setDragEnabled(True)
-        self.setAcceptDrops(True)
-
-
-
+        self.listWidget = None
 
 
     def dragEnterEvent(self, e):
@@ -53,21 +45,81 @@ class PredictorVisualize(QMainWindow):
         """
         url = e.mimeData().urls()[0]
         path = url.toLocalFile()
+        print(path)
         model = KerasTrain().loadModel("model-100-epochs-3.h5")
         if path[-4:] == ".png" or path[-4:] == ".xpm" or path[-4:] == ".jpg":
 
             model.detect_face_and_predict(path, f"outptut-{path}")
+            # label = QtWidgets.QLabel(self)
+            # label.setPixmap(QPixmap(f"outptut-{path}"))
+            # label.setWindowTitle(path)
+            # label.show()
+
+            ImagePredicted("./img_tests/faces.png", None).show()
+            # self.label.setPixmap(QPixmap(f"outptut-{path}"))
+            # img.show()
 
             # frame.show()
         else:
             directory = QDir(path)
             model.predictDirectory(dirPath=path)
-            self.listWidget = MyListWidget()
+            self.listWidget = MyListWidget(None)
+
+
+            import re, time, os
+
 
             for i, file in enumerate(directory.entryList(), start=1):
-                self.listWidget.addMyItem(QListWidgetItem(QIcon(f"{path}/output/{file}"), f"image-{i}"), f"{path}/{file}")
+                p = re.sub("/", "\\\\", f"{path}/output/{file}")
+                print(p)
+                print(os.path.exists(p))
+                self.listWidget.addMyItem(QListWidgetItem(QIcon(f"{path}/{file}"), f"image-{i}"), p)
 
             self.layout.addWidget(self.listWidget)
+
+
+class PredictorVisualizer(QMainWindow):
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.setWindowTitle("Image Detector")
+        self.resize(1280, 720)
+        self.frame = MultiView(self)
+
+        self.layout: QVBoxLayout = QtWidgets.QVBoxLayout(self)
+
+        self.widget = QWidget()
+        self.widget.setLayout(self.layout)
+        self.setCentralWidget(self.widget)
+        self.layout.addWidget(self.frame)
+
+
+    def closeEvent(self, event: QtGui.QCloseEvent) -> None:
+        sys.exit(0)
+
+
+
+
+class ImagePredicted(QtWidgets.QWidget):
+    def __init__(self, path, parent: Optional[PySide6.QtWidgets.QWidget] = ...) -> None:
+        super().__init__(parent)
+        self.path = path
+        self.initUI()
+        self.show()
+
+    def initUI(self):
+        hbox = QVBoxLayout(self)
+        pixmap = QPixmap(self.path)
+
+        lbl = QtWidgets.QLabel(self)
+        lbl.setPixmap(pixmap)
+
+        hbox.addWidget(lbl)
+        self.setLayout(hbox)
+
+        self.move(300, 200)
+        self.setWindowTitle('Image with PyQt')
+
 
 
 class MyListWidget(QListWidget):
@@ -127,6 +179,6 @@ if __name__ == "__main__":
     app.setWindowIcon(QIcon("ressources/assets/app-logo.png"))
     app.setDesktopFileName("ImageAnnotator")
 
-    w = PredictorVisualize()
+    w = PredictorVisualizer()
     w.show()
     sys.exit(app.exec())

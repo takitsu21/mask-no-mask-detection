@@ -34,6 +34,8 @@ from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.applications import ResNet50V2
+from sys import platform
+
 
 def save(model, modelPath: str = "model.pkl"):
     pickle.dump(model, open(modelPath, "wb+"))
@@ -340,6 +342,10 @@ class KerasTrain(object):
         files = []
 
         dirlist = [dirPath]
+        if platform == "win32":
+            slash = "\\"
+        else:
+            slash = "/"
 
         while len(dirlist) > 0:
             for (dirpath, dirnames, filenames) in os.walk(dirlist.pop()):
@@ -349,13 +355,13 @@ class KerasTrain(object):
 
         for i, f in enumerate(files):
             # predictions = self.predict(f)
-            split_f = f.split("/")[-1].split(".")
+            split_f = f.split(slash)[-1].split(".")
 
-            output_dir = f"{os.path.dirname(f)}/output"
+            output_dir = f"{os.path.dirname(f)}{slash}output"
             if not os.path.exists(output_dir):
                 os.makedirs(output_dir)
 
-            f_output = f"{output_dir}/{split_f[0]}-{i}.{split_f[1]}"
+            f_output = f"{output_dir}{slash}{split_f[0]}-{i}.{split_f[1]}"
 
             self.detect_face_and_predict(f, f_output)
             print(f"{f_output} processed")
@@ -418,6 +424,7 @@ class KerasTrain(object):
                 cv2.rectangle(image, (startX, startY), (endX, endY), color, 1)
 
         cv2.imwrite(output_path, image)
+        cv2.imshow(output_path, image)
         cv2.waitKey(0)
 
     def testBatchSize(self):
