@@ -33,7 +33,7 @@ import numpy as np
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.optimizers import Adam
-
+from tensorflow.keras.applications import ResNet50V2
 
 def save(model, modelPath: str = "model.pkl"):
     pickle.dump(model, open(modelPath, "wb+"))
@@ -49,8 +49,8 @@ class KerasTrain(object):
         self.workers = workers
         self.use_multiprocessing = use_multiprocessing
         self.model_classes_ = {}
-        self.size = (150, 150)
-        self.lr = 1e-4
+        self.size = (300, 300)
+        self.lr = 1e-5
         self.log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
         self.tensorboard_callback = tf.keras.callbacks.TensorBoard(
             log_dir=self.log_dir, histogram_freq=1)
@@ -119,7 +119,7 @@ class KerasTrain(object):
             # extract the class label from the filename
             label = imagePath.split(os.path.sep)[-2]
             # load the input image (224x224) and preprocess it
-            image = load_img(imagePath, target_size=(150, 150))
+            image = load_img(imagePath, target_size=self.size)
             image = img_to_array(image)
             image = preprocess_input(image)
             # update the data and labels lists, respectively
@@ -137,7 +137,8 @@ class KerasTrain(object):
                                                               test_size=0.20, stratify=labels, random_state=42)
 
         baseModel = MobileNetV2(weights="imagenet", include_top=False,
-                                input_tensor=Input(shape=(150, 150, 3)))
+                                input_tensor=Input(shape=(300, 300, 3)))
+
         # construct the head of the model that will be placed on top of the
         # the base model
         headModel = baseModel.output
@@ -146,7 +147,7 @@ class KerasTrain(object):
         headModel = Dense(128, activation="relu")(headModel)
         headModel = Dropout(0.5)(headModel)
         headModel = Dense(len(self.model_classes_),
-                          activation="softmax")(headModel)
+                          activation="softmax", name="output")(headModel)
         # place the head FC model on top of the base model (this will become
         # the actual model we will train)
         self.model = Model(inputs=baseModel.input, outputs=headModel)
@@ -290,13 +291,15 @@ class KerasTrain(object):
         )
         self.model.save(modelPath)
 
+        plt.style.use("ggplot")
+        plt.figure()
         plt.plot(history.history['accuracy'], label="train_acc")
         plt.plot(history.history['val_accuracy'], label="test_acc")
         plt.plot(history.history['loss'], label="train_loss")
         plt.plot(history.history['val_loss'], label="test_loss")
-        plt.xlabel("Epochs")
+        plt.xlabel("Epochs #")
         plt.ylabel("Loss/Accuracy")
-        plt.legend()
+        plt.legend(loc="lower left")
         plt.savefig("loss-accuracy.png")
 
         return history, self.model
@@ -363,10 +366,10 @@ class KerasTrain(object):
 
     def detect_face_and_predict(self, img_path: str, output_path: str):
         print("[INFO] loading face detector model...")
-        # prototxtPath = "deploy.prototxt"
-        # weightsPath = "res10_300x300_ssd_iter_140000.caffemodel"
-        prototxtPath = "architecture.txt"
-        weightsPath = "weights.caffemodel"
+        prototxtPath = "deploy.prototxt"
+        weightsPath = "res10_300x300_ssd_iter_140000.caffemodel"
+        # prototxtPath = "architecture.txt"
+        # weightsPath = "weights.caffemodel"
 
         net = cv2.dnn.readNet(prototxtPath, weightsPath)
 
@@ -396,7 +399,7 @@ class KerasTrain(object):
 
                 face = image[startY:endY, startX:endX]
                 face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
-                face = cv2.resize(face, (150, 150))
+                face = cv2.resize(face, (300, 300))
                 face = img_to_array(face)
                 face = preprocess_input(face)
                 face = np.expand_dims(face, axis=0)
