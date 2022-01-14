@@ -32,7 +32,7 @@ from tqdm import trange
 import numpy as np
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
-
+from tensorflow.keras.optimizers import Adam
 
 
 def save(model, modelPath: str = "model.pkl"):
@@ -50,6 +50,7 @@ class KerasTrain(object):
         self.use_multiprocessing = use_multiprocessing
         self.model_classes_ = {}
         self.size = (150, 150)
+        self.lr = 1e-4
         self.log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
         self.tensorboard_callback = tf.keras.callbacks.TensorBoard(
             log_dir=self.log_dir, histogram_freq=1)
@@ -94,43 +95,101 @@ class KerasTrain(object):
     def train(self, imageDataGeneratorArgs: dict = {}, modelPath="model.h5", **kwargs):
         aug = ImageDataGenerator(**imageDataGeneratorArgs)
 
-        train_ds = aug.flow_from_directory(
-            "converted-images/",
-            target_size=self.size,
-            batch_size=self.batch_size,
-            class_mode='categorical',
-            classes=["Masque", "Pas masque"],
-            shuffle=True)
-        x_train, y_train = next(iter(train_ds))
-        x_test, y_test = next(iter(train_ds))
+        # train_ds = aug.flow_from_directory(
+        #     "converted-images/",
+        #     target_size=self.size,
+        #     batch_size=self.batch_size,
+        #     class_mode='categorical',
+        #     classes=["Masque", "Pas masque"],
+        #     shuffle=True)
 
-        self.model: Sequential = Sequential()
+        files = []
+        dirlist = ["converted-images/"]
 
-        # Input are 150x150 RGB images
+        while len(dirlist) > 0:
+            for (dirpath, dirnames, filenames) in os.walk(dirlist.pop()):
+                dirlist.extend(dirnames)
+                files.extend(map(lambda n: os.path.join(
+                    *n), zip([dirpath] * len(filenames), filenames)))
 
-        # Input layer of the model
-        self.model.add(keras.Input(shape=(150, 150, 3)))
-        self.model.add(layers.Conv2D(32, 5, strides=2, activation="relu"))
-        self.model.add(layers.Conv2D(32, 3, activation="relu"))
-        self.model.add(layers.MaxPooling2D(3))
+        data = []
+        labels = []
+        # loop over the image paths
+        for imagePath in files:
+            # extract the class label from the filename
+            label = imagePath.split(os.path.sep)[-2]
+            # load the input image (224x224) and preprocess it
+            image = load_img(imagePath, target_size=(150, 150))
+            image = img_to_array(image)
+            image = preprocess_input(image)
+            # update the data and labels lists, respectively
+            data.append(image)
+            labels.append(label)
+        # convert the data and labels to NumPy arrays
+        data = np.array(data, dtype="float32")
+        labels = np.array(labels)
 
-        # Can you guess what the current output shape is at this point? Probably not.
-        # Let's just print it:
+        lb = LabelBinarizer()
+        labels = lb.fit_transform(labels)
+        labels = to_categorical(labels)
 
-        # The answer was: (40, 40, 32), so we can keep downsampling...
+        (x_train, x_test, y_train, y_test) = train_test_split(data, labels,
+                                                              test_size=0.20, stratify=labels, random_state=42)
 
-        self.model.add(layers.Conv2D(32, 3, activation="relu"))
-        self.model.add(layers.Conv2D(32, 3, activation="relu"))
-        self.model.add(layers.MaxPooling2D(3))
-        self.model.add(layers.Dropout(0.4))
-        self.model.add(layers.Conv2D(32, 3, activation="relu"))
-        self.model.add(layers.Conv2D(32, 3, activation="relu"))
-        self.model.add(layers.MaxPooling2D(2))
-        self.model.add(layers.Dropout(0.4))
-        self.model.add(layers.GlobalMaxPooling2D())
+        baseModel = MobileNetV2(weights="imagenet", include_top=False,
+                                input_tensor=Input(shape=(150, 150, 3)))
+        # construct the head of the model that will be placed on top of the
+        # the base model
+        headModel = baseModel.output
+        headModel = AveragePooling2D(pool_size=(5, 5))(headModel)
+        headModel = Flatten(name="flatten")(headModel)
+        headModel = Dense(128, activation="relu")(headModel)
+        headModel = Dropout(0.5)(headModel)
+        headModel = Dense(len(self.model_classes_),
+                          activation="softmax")(headModel)
+        # place the head FC model on top of the base model (this will become
+        # the actual model we will train)
+        self.model = Model(inputs=baseModel.input, outputs=headModel)
+        # loop over all layers in the base model and freeze them so they will
+        # *not* be updated during the first training process
+        for layer in baseModel.layers:
+            layer.trainable = False
 
-        # Finally, we add a classification layer.
-        self.model.add(layers.Dense(len(self.model_classes_), activation="softmax"))
+        opt = Adam(learning_rate=self.lr, decay=self.lr / self.epochs)
+        self.model.compile(loss="binary_crossentropy",
+                           optimizer=opt,
+                           metrics=["accuracy"])
+
+        # x_train, y_train = next(iter(train_ds))
+        # x_test, y_test = next(iter(train_ds))
+
+        # self.model: Sequential = Sequential()
+
+        # # Input are 150x150 RGB images
+
+        # # Input layer of the model
+        # self.model.add(keras.Input(shape=(150, 150, 3)))
+        # self.model.add(layers.Conv2D(32, 5, strides=2, activation="relu"))
+        # self.model.add(layers.Conv2D(32, 3, activation="relu"))
+        # self.model.add(layers.MaxPooling2D(3))
+
+        # # Can you guess what the current output shape is at this point? Probably not.
+        # # Let's just print it:
+
+        # # The answer was: (40, 40, 32), so we can keep downsampling...
+
+        # self.model.add(layers.Conv2D(32, 3, activation="relu"))
+        # self.model.add(layers.Conv2D(32, 3, activation="relu"))
+        # self.model.add(layers.MaxPooling2D(3))
+        # self.model.add(layers.Dropout(0.4))
+        # self.model.add(layers.Conv2D(32, 3, activation="relu"))
+        # self.model.add(layers.Conv2D(32, 3, activation="relu"))
+        # self.model.add(layers.MaxPooling2D(2))
+        # self.model.add(layers.Dropout(0.4))
+        # self.model.add(layers.GlobalMaxPooling2D())
+
+        # # Finally, we add a classification layer.
+        # self.model.add(layers.Dense(len(self.model_classes_), activation="softmax"))
 
         # # This layer creates a convolution kernel that is convolved with the layer input to produce a tensor of outputs.
         # self.model.add(layers.Conv2D(32, 5, strides=2, activation="relu"))
@@ -215,14 +274,16 @@ class KerasTrain(object):
         # self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
         # self.model.fit(X_train, Y_train, epochs=10, batch_size=250, verbose=1, validation_split=0.2)
 
-        self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
-                           optimizer=tf.keras.optimizers.Adam(
-                               learning_rate=1e-4),
-                           metrics=['accuracy'])
+        # self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
+        #                    optimizer=tf.keras.optimizers.Adam(
+        #                        learning_rate=1e-4),
+        #                    metrics=['accuracy'])
         history = self.model.fit(
-            x_train, y_train,
+            aug.flow(x_train, y_train, batch_size=self.batch_size),
             validation_data=(x_test, y_test),
+            validation_steps=len(x_test) // self.batch_size,
             epochs=self.epochs,
+            steps_per_epoch=len(x_train) // self.batch_size,
             workers=self.workers,
             use_multiprocessing=self.use_multiprocessing,
             callbacks=[self.tensorboard_callback]
@@ -302,8 +363,11 @@ class KerasTrain(object):
 
     def detect_face_and_predict(self, img_path: str, output_path: str):
         print("[INFO] loading face detector model...")
-        prototxtPath = "deploy.prototxt"
-        weightsPath = "res10_300x300_ssd_iter_140000.caffemodel"
+        # prototxtPath = "deploy.prototxt"
+        # weightsPath = "res10_300x300_ssd_iter_140000.caffemodel"
+        prototxtPath = "architecture.txt"
+        weightsPath = "weights.caffemodel"
+
         net = cv2.dnn.readNet(prototxtPath, weightsPath)
 
         print("[INFO] loading face mask detector model...")
@@ -338,6 +402,7 @@ class KerasTrain(object):
                 face = np.expand_dims(face, axis=0)
 
                 (mask, withoutMask) = self.model.predict(face)[0]
+                print(mask, withoutMask)
 
                 label = "Mask" if mask > withoutMask else "No Mask"
                 color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
@@ -350,7 +415,7 @@ class KerasTrain(object):
                 cv2.rectangle(image, (startX, startY), (endX, endY), color, 1)
 
         cv2.imwrite(output_path, image)
-        cv2.waitKey(0)
+        # cv2.waitKey(0)
 
     def testBatchSize(self):
         batches = []
