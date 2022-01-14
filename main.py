@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     parser.add_argument('-e', '--epochs', type=int,
                         help="Epoch size (recommended size for more accuracy: 150)", dest="epochs", default=30)
-    parser.add_argument('-b', '--batch_size', type=float,
+    parser.add_argument('-b', '--batch_size', type=int,
                         help="Batch size", dest="batch_size", default=75)
     parser.add_argument("-w", "--workers", type=int,
                         help="Number of workers", dest="workers", default=1)
