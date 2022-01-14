@@ -27,6 +27,12 @@ from tensorflow.keras.models import Model
 from sklearn.metrics import classification_report
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+import cv2
+from tqdm import trange
+import numpy as np
+from tensorflow.keras.preprocessing.image import img_to_array
+from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+
 
 
 def save(model, modelPath: str = "model.pkl"):
@@ -54,7 +60,6 @@ class KerasTrain(object):
     def loadTensorImg(self, img_path):
 
         img = image.load_img(img_path, target_size=self.size)
-        # (height, width, channels)
         imgTensor = image.img_to_array(img)
         # (1, height, width, channels), add a dimension because the model expects this shape: (batch_size, height, width, channels)
         imgTensor = np.expand_dims(imgTensor, axis=0)
@@ -82,26 +87,7 @@ class KerasTrain(object):
         #     print(decode_predictions(prediction, top=2)[0])
         # else:
 
-        # predict = model(imageToPredict[:1]).numpy()
-        # print(tf.nn.softmax(predict).numpy())
-        # print(prediction)
         self.displayPredictions(prediction, "", mode)
-        # print(self.model.predict_classes(imageToPredict))
-
-        return prediction
-
-    def predictSlice(self, imageToPredict, mode="category", modelPath="model.h5", **kwargs):
-        prediction = self.model.predict(imageToPredict, callbacks=[
-            self.tensorboard_callback], workers=self.workers, use_multiprocessing=self.use_multiprocessing, **kwargs)
-        # if mode == "category":
-        #     print(decode_predictions(prediction, top=2)[0])
-        # else:
-
-        # predict = model(imageToPredict[:1]).numpy()
-        # print(tf.nn.softmax(predict).numpy())
-        # print(prediction)
-        self.displayPredictions(prediction, imgPath, mode)
-        # print(self.model.predict_classes(imageToPredict))
 
         return prediction
 
@@ -119,71 +105,40 @@ class KerasTrain(object):
         x_test, y_test = next(iter(train_ds))
 
         self.model: Sequential = Sequential()
-        self.model.add(keras.Input(shape=(150, 150, 3)))
 
+        # Input are 150x150 RGB images
+
+        # Input layer of the model
+        self.model.add(keras.Input(shape=(150, 150, 3)))
         self.model.add(layers.Conv2D(32, 5, strides=2, activation="relu"))
         self.model.add(layers.Conv2D(32, 3, activation="relu"))
+        self.model.add(layers.MaxPooling2D(3))
+
+        # Can you guess what the current output shape is at this point? Probably not.
+        # Let's just print it:
+
+        # The answer was: (40, 40, 32), so we can keep downsampling...
+
+        self.model.add(layers.Conv2D(32, 3, activation="relu"))
         self.model.add(layers.Conv2D(32, 3, activation="relu"))
         self.model.add(layers.MaxPooling2D(3))
         self.model.add(layers.Dropout(0.4))
-
-        self.model.add(layers.Conv2D(64, 3, activation="relu"))
-        self.model.add(layers.Conv2D(64, 3, activation="relu"))
-        self.model.add(layers.MaxPooling2D(3))
-        self.model.add(layers.Dropout(0.4))
-
-        self.model.add(layers.Conv2D(128, 3, activation="relu"))
-        self.model.add(layers.Conv2D(128, 3, activation="relu"))
+        self.model.add(layers.Conv2D(32, 3, activation="relu"))
+        self.model.add(layers.Conv2D(32, 3, activation="relu"))
         self.model.add(layers.MaxPooling2D(2))
         self.model.add(layers.Dropout(0.4))
-
         self.model.add(layers.GlobalMaxPooling2D())
-        self.model.add(layers.Dense(
-            len(self.model_classes_), activation=tf.nn.softmax))
 
-        # for layer in self.model.layers:
-        #     layer.trainable = False
+        # Finally, we add a classification layer.
+        self.model.add(layers.Dense(len(self.model_classes_), activation="softmax"))
 
-        self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
-                      optimizer=tf.keras.optimizers.Adam(learning_rate=1e-4),
-                      metrics=['accuracy'])
-        history = self.model.fit(
-            train_ds,
-            # steps_per_epoch=len(x_train) // self.batch_size,
-            validation_data=(x_test, y_test),
-            # validation_steps=len(x_test) // self.batch_size,
-            epochs=self.epochs,
-            workers=self.workers,
-            use_multiprocessing=self.use_multiprocessing
-        )
-        self.model.save(modelPath)
-        # print(classification_report(y_test.argmax(axis=1), predIdxs,
-        #                             target_names=lb.classes_))
-        # train_ds = data_generator.flow_from_directory(
-        #     "converted-images/",
-        #     target_size=self.size,
-        #     batch_size=self.batch_size,
-        #     class_mode='categorical',
-        #     shuffle=True)
-
-        # self.model_classes_ = train_ds.class_indices
-
-        # val_data = data_generator.flow_from_directory(
-        #     "converted-images/",
-        #     target_size=self.size,
-        #     batch_size=self.batch_size,
-        #     class_mode='categorical',
-        #     shuffle=True)
-
-        # x_train, y_train = next(iter(train_ds))
-        # x_test, y_test = next(iter(train_ds))
-
-        # self.model: Sequential = Sequential()
-        # self.model.add(keras.Input(shape=(150, 150, 3)))  # 250x250 RGB images
+        # # This layer creates a convolution kernel that is convolved with the layer input to produce a tensor of outputs.
         # self.model.add(layers.Conv2D(32, 5, strides=2, activation="relu"))
         # self.model.add(layers.Conv2D(32, 3, activation="relu"))
         # self.model.add(layers.Conv2D(32, 3, activation="relu"))
+        # # a Max pooling operation is for 2D spatial data, it Downsamples the input along its spatial dimensions (height and width) by taking the maximum value over an input window (of size defined by pool_size) for each channel of the input. The window is shifted by strides along each dimension. Calculate the maximum value for each patch of the feature map.
         # self.model.add(layers.MaxPooling2D(3))
+        # # The Dropout layer randomly sets input units to 0 with a frequency of rate at each step during training time, which helps prevent overfitting. Inputs not set to 0 are scaled up by 1/(1 - rate) such that the sum over all inputs is unchanged.
         # self.model.add(layers.Dropout(0.4))
 
         # self.model.add(layers.Conv2D(64, 3, activation="relu"))
@@ -196,31 +151,84 @@ class KerasTrain(object):
         # self.model.add(layers.MaxPooling2D(2))
         # self.model.add(layers.Dropout(0.4))
 
+        # # The GlobalMaxPooling2D layer produces 1D tensor that comprises of max values for all channels in the images computed along image height and width.
         # self.model.add(layers.GlobalMaxPooling2D())
-        # self.model.add(layers.Dense(len(self.model_classes_), activation=tf.nn.softmax))
+        # self.model.add(layers.Dense(
+        #     len(self.model_classes_), activation=tf.nn.softmax))
 
-        # self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
-        #                    optimizer=tf.keras.optimizers.Adam(
-        #                        learning_rate=1e-3),
-        #                    metrics=["accuracy"])
-        # print(self.model.summary())
-        # history = self.model.fit(x_train,
-        #                          y_train,
-        #                          epochs=self.epochs,
-        #                          workers=self.workers,
-        #                          use_multiprocessing=self.use_multiprocessing,
-        #                          verbose=1,
-        #                          callbacks=[self.tensorboard_callback],
-        #                          #   steps_per_epoch=train_ds.samples/train_ds.batch_size,
-        #                          #   validation_steps=val_data.samples/val_data.batch_size,
-        #                          validation_data=val_data,
-        #                          batch_size=self.batch_size)
+        # MODEL VGG16:
+        # self.model.add(Conv2D(input_shape=(150, 150, 3), filters=64,
+        #                kernel_size=(3, 3), padding="same", activation="relu"))
+        # self.model.add(Conv2D(filters=64, kernel_size=(
+        #     3, 3), padding="same", activation="relu"))
+        # self.model.add(MaxPool2D(pool_size=(2, 2), strides=(2, 2)))
+        # self.model.add(Conv2D(filters=128, kernel_size=(
+        #     3, 3), padding="same", activation="relu"))
+        # self.model.add(Conv2D(filters=128, kernel_size=(
+        #     3, 3), padding="same", activation="relu"))
+        # self.model.add(MaxPool2D(pool_size=(2, 2), strides=(2, 2)))
+        # self.model.add(Conv2D(filters=256, kernel_size=(
+        #     3, 3), padding="same", activation="relu"))
+        # self.model.add(Conv2D(filters=256, kernel_size=(
+        #     3, 3), padding="same", activation="relu"))
+        # self.model.add(Conv2D(filters=256, kernel_size=(
+        #     3, 3), padding="same", activation="relu"))
+        # self.model.add(MaxPool2D(pool_size=(2, 2), strides=(2, 2)))
+        # self.model.add(Conv2D(filters=512, kernel_size=(
+        #     3, 3), padding="same", activation="relu"))
+        # self.model.add(Conv2D(filters=512, kernel_size=(
+        #     3, 3), padding="same", activation="relu"))
+        # self.model.add(Conv2D(filters=512, kernel_size=(
+        #     3, 3), padding="same", activation="relu"))
+        # self.model.add(MaxPool2D(pool_size=(2, 2), strides=(2, 2)))
+        # self.model.add(Conv2D(filters=512, kernel_size=(
+        #     3, 3), padding="same", activation="relu"))
+        # self.model.add(Conv2D(filters=512, kernel_size=(
+        #     3, 3), padding="same", activation="relu"))
+        # self.model.add(Conv2D(filters=512, kernel_size=(
+        #     3, 3), padding="same", activation="relu"))
+        # self.model.add(MaxPool2D(pool_size=(2, 2), strides=(2, 2)))
+        # self.model.add(Flatten())
+        # self.model.add(Dense(units=4096,activation="relu"))
+        # self.model.add(Dense(units=4096,activation="relu"))
+        # self.model.add(Dense(units=len(self.model_classes_), activation="softmax"))
 
-        # self.model.save(modelPath)
-        # _, train_acc = self.model.evaluate(x_train, y_train, verbose=0)
-        # _, test_acc = self.model.evaluate(x_test, y_test, verbose=0)
+    # MODEL CNN :
+        # self.model = Sequential()
+        # self.model.add(Conv2D(16, kernel_size = (3, 3),
+        # activation = 'relu', input_shape = (150, 150, 3)))
+        # self.model.add(Conv2D(32, (3, 3), activation = 'relu'))
+        # self.model.add(MaxPooling2D(pool_size = (2, 2)))
+        # self.model.add(Dropout(0.2))
+        # self.model.add(Flatten())
+        # self.model.add(Dense(64, activation = 'relu'))
+        # self.model.add(Dropout(0.4))
+        # self.model.add(Dense(len(self.model_classes_), activation = 'softmax'))
 
-        # print('Train: %.3f, Test: %.3f' % (train_acc, test_acc))
+        # MLP
+        # self.model = Sequential()
+        # self.model.add(Dense(350, activation='relu'))
+        # self.model.add(Dense(50, activation='relu'))
+        # self.model.add(Dense(len(self.model_classes_), activation='softmax'))
+
+        # # Configure the model and start training
+        # self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+        # self.model.fit(X_train, Y_train, epochs=10, batch_size=250, verbose=1, validation_split=0.2)
+
+        self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
+                           optimizer=tf.keras.optimizers.Adam(
+                               learning_rate=1e-4),
+                           metrics=['accuracy'])
+        history = self.model.fit(
+            x_train, y_train,
+            validation_data=(x_test, y_test),
+            epochs=self.epochs,
+            workers=self.workers,
+            use_multiprocessing=self.use_multiprocessing,
+            callbacks=[self.tensorboard_callback]
+        )
+        self.model.save(modelPath)
+
         plt.plot(history.history['accuracy'], label="train_acc")
         plt.plot(history.history['val_accuracy'], label="test_acc")
         plt.plot(history.history['loss'], label="train_loss")
@@ -236,8 +244,6 @@ class KerasTrain(object):
     def loadModel(path="model.h5"):
         model = keras.models.load_model(path)
         print(model)
-        # plot_model(model, to_file='model_plot.png',
-        #            show_shapes=True, show_layer_names=True)
 
         return KerasTrain(
             model=model
@@ -245,21 +251,13 @@ class KerasTrain(object):
 
     def displayPredictions(self, predictions: np.ndarray, imgPath: str, mode: str):
         print(f"Prediction for :{imgPath}")
-        # classes = self.model_classes_
-        # print(classes)
-
-        # print(list(classesPred))
         dic = {}
         for i in range(len(self.model_classes_)):
-            # percentPred = predictions[i][np.argmax(predictions, axis=1)][0] * 100
             dic[list(self.model_classes_.keys())[i]] = predictions[0][i]*100
 
         print(tabulate({k: f"{v:.2f}%" for k, v in dic.items()
                         }.items(), headers=["Class", "Confidence"]))
-        # print(
-        #     f"Prediction : {list(classes.keys())[i]} | Confidence : {predictions[0][i]*100:.2f}%")
 
-        # print(predictions)
         idx = np.argmax(predictions, axis=1)[0]
 
         print(
@@ -285,12 +283,74 @@ class KerasTrain(object):
                 files.extend(map(lambda n: os.path.join(
                     *n), zip([dirpath] * len(filenames), filenames)))
 
-        for f in files:
-            predictions = self.predict(f)
+        for i, f in enumerate(files):
+            # predictions = self.predict(f)
+            split_f = f.split("/")[-1].split(".")
+
+            output_dir = f"{os.path.dirname(f)}/output"
+            if not os.path.exists(output_dir):
+                os.makedirs(output_dir)
+
+            f_output = f"{output_dir}/{split_f[0]}-{i}.{split_f[1]}"
+
+            self.detect_face_and_predict(f, f_output)
+            print(f"{f_output} processed")
             # correct_predictions = np.nonzero(predictions == y_test)[0]
             # incorrect_predictions = np.nonzero(predictions != y_test)[0]
             # print(len(correct_predictions)," classified correctly")
             # print(len(incorrect_predictions)," classified incorrectly")
+
+    def detect_face_and_predict(self, img_path: str, output_path: str):
+        print("[INFO] loading face detector model...")
+        prototxtPath = "deploy.prototxt"
+        weightsPath = "res10_300x300_ssd_iter_140000.caffemodel"
+        net = cv2.dnn.readNet(prototxtPath, weightsPath)
+
+        print("[INFO] loading face mask detector model...")
+        # model = KerasTrain().loadModel("model-100-epochs.h5")
+
+        image = cv2.imread(img_path)
+
+        (h, w) = image.shape[:2]
+
+        blob = cv2.dnn.blobFromImage(image, 1.0, (300, 300),
+                                     (104.0, 177.0, 123.0))
+
+        print("[INFO] computing face detections...")
+        net.setInput(blob)
+        detections = net.forward()
+
+        for i in trange(0, detections.shape[2]):
+            confidence = detections[0, 0, i, 2]
+
+            if confidence > 0.5:
+                box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
+                (startX, startY, endX, endY) = box.astype("int")
+
+                (startX, startY) = (max(0, startX), max(0, startY))
+                (endX, endY) = (min(w - 1, endX), min(h - 1, endY))
+
+                face = image[startY:endY, startX:endX]
+                face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
+                face = cv2.resize(face, (150, 150))
+                face = img_to_array(face)
+                face = preprocess_input(face)
+                face = np.expand_dims(face, axis=0)
+
+                (mask, withoutMask) = self.model.predict(face)[0]
+
+                label = "Mask" if mask > withoutMask else "No Mask"
+                color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
+
+                label = "{}: {:.2f}%".format(
+                    label, max(mask, withoutMask) * 100)
+
+                cv2.putText(image, label, (startX, startY - 10),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.3, color, 1)
+                cv2.rectangle(image, (startX, startY), (endX, endY), color, 1)
+
+        cv2.imwrite(output_path, image)
+        cv2.waitKey(0)
 
     def testBatchSize(self):
         batches = []
@@ -321,7 +381,7 @@ class KerasTrain(object):
         plt.legend(['train', 'test'], loc='upper left')
         plt.savefig(f"model_accuracy-batch.png")
         plt.clf()
-        # summarize history for loss
+
         plt.plot(nbBatches, losses)
         plt.plot(nbBatches, lossesTests)
         plt.title('model loss 75 epochs')
@@ -330,11 +390,6 @@ class KerasTrain(object):
         plt.legend(['train', 'test'], loc='upper left')
         plt.savefig(f"model_loss-batch.png")
         plt.clf()
-
-
-def loadPickle(path: str = "model.pkl"):
-    model = pickle.load(open(path), "rb", encoding="utf-8")
-    return model
 
 
 def graph_keras_train():

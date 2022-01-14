@@ -13,6 +13,7 @@ from keras.models import load_model
 import argparse
 from src.KerasTrain import KerasTrain
 
+
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Predict classes of an image')
@@ -52,10 +53,12 @@ if __name__ == "__main__":
     # kerasTrain.save("model")
     if args.img_path is not None:
         model = KerasTrain().loadModel(path=args.model_path)
-        model.predict(args.img_path)
+        model.detect_face_and_predict(args.img_path, f"output-{args.img_path}")
+        # model.predict(args.img_path)
+
 
     if args.dir_predict_path is not None:
-        model = KerasTrain().loadModel(path=args.img_path)
+        model = KerasTrain().loadModel(path=args.model_path)
         model.predictDirectory(dirPath=args.dir_predict_path)
 
     # graph_keras_train()
