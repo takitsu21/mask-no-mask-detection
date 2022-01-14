@@ -4,3 +4,5 @@ tensorflow_hub
 pillow
 matplotlib
 tabulate
+sklearn
+opencv-python
