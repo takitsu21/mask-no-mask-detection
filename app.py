@@ -2,7 +2,7 @@
 from PySide6 import QtWidgets, QtGui
 from PySide6.QtGui import QIcon, QScreen
 from PySide6.QtWidgets import QFileDialog, QMainWindow, QApplication, QVBoxLayout, \
-    QWidget, QLineEdit, QGraphicsScene
+    QWidget
 
 import sys
 from src.KerasTrain import KerasTrain
@@ -13,18 +13,18 @@ from PySide6.QtCore import QDir, QSize
 from typing import Optional
 import PySide6
 from PySide6 import QtWidgets, QtCore, QtGui
-from sys import platform
-import re, time, os
+import os
 from PIL import Image
 from PySide6.QtGui import QAction
 
-def find_model(extension: str=".h5", path: str = "."):
+
+def find_model(extension: str = ".h5", path: str = "."):
     for file in os.listdir(path):
         if file.endswith(extension):
             return file
 
-class MultiView(QtWidgets.QWidget):
 
+class MultiView(QtWidgets.QWidget):
 
     def __init__(self, parent: Optional[QtWidgets.QWidget] = ...) -> None:
         super().__init__(parent=parent)
@@ -37,7 +37,6 @@ class MultiView(QtWidgets.QWidget):
         self.setLayout(self.layout)
         self.listWidget = None
         self.modelPath = find_model()
-
 
     def loadPredictions(self, path):
         model = KerasTrain().loadModel(self.modelPath)
@@ -60,16 +59,13 @@ class MultiView(QtWidgets.QWidget):
 
             self.listWidget = MyListWidget(None)
 
-
-
-
-
             for i, file in enumerate(directory.entryList(), start=1):
 
                 p = f"{output_dir}/{file}"
 
                 if not os.path.isdir(p):
-                    self.listWidget.addMyItem(QListWidgetItem(QIcon(p), f"image-{i}"), p)
+                    self.listWidget.addMyItem(
+                        QListWidgetItem(QIcon(p), f"image-{i}"), p)
             self.layout.removeWidget(self.label)
             self.layout.addWidget(self.listWidget)
 
@@ -91,7 +87,6 @@ class MultiView(QtWidgets.QWidget):
         self.loadPredictions(path)
 
 
-
 class MenuBar(QtWidgets.QMenuBar):
 
     def __init__(self, parent: Optional[QtWidgets.QWidget] = ...) -> None:
@@ -110,7 +105,6 @@ class MenuBar(QtWidgets.QMenuBar):
         self.importModel = QAction("Import model", self)
         self.importModel.setShortcut("Ctrl+i")
         self.importModel.triggered.connect(self.newModelPath)
-
 
         self.open = self.fileMenu.addMenu("Open")
 
@@ -135,7 +129,8 @@ class MenuBar(QtWidgets.QMenuBar):
         """
         Open a file dialog to choose the model path
         """
-        path = QFileDialog.getOpenFileName(self.parent, "Open file", "", "Model files (*.h5)")[0]
+        path = QFileDialog.getOpenFileName(
+            self.parent, "Open file", "", "Model files (*.h5)")[0]
         if path != "":
             self.frame.modelPath = path
 
@@ -143,7 +138,8 @@ class MenuBar(QtWidgets.QMenuBar):
         """
         Open a file dialog to choose the folder path
         """
-        path = QFileDialog.getExistingDirectory(self.parent, "Open folder", "")[0]
+        path = QFileDialog.getExistingDirectory(
+            self.parent, "Open folder", "")[0]
         if path != "":
             self.frame.loadPredictions(path)
 
@@ -173,15 +169,12 @@ class PredictorVisualizer(QMainWindow):
         self.menu = MenuBar(self)
         self.layout.setMenuBar(self.menu)
 
-
     def closeEvent(self, event: QtGui.QCloseEvent) -> None:
         sys.exit(0)
 
 
-
-
 class ImgWidget(QtWidgets.QWidget):
-    def __init__(self,path, parent: Optional[PySide6.QtWidgets.QWidget] = ...) -> None:
+    def __init__(self, path, parent: Optional[PySide6.QtWidgets.QWidget] = ...) -> None:
         super().__init__(parent)
         self.path = path
         self.layout: QVBoxLayout = QtWidgets.QVBoxLayout(self)
@@ -193,16 +186,14 @@ class ImgWidget(QtWidgets.QWidget):
         self.listWidget = None
 
 
-
-
-
 class FrameImage(QMainWindow):
-     def __init__(self, fPath, name, parent: Optional[QtWidgets.QWidget] = ...) -> None:
+    def __init__(self, fPath, name, parent: Optional[QtWidgets.QWidget] = ...) -> None:
         super().__init__(parent=parent)
         self.layout: QVBoxLayout = QtWidgets.QVBoxLayout(self)
         self.fPath = fPath
         im: Image = Image.open(self.fPath)
-        primaryScreenSize = QScreen.availableGeometry(QApplication.primaryScreen())
+        primaryScreenSize = QScreen.availableGeometry(
+            QApplication.primaryScreen())
         width, height = primaryScreenSize.width(), primaryScreenSize.height()
         newWidth, newHeight = im.size
         newWidth, newHeight = newWidth+50, newHeight+50
@@ -213,18 +204,17 @@ class FrameImage(QMainWindow):
 
         # self.resize(500,500)
         self.frame = None
-        self.title= name
+        self.title = name
 
         print(self.fPath)
         print(os.path.exists(self.fPath))
         self.setWindowTitle(self.title)
-        self.frame = ImgWidget(self.fPath,self)
+        self.frame = ImgWidget(self.fPath, self)
         self.layout: QVBoxLayout = QtWidgets.QVBoxLayout(self)
         self.widget = QWidget()
         self.widget.setLayout(self.layout)
         self.setCentralWidget(self.widget)
         self.layout.addWidget(self.frame)
-
 
 
 class MyListWidget(QListWidget):
@@ -239,7 +229,6 @@ class MyListWidget(QListWidget):
         self.setIconSize(QSize(125, 125))
         self.setResizeMode(QListWidget.Adjust)
         self.paths = {}
-
 
     def addMyItem(self, item: PySide6.QtWidgets.QListWidgetItem, path: str):
         """
@@ -256,16 +245,10 @@ class MyListWidget(QListWidget):
         """
         Open image by double clicking mouse event
         """
-
-        # try:
         super().mouseDoubleClickEvent(event)
         name = self.selectedItems()[0].text()
-        print("name",name)
-        print("fPath",self.paths[name])
         frame = FrameImage(self.paths[name], name, self)
         frame.show()
-        # except:
-        #     pass
 
 
 

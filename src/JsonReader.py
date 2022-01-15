@@ -78,7 +78,7 @@ class JsonReader(object):
 
     def convertImages(self):
         print("Start converting images")
-        basePath = "converted-images2"
+        basePath = "dataset2"
         if not os.path.exists(f"{os.getcwd()}/{basePath}"):
             os.makedirs(f"{os.getcwd()}/{basePath}")
 

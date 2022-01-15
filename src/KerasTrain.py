@@ -15,7 +15,7 @@ from tabulate import tabulate
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
 from tensorflow.keras.utils import to_categorical
-from tensorflow.keras.applications import MobileNetV2
+from tensorflow.keras.applications import MobileNetV2, ResNet152V2
 from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
@@ -42,7 +42,7 @@ class KerasTrain(object):
         self.tensorboard_callback = tf.keras.callbacks.TensorBoard(
             log_dir=self.log_dir, histogram_freq=1)
 
-        for i, _dir in enumerate(os.listdir("converted-images"), 0):
+        for i, _dir in enumerate(os.listdir("dataset"), 0):
             self.model_classes_[_dir] = i
 
     def loadTensorImg(self, img_path):
@@ -76,7 +76,7 @@ class KerasTrain(object):
         aug = ImageDataGenerator(**imageDataGeneratorArgs)
 
         files = []
-        dirlist = ["converted-images/"]
+        dirlist = ["dataset/"]
 
         while len(dirlist) > 0:
             for (dirpath, dirnames, filenames) in os.walk(dirlist.pop()):
@@ -132,6 +132,7 @@ class KerasTrain(object):
         self.model.compile(loss="binary_crossentropy",
                            optimizer=opt,
                            metrics=["accuracy"])
+        plot_model(self.model, show_shapes=True)
 
         history = self.model.fit(
             aug.flow(x_train, y_train, batch_size=self.batch_size),
@@ -144,7 +145,6 @@ class KerasTrain(object):
             callbacks=[self.tensorboard_callback]
         )
         self.model.save(modelPath)
-        plot_model(self.model, show_shapes=True)
 
         plt.style.use("ggplot")
         plt.figure()
@@ -155,15 +155,14 @@ class KerasTrain(object):
         plt.xlabel("Epochs #")
         plt.ylabel("Loss/Accuracy")
         plt.legend(loc="lower left")
-        plt.savefig("loss-accuracy.png")
+        plt.savefig(f"loss-accuracy-{self.epochs}-{self.batch_size}.png")
+        plt.clf()
 
         return history, self.model
 
     @staticmethod
     def loadModel(path="model.h5"):
         model = keras.models.load_model(path)
-        print(model)
-
         return KerasTrain(
             model=model
         )
@@ -182,7 +181,7 @@ class KerasTrain(object):
         print(
             f">>> Prediction final \"{list(self.model_classes_.keys())[idx]}\" with {predictions[0][idx]*100:.2f}% confidence {coords_msg}\n")
 
-    def predictDirectory(self, dirPath: str = "converted-images"):
+    def predictDirectory(self, dirPath: str = "dataset"):
         if os.path.isdir(dirPath):
             files = []
 
@@ -214,7 +213,7 @@ class KerasTrain(object):
 
     def detect_face_and_predict(self, img_path: str, output_path: str):
         print("[INFO] Loading face detector model...")
-        print(output_path)
+
         prototxtPath = "deploy.prototxt"
         weightsPath = "res10_300x300_ssd_iter_140000.caffemodel"
 
@@ -302,7 +301,7 @@ class KerasTrain(object):
         plt.plot(nbBatches, testBatches, label="train_test")
         plt.plot(nbBatches, losses, label="train_loss")
         plt.plot(nbBatches, lossesTests, label="test_loss")
-        plt.title(f'Model loss/accuracy {self.epochs} - {self.batch_size}')
+        plt.title(f'Model loss/accuracy batch size variation')
         plt.ylabel('Loss/Accuracy')
         plt.xlabel('Batch size #')
         plt.legend(loc='lower left')
