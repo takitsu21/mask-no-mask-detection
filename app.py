@@ -61,7 +61,6 @@ class MultiView(QtWidgets.QWidget):
             # label.setWindowTitle(path)
             # label.show()
 
-            ImagePredicted(path, None).show()
             # self.label.setPixmap(QPixmap(f"outptut-{path}"))
             # img.show()
 
