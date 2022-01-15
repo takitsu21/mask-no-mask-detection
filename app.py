@@ -14,7 +14,7 @@ from typing import Optional
 import PySide6
 from PySide6 import QtWidgets, QtCore, QtGui
 from sys import platform
-
+import time
 class MultiView(QtWidgets.QWidget):
 
 
@@ -46,10 +46,10 @@ class MultiView(QtWidgets.QWidget):
         url = e.mimeData().urls()[0]
         path = url.toLocalFile()
         print(path)
-        model = KerasTrain().loadModel("model-100-epochs-3.h5")
+        #model = KerasTrain().loadModel("model-100-epochs-3.h5")
         if path[-4:] == ".png" or path[-4:] == ".xpm" or path[-4:] == ".jpg":
 
-            model.detect_face_and_predict(path, f"outptut-{path}")
+            #model.detect_face_and_predict(path, f"outptut-{path}")
             # label = QtWidgets.QLabel(self)
             # label.setPixmap(QPixmap(f"outptut-{path}"))
             # label.setWindowTitle(path)
@@ -62,22 +62,22 @@ class MultiView(QtWidgets.QWidget):
             # frame.show()
         else:
             directory = QDir(path)
-            model.predictDirectory(dirPath=path)
+            #model.predictDirectory(dirPath=path)
             self.listWidget = MyListWidget(None)
-
+            
 
             import re, time, os
 
 
             for i, file in enumerate(directory.entryList(), start=1):
                 if platform == "win32" :
-                    p = re.sub("/", "\\\\", f"{path}/output/{file}")
+                    p = re.sub("/", "\\\\", f"{path}output/{file}")
                 else:
-                    p = f"{path}/output/{file}"
+                    p = f"{path}output/{file}"
                 print(p)
                 print(os.path.exists(p))
-                self.listWidget.addMyItem(QListWidgetItem(QIcon(f"{path}/{file}"), f"image-{i}"), p)
-
+                self.listWidget.addMyItem(QListWidgetItem(QIcon(p), f"image-{i}"), p)
+            self.layout.removeWidget(self.label)
             self.layout.addWidget(self.listWidget)
 
 
@@ -123,7 +123,19 @@ class ImagePredicted(QtWidgets.QWidget):
         self.move(300, 200)
         self.setWindowTitle('Image with PyQt')
 
+class FrameImage(QtWidgets.QWidget):
+    def __init__(self,fPath,name, parent: Optional[PySide6.QtWidgets.QWidget] = ..., f: PySide6.QtCore.Qt.WindowFlags = ...) -> None:
+        super().__init__(parent, f)
 
+        self.frame = None
+        self.title= name
+        self.fPath = fPath
+        print(self.fPath)
+        self.setWindowTitle(self.title)
+        self.label = QtWidgets.QLabel(self)
+        self.label.setPixmap(QPixmap(self.fPath))
+        self.layout.addWidget(self.label)
+        self.show()
 
 class MyListWidget(QListWidget):
 
@@ -154,17 +166,15 @@ class MyListWidget(QListWidget):
         """
         Open image by double clicking mouse event
         """
+        
         try:
             super().mouseDoubleClickEvent(event)
             name = self.selectedItems()[0].text()
-            label = QtWidgets.QLabel()
-            label.setPixmap(QPixmap(self.paths[name]))
-            label.setWindowTitle(name)
-            label.show()
-
+            print("name",name)
+            print("fPath",self.paths[name])
+            frame = FrameImage(self.paths[name], name, None)
         except:
             pass
-
 
 
 
