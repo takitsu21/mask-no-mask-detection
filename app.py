@@ -47,8 +47,8 @@ class MultiView(QtWidgets.QWidget):
         url = e.mimeData().urls()[0]
         path = url.toLocalFile()
         print("oooooo"+path)
-        
-        model = KerasTrain().loadModel("model-100-epochs-100.h5")
+
+        model = KerasTrain().loadModel("model-25epochs-steps.h5")
         if path[-4:] == ".png" or path[-4:] == ".xpm" or path[-4:] == ".jpg":
             split_f = path.split("/")[-1].split(".")
             f_output = f"./outptut-{split_f[0]}.{split_f[1]}"
@@ -69,24 +69,25 @@ class MultiView(QtWidgets.QWidget):
         else:
             #TODO
             model.predictDirectory(dirPath=path)
-            if platform == "win32" :
-                 path+="/../output/"
-            else:
-                path+="../output/"
-            directory = QDir(path)
-            
-            self.listWidget = MyListWidget(None)
-            
+            # if platform == "win32" :
+            #      path+="/../output/"
+            # else:
+            #     path+="../output/"
+            output_dir = "output"
+            directory = QDir(output_dir)
 
-            
+            self.listWidget = MyListWidget(None)
+
+
+
 
 
             for i, file in enumerate(directory.entryList(), start=1):
-                if platform == "win32" :
-                    p = re.sub("/", "\\\\", f"{path}{file}")
-                else:
-                    
-                    p = f"{path}{file}"
+                # if platform == "win32" :
+                #     p = re.sub("/", "\\\\", f"{path}{file}")
+                # else:
+
+                p = f"{output_dir}/{file}"
                 print(p)
                 print(os.path.exists(p))
                 if not os.path.isdir(p):
@@ -117,26 +118,6 @@ class PredictorVisualizer(QMainWindow):
 
 
 
-class ImagePredicted(QtWidgets.QWidget):
-    def __init__(self, path, parent: Optional[PySide6.QtWidgets.QWidget] = ...) -> None:
-        super().__init__(parent)
-        self.path = path
-        self.initUI()
-        self.show()
-
-    def initUI(self):
-        hbox = QVBoxLayout(self)
-        pixmap = QPixmap(self.path)
-
-        lbl = QtWidgets.QLabel(self)
-        lbl.setPixmap(pixmap)
-
-        hbox.addWidget(lbl)
-        self.setLayout(hbox)
-
-        self.move(300, 200)
-        self.setWindowTitle('Image with PyQt')
-
 class imgWidget(QtWidgets.QWidget):
     def __init__(self,path, parent: Optional[PySide6.QtWidgets.QWidget] = ...) -> None:
         super().__init__(parent)
@@ -149,7 +130,7 @@ class imgWidget(QtWidgets.QWidget):
         self.setLayout(self.layout)
         self.listWidget = None
 
-    
+
 
 
 
@@ -171,7 +152,7 @@ class FrameImage(QMainWindow):
         # self.resize(500,500)
         self.frame = None
         self.title= name
-        
+
         print(self.fPath)
         print(os.path.exists(self.fPath))
         self.setWindowTitle(self.title)
@@ -181,8 +162,8 @@ class FrameImage(QMainWindow):
         self.widget.setLayout(self.layout)
         self.setCentralWidget(self.widget)
         self.layout.addWidget(self.frame)
-       
-        
+
+
         # self.show()
 
 
@@ -195,7 +176,7 @@ class MyListWidget(QListWidget):
         """
         super().__init__(parent)
         self.setViewMode(QListWidget.IconMode)
-        self.setIconSize(QSize(50, 50))
+        self.setIconSize(QSize(125, 125))
         self.setResizeMode(QListWidget.Adjust)
         self.paths = {}
 
@@ -215,7 +196,7 @@ class MyListWidget(QListWidget):
         """
         Open image by double clicking mouse event
         """
-        
+
         # try:
         super().mouseDoubleClickEvent(event)
         name = self.selectedItems()[0].text()

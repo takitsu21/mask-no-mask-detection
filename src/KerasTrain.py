@@ -359,12 +359,12 @@ class KerasTrain(object):
                 continue
             split_f = f.split("/")[-1].split(".")
 
-            output_dir = f"{os.path.dirname(f)}/../output"
+            output_dir = f"output"
 
             if not os.path.exists(output_dir):
                 os.makedirs(output_dir)
 
-            f_output = f"{output_dir}/{split_f[0]}-{i}.{split_f[1]}"
+            f_output = f"{output_dir}/{os.path.basename(split_f[0])}-{i}.{split_f[1]}"
             if f_output[-4:] == ".png" or f_output[-4:] == ".jpg":
                 self.detect_face_and_predict(f, f_output)
                 print(f"{f_output} processed")
