@@ -48,10 +48,14 @@ class MultiView(QtWidgets.QWidget):
         path = url.toLocalFile()
         print("oooooo"+path)
         
-        #model = KerasTrain().loadModel("model-100-epochs-3.h5")
+        model = KerasTrain().loadModel("model-100-epochs-100.h5")
         if path[-4:] == ".png" or path[-4:] == ".xpm" or path[-4:] == ".jpg":
+            split_f = path.split("/")[-1].split(".")
+            f_output = f"./outptut-{split_f[0]}.{split_f[1]}"
+            model.detect_face_and_predict(path, f_output)
+            frame = FrameImage(f_output, path, self)
+            frame.show()
 
-            #model.detect_face_and_predict(path, f"outptut-{path}")
             # label = QtWidgets.QLabel(self)
             # label.setPixmap(QPixmap(f"outptut-{path}"))
             # label.setWindowTitle(path)
@@ -64,11 +68,11 @@ class MultiView(QtWidgets.QWidget):
             # frame.show()
         else:
             #TODO
-            #model.predictDirectory(dirPath=path)
+            model.predictDirectory(dirPath=path)
             if platform == "win32" :
-                 path+="/output/"
+                 path+="/../output/"
             else:
-                path+="output/"
+                path+="../output/"
             directory = QDir(path)
             
             self.listWidget = MyListWidget(None)
@@ -158,11 +162,11 @@ class FrameImage(QMainWindow):
         primaryScreenSize = QScreen.availableGeometry(QApplication.primaryScreen())
         width, height = primaryScreenSize.width(), primaryScreenSize.height()
         newWidth, newHeight = im.size
-
+        newWidth, newHeight = newWidth+50, newHeight+50
         newWidth = min(newWidth, width)
         newHeight = min(newHeight, height)
         self.resize(newWidth, newHeight)
-        self.setFixedSize(self.size())
+        # self.setFixedSize(self.size())
 
         # self.resize(500,500)
         self.frame = None
