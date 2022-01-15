@@ -55,23 +55,9 @@ class MultiView(QtWidgets.QWidget):
             model.detect_face_and_predict(path, f_output)
             frame = FrameImage(f_output, path, self)
             frame.show()
-
-            # label = QtWidgets.QLabel(self)
-            # label.setPixmap(QPixmap(f"outptut-{path}"))
-            # label.setWindowTitle(path)
-            # label.show()
-
-            # self.label.setPixmap(QPixmap(f"outptut-{path}"))
-            # img.show()
-
-            # frame.show()
         else:
-            #TODO
+        
             model.predictDirectory(dirPath=path)
-            # if platform == "win32" :
-            #      path+="/../output/"
-            # else:
-            #     path+="../output/"
             output_dir = "output"
             directory = QDir(output_dir)
 
