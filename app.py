@@ -46,7 +46,8 @@ class MultiView(QtWidgets.QWidget):
         """
         url = e.mimeData().urls()[0]
         path = url.toLocalFile()
-        print(path)
+        print("oooooo"+path)
+        
         #model = KerasTrain().loadModel("model-100-epochs-3.h5")
         if path[-4:] == ".png" or path[-4:] == ".xpm" or path[-4:] == ".jpg":
 
@@ -56,14 +57,17 @@ class MultiView(QtWidgets.QWidget):
             # label.setWindowTitle(path)
             # label.show()
 
-            ImagePredicted("./img_tests/faces.png", None).show()
+            ImagePredicted(path, None).show()
             # self.label.setPixmap(QPixmap(f"outptut-{path}"))
             # img.show()
 
             # frame.show()
         else:
-            directory = QDir(path)
+            #TODO
             #model.predictDirectory(dirPath=path)
+            path+="output/"
+            directory = QDir(path)
+            
             self.listWidget = MyListWidget(None)
             
 
@@ -72,12 +76,13 @@ class MultiView(QtWidgets.QWidget):
 
             for i, file in enumerate(directory.entryList(), start=1):
                 if platform == "win32" :
-                    p = re.sub("/", "\\\\", f"{path}/output/{file}")
+                    p = re.sub("/", "\\\\", f"{path}{file}")
                 else:
-                    p = f"{path}/output/{file}"
+                    p = f"{path}{file}"
                 print(p)
                 print(os.path.exists(p))
-                self.listWidget.addMyItem(QListWidgetItem(QIcon(p), f"image-{i}"), p)
+                if not os.path.isdir(p):
+                    self.listWidget.addMyItem(QListWidgetItem(QIcon(p), f"image-{i}"), p)
             self.layout.removeWidget(self.label)
             self.layout.addWidget(self.listWidget)
 
