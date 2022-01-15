@@ -1,61 +1,46 @@
-import tensorflow as tf
+import argparse
+from src.KerasTrain import KerasTrain
 
-from tensorflow import keras
-from tensorflow.keras import layers
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-
-import os
-import numpy as np
-import tensorflow as tf
-from tensorflow.keras.layers import Conv2D, BatchNormalization, Flatten, Dense, MaxPool2D, Dropout
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from keras.models import load_model
-
-def train():
-    data_generator = ImageDataGenerator()
-    train_data = data_generator.flow_from_directory(
-        "converted-images/",
-        target_size=(150, 150),
-        batch_size = 32,
-        class_mode = 'categorical',
-        shuffle = True)
-
-    val_data = data_generator.flow_from_directory(
-        "converted-images/",
-        target_size=(150, 150),
-        batch_size=32,
-        class_mode = 'categorical',
-        shuffle = True)
-
-    model = tf.keras.models.Sequential([
-        Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3)),
-        Conv2D(32, (3, 3), activation='relu'),
-        BatchNormalization(),
-        MaxPool2D(),
-        Conv2D(64, (3, 3), activation='relu'),
-        Conv2D(64, (3, 3), activation='relu'),
-        BatchNormalization(),
-        MaxPool2D(),
-        Conv2D(128, (3, 3), activation='relu'),
-        Conv2D(128, (3, 3), activation='relu'),
-        BatchNormalization(),
-        MaxPool2D(),
-        Flatten(),
-        Dense(128, activation='relu'),
-        Dense(2, activation='softmax')
-    ])
-
-    model.compile(loss=tf.keras.losses.categorical_crossentropy,
-              optimizer=tf.keras.optimizers.Adam(learning_rate=0.0001),
-                             metrics=['accuracy'])
-
-    model.fit(train_data,
-          steps_per_epoch=train_data.samples/32,
-          validation_data=val_data,
-          validation_steps=val_data.samples/32,
-          batch_size=32,
-          epochs=5,
-          )
 
 if __name__ == "__main__":
-    train()
+
+    parser = argparse.ArgumentParser(description='Predict classes of an image')
+    parser.add_argument('-i', '--image', type=str,
+                        help="Image path (default: None)", dest="img_path", default=None)
+    parser.add_argument('-tr', '--train', type=bool,
+                        help="Train the model", dest="train", default=False)
+    parser.add_argument('-mp', '--model_path', type=str, help="Path to the model (default: model.h5)",
+                        dest="model_path", default="model.h5")
+
+    parser.add_argument('-e', '--epochs', type=int,
+                        help="Epoch size (default: 25)", dest="epochs", default=25)
+    parser.add_argument('-b', '--batch_size', type=int,
+                        help="Batch size (default: 32)", dest="batch_size", default=32)
+    parser.add_argument("-w", "--workers", type=int,
+                        help="Number of workers  (default: 1, if > 1 activate multiprocessing)", dest="workers", default=1)
+    parser.add_argument("-dir", "--dir_predict_path", type=str,
+                        help="Path to the directory with images", dest="dir_predict_path", default=None)
+    args = parser.parse_args()
+    if args.train:
+        kerasTrain = KerasTrain(epochs=args.epochs, batch_size=args.batch_size,
+                                use_multiprocessing=True if args.workers > 1 else False, workers=args.workers)
+        kerasTrain.train(
+            dict(
+                rotation_range=20,
+                zoom_range=0.15,
+                width_shift_range=0.2,
+                height_shift_range=0.2,
+                shear_range=0.15,
+                horizontal_flip=True,
+                fill_mode="nearest"
+            ),
+            modelPath=args.model_path
+        )
+
+    if args.img_path is not None:
+        model = KerasTrain().loadModel(path=args.model_path)
+        model.detect_face_and_predict(args.img_path, f"output-{args.img_path}")
+
+    if args.dir_predict_path is not None:
+        model = KerasTrain().loadModel(path=args.model_path)
+        model.predictDirectory(dirPath=args.dir_predict_path)

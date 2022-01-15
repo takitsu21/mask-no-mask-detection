@@ -19,7 +19,7 @@ class Spec(object):
         self.imgSize = imgSize
 
     def __repr__(self) -> str:
-        return f"{self.categorie} {self.begin} {self.dest} {self.imgSize}"
+        return f"<{self.categorie} {self.begin} {self.dest} {self.imgSize}>"
 
 
 class MyImage(object):
@@ -36,7 +36,7 @@ class MyImage(object):
         self.specs.append(spec)
 
     def __repr__(self) -> str:
-        return f"<{self.name} {self.categorie} {self.begin} {self.dest} {self.imgSize} {self.path}>"
+        return f"<{self.name} {self.path} {self.specs}>"
 
 
 class JsonReader(object):
@@ -78,8 +78,9 @@ class JsonReader(object):
 
     def convertImages(self):
         print("Start converting images")
-        if not os.path.exists(f"{os.getcwd()}/converted-images"):
-            os.makedirs(f"{os.getcwd()}/converted-images")
+        basePath = "dataset2"
+        if not os.path.exists(f"{os.getcwd()}/{basePath}"):
+            os.makedirs(f"{os.getcwd()}/{basePath}")
 
         print(os.getcwd())
         for img in self.images:
@@ -93,8 +94,10 @@ class JsonReader(object):
                 dX, dY = spec.dest
 
                 cropped = image.crop((bX, bY, dX, dY))
+                if not os.path.exists(f"{os.getcwd()}/{basePath}/{spec.categorie}"):
+                    os.makedirs(f"{os.getcwd()}/{basePath}/{spec.categorie}")
                 imgName = f"{img.name}-bb-{bX}x{bY}-{dX-bX}-{dY-bY}.png"
-                pathToSave = Path(f"{os.getcwd()}/converted-images/{imgName}")
+                pathToSave = Path(f"{os.getcwd()}/{basePath}/{spec.categorie}/{imgName}")
                 cropped.save(pathToSave)
 
                 print(f"{spec.categorie} Annotated {imgName} has been converted.")
@@ -105,5 +108,5 @@ class JsonReader(object):
 
 
 if __name__ == "__main__":
-    reader = JsonReader("img/tests/mainlynomask.json")
+    reader = JsonReader("anno.json")
     reader.parseJson()
