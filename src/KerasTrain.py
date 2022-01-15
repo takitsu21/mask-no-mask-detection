@@ -26,6 +26,7 @@ from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.optimizers import Adam
 from keras.utils.vis_utils import plot_model
 
+
 class KerasTrain(object):
     def __init__(self, model=None, batch_size=32, epochs=10, workers=1, use_multiprocessing=False) -> None:
         super().__init__()
@@ -40,6 +41,7 @@ class KerasTrain(object):
         self.log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
         prototxtPath = "deploy.prototxt"
         weightsPath = "res10_300x300_ssd_iter_140000.caffemodel"
+        print("[INFO] Loading face detector model...")
 
         self.net = cv2.dnn.readNet(prototxtPath, weightsPath)
         self.tensorboard_callback = tf.keras.callbacks.TensorBoard(
@@ -215,12 +217,6 @@ class KerasTrain(object):
                 print(f"{f_output} processed")
 
     def detect_face_and_predict(self, img_path: str, output_path: str):
-        print("[INFO] Loading face detector model...")
-
-
-
-        print("[INFO] loading face mask detector model...")
-
         image = cv2.imread(img_path)
         image = cv2.resize(image, (700, 700))
 
