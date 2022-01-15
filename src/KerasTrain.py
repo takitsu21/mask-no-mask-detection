@@ -15,12 +15,11 @@ from tabulate import tabulate
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
 from tensorflow.keras.utils import to_categorical
-from tensorflow.keras.applications import MobileNetV2, ResNet152V2
+from tensorflow.keras.applications import MobileNetV2
 from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 import cv2
-from tqdm import trange
 import numpy as np
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
@@ -39,6 +38,10 @@ class KerasTrain(object):
         self.size = (150, 150)
         self.lr = 1e-5
         self.log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+        prototxtPath = "deploy.prototxt"
+        weightsPath = "res10_300x300_ssd_iter_140000.caffemodel"
+
+        self.net = cv2.dnn.readNet(prototxtPath, weightsPath)
         self.tensorboard_callback = tf.keras.callbacks.TensorBoard(
             log_dir=self.log_dir, histogram_freq=1)
 
@@ -214,14 +217,12 @@ class KerasTrain(object):
     def detect_face_and_predict(self, img_path: str, output_path: str):
         print("[INFO] Loading face detector model...")
 
-        prototxtPath = "deploy.prototxt"
-        weightsPath = "res10_300x300_ssd_iter_140000.caffemodel"
 
-        net = cv2.dnn.readNet(prototxtPath, weightsPath)
 
         print("[INFO] loading face mask detector model...")
 
         image = cv2.imread(img_path)
+        image = cv2.resize(image, (700, 700))
 
         (h, w) = image.shape[:2]
 
@@ -229,8 +230,8 @@ class KerasTrain(object):
                                      (104.0, 177.0, 123.0))
 
         print("[INFO] computing face detections...")
-        net.setInput(blob)
-        detections = net.forward()
+        self.net.setInput(blob)
+        detections = self.net.forward()
 
         for i in range(0, detections.shape[2]):
             confidence = detections[0, 0, i, 2]
@@ -265,7 +266,7 @@ class KerasTrain(object):
 
                 cv2.putText(image, label, (startX, startY - 10),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.3, color, 1)
-                cv2.rectangle(image, (startX, startY), (endX, endY), color, 1)
+                cv2.rectangle(image, (startX, startY), (endX, endY), color, 2)
 
         cv2.imwrite(output_path, image)
 
