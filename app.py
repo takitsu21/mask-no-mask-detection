@@ -65,7 +65,10 @@ class MultiView(QtWidgets.QWidget):
         else:
             #TODO
             #model.predictDirectory(dirPath=path)
-            path+="output/"
+            if platform == "win32" :
+                 path+="/output/"
+            else:
+                path+="output/"
             directory = QDir(path)
             
             self.listWidget = MyListWidget(None)
@@ -78,6 +81,7 @@ class MultiView(QtWidgets.QWidget):
                 if platform == "win32" :
                     p = re.sub("/", "\\\\", f"{path}{file}")
                 else:
+                    
                     p = f"{path}{file}"
                 print(p)
                 print(os.path.exists(p))
