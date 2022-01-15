@@ -1,8 +1,8 @@
 
 from PySide6 import QtWidgets, QtGui
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QIcon, QScreen
 from PySide6.QtWidgets import QFileDialog, QMainWindow, QApplication, QVBoxLayout, \
-    QWidget, QLineEdit
+    QWidget, QLineEdit, QGraphicsScene
 
 import sys
 from src.KerasTrain import KerasTrain
@@ -14,7 +14,8 @@ from typing import Optional
 import PySide6
 from PySide6 import QtWidgets, QtCore, QtGui
 from sys import platform
-import time
+import re, time, os
+from PIL import Image
 class MultiView(QtWidgets.QWidget):
 
 
@@ -66,14 +67,14 @@ class MultiView(QtWidgets.QWidget):
             self.listWidget = MyListWidget(None)
             
 
-            import re, time, os
+            
 
 
             for i, file in enumerate(directory.entryList(), start=1):
                 if platform == "win32" :
-                    p = re.sub("/", "\\\\", f"{path}output/{file}")
+                    p = re.sub("/", "\\\\", f"{path}/output/{file}")
                 else:
-                    p = f"{path}output/{file}"
+                    p = f"{path}/output/{file}"
                 print(p)
                 print(os.path.exists(p))
                 self.listWidget.addMyItem(QListWidgetItem(QIcon(p), f"image-{i}"), p)
@@ -123,19 +124,54 @@ class ImagePredicted(QtWidgets.QWidget):
         self.move(300, 200)
         self.setWindowTitle('Image with PyQt')
 
-class FrameImage(QtWidgets.QWidget):
-    def __init__(self,fPath,name, parent: Optional[PySide6.QtWidgets.QWidget] = ..., f: PySide6.QtCore.Qt.WindowFlags = ...) -> None:
-        super().__init__(parent, f)
+class imgWidget(QtWidgets.QWidget):
+    def __init__(self,path, parent: Optional[PySide6.QtWidgets.QWidget] = ...) -> None:
+        super().__init__(parent)
+        self.path = path
+        self.layout: QVBoxLayout = QtWidgets.QVBoxLayout(self)
+        self.label = QtWidgets.QLabel(self)
+        self.pixmap = QPixmap(path)
+        self.label.setPixmap(self.pixmap)
+        self.layout.addWidget(self.label, alignment=QtCore.Qt.AlignCenter)
+        self.setLayout(self.layout)
+        self.listWidget = None
 
+    
+
+
+
+class FrameImage(QMainWindow):
+     def __init__(self, fPath, name, parent: Optional[QtWidgets.QWidget] = ...) -> None:
+        super().__init__(parent=parent)
+        self.layout: QVBoxLayout = QtWidgets.QVBoxLayout(self)
+        self.fPath = fPath
+        im: Image = Image.open(self.fPath)
+        primaryScreenSize = QScreen.availableGeometry(QApplication.primaryScreen())
+        width, height = primaryScreenSize.width(), primaryScreenSize.height()
+        newWidth, newHeight = im.size
+
+        newWidth = min(newWidth, width)
+        newHeight = min(newHeight, height)
+        self.resize(newWidth, newHeight)
+        self.setFixedSize(self.size())
+
+        # self.resize(500,500)
         self.frame = None
         self.title= name
-        self.fPath = fPath
+        
         print(self.fPath)
+        print(os.path.exists(self.fPath))
         self.setWindowTitle(self.title)
-        self.label = QtWidgets.QLabel(self)
-        self.label.setPixmap(QPixmap(self.fPath))
-        self.layout.addWidget(self.label)
-        self.show()
+        self.frame = imgWidget(self.fPath,self)
+        self.layout: QVBoxLayout = QtWidgets.QVBoxLayout(self)
+        self.widget = QWidget()
+        self.widget.setLayout(self.layout)
+        self.setCentralWidget(self.widget)
+        self.layout.addWidget(self.frame)
+       
+        
+        # self.show()
+
 
 class MyListWidget(QListWidget):
 
@@ -146,7 +182,7 @@ class MyListWidget(QListWidget):
         """
         super().__init__(parent)
         self.setViewMode(QListWidget.IconMode)
-        self.setIconSize(QSize(125, 125))
+        self.setIconSize(QSize(50, 50))
         self.setResizeMode(QListWidget.Adjust)
         self.paths = {}
 
@@ -167,14 +203,15 @@ class MyListWidget(QListWidget):
         Open image by double clicking mouse event
         """
         
-        try:
-            super().mouseDoubleClickEvent(event)
-            name = self.selectedItems()[0].text()
-            print("name",name)
-            print("fPath",self.paths[name])
-            frame = FrameImage(self.paths[name], name, None)
-        except:
-            pass
+        # try:
+        super().mouseDoubleClickEvent(event)
+        name = self.selectedItems()[0].text()
+        print("name",name)
+        print("fPath",self.paths[name])
+        frame = FrameImage(self.paths[name], name, self)
+        frame.show()
+        # except:
+        #     pass
 
 
 
