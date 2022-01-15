@@ -70,7 +70,10 @@ class MultiView(QtWidgets.QWidget):
 
 
             for i, file in enumerate(directory.entryList(), start=1):
-                p = re.sub("/", "\\\\", f"{path}/output/{file}")
+                if platform == "win32" :
+                    p = re.sub("/", "\\\\", f"{path}/output/{file}")
+                else:
+                    p = f"{path}/output/{file}"
                 print(p)
                 print(os.path.exists(p))
                 self.listWidget.addMyItem(QListWidgetItem(QIcon(f"{path}/{file}"), f"image-{i}"), p)
@@ -170,7 +173,7 @@ if __name__ == "__main__":
     run the program
     """
     if sys.platform == "win32":
-        appId = 'PredictorVisualize'
+        appId = 'PredictorVisualizer'
         ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(appId)
     app = QApplication(sys.argv)
     with open("ressources/styles/dark-theme.qss") as f:

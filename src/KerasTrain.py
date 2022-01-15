@@ -51,7 +51,7 @@ class KerasTrain(object):
         self.workers = workers
         self.use_multiprocessing = use_multiprocessing
         self.model_classes_ = {}
-        self.size = (150, 150)
+        self.size = (300, 300)
         self.lr = 1e-5
         self.log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
         self.tensorboard_callback = tf.keras.callbacks.TensorBoard(
@@ -139,7 +139,7 @@ class KerasTrain(object):
                                                               test_size=0.20, stratify=labels, random_state=42)
 
         baseModel = MobileNetV2(weights="imagenet", include_top=False,
-                                input_tensor=Input(shape=(150, 150, 3)))
+                                input_tensor=Input(shape=(300, 300, 3)))
 
         # construct the head of the model that will be placed on top of the
         # the base model
@@ -342,10 +342,10 @@ class KerasTrain(object):
         files = []
 
         dirlist = [dirPath]
-        if platform == "win32":
-            slash = "\\"
-        else:
-            slash = "/"
+        # if platform == "win32":
+        #     slash = "\\"
+        # else:
+        #     slash = "/"
 
         while len(dirlist) > 0:
             for (dirpath, dirnames, filenames) in os.walk(dirlist.pop()):
@@ -355,13 +355,16 @@ class KerasTrain(object):
 
         for i, f in enumerate(files):
             # predictions = self.predict(f)
-            split_f = f.split(slash)[-1].split(".")
+            if "." not in f:
+                continue
+            split_f = f.split("/")[-1].split(".")
 
-            output_dir = f"{os.path.dirname(f)}{slash}output"
+            output_dir = f"{os.path.dirname(f)}/output"
+
             if not os.path.exists(output_dir):
                 os.makedirs(output_dir)
 
-            f_output = f"{output_dir}{slash}{split_f[0]}-{i}.{split_f[1]}"
+            f_output = f"{output_dir}/{split_f[0]}-{i}.{split_f[1]}"
 
             self.detect_face_and_predict(f, f_output)
             print(f"{f_output} processed")
@@ -371,7 +374,34 @@ class KerasTrain(object):
             # print(len(incorrect_predictions)," classified incorrectly")
 
     def detect_face_and_predict(self, img_path: str, output_path: str):
+        # image = cv2.imread(img_path)
+        # grayImage = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+        # # load the face detector and detect faces in the image
+        # faceDetector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+
+
+        # # Use the below code uncomment only when, if you are using OpenCV version 2.4
+
+        # # faceRegions = faceDetector.detectMultiScale(gray, scaleFactor=1.06, minNeighbors=5,
+        # # 		minSize=(32, 32), flags=cv2.cv.CV_HAAR_SCALE_IMAGE)
+
+
+        # # Use the below code, if you are using OpenCv 3.0+
+        # faceRegions = faceDetector.detectMultiScale(grayImage, scaleFactor=1.06, minNeighbors=5,
+        #         minSize=(32, 32), flags=cv2.CASCADE_SCALE_IMAGE)
+
+        # print("Total {} face(s) found on the image".format(len(faceRegions)))
+
+        # # Now we are loop over the faces and draw a rectangle around each on the image face which we found.
+        # for (x, y, w, h) in faceRegions:
+        #     cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+        # # show the detected faces on screen
+        # cv2.imshow("Detected Faces", image)
+        # cv2.waitKey(0)
         print("[INFO] loading face detector model...")
+        print(output_path)
         prototxtPath = "deploy.prototxt"
         weightsPath = "res10_300x300_ssd_iter_140000.caffemodel"
         # prototxtPath = "architecture.txt"
@@ -383,6 +413,7 @@ class KerasTrain(object):
         # model = KerasTrain().loadModel("model-100-epochs.h5")
 
         image = cv2.imread(img_path)
+
 
         (h, w) = image.shape[:2]
 
@@ -404,6 +435,8 @@ class KerasTrain(object):
                 (endX, endY) = (min(w - 1, endX), min(h - 1, endY))
 
                 face = image[startY:endY, startX:endX]
+                if not len(face):
+                    break
                 face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
                 face = cv2.resize(face, self.size)
                 face = img_to_array(face)
@@ -426,6 +459,8 @@ class KerasTrain(object):
         cv2.imwrite(output_path, image)
         cv2.imshow(output_path, image)
         cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
 
     def testBatchSize(self):
         batches = []
