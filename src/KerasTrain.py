@@ -51,7 +51,7 @@ class KerasTrain(object):
         self.workers = workers
         self.use_multiprocessing = use_multiprocessing
         self.model_classes_ = {}
-        self.size = (300, 300)
+        self.size = (150, 150)
         self.lr = 1e-5
         self.log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
         self.tensorboard_callback = tf.keras.callbacks.TensorBoard(
@@ -139,7 +139,7 @@ class KerasTrain(object):
                                                               test_size=0.20, stratify=labels, random_state=42)
 
         baseModel = MobileNetV2(weights="imagenet", include_top=False,
-                                input_tensor=Input(shape=(300, 300, 3)))
+                                input_tensor=Input(shape=(150, 150, 3)))
 
         # construct the head of the model that will be placed on top of the
         # the base model
@@ -359,15 +359,15 @@ class KerasTrain(object):
                 continue
             split_f = f.split("/")[-1].split(".")
 
-            output_dir = f"{os.path.dirname(f)}/output"
+            output_dir = f"{os.path.dirname(f)}/../output"
 
             if not os.path.exists(output_dir):
                 os.makedirs(output_dir)
 
             f_output = f"{output_dir}/{split_f[0]}-{i}.{split_f[1]}"
-
-            self.detect_face_and_predict(f, f_output)
-            print(f"{f_output} processed")
+            if f_output[-4:] == ".png" or f_output[-4:] == ".jpg":
+                self.detect_face_and_predict(f, f_output)
+                print(f"{f_output} processed")
             # correct_predictions = np.nonzero(predictions == y_test)[0]
             # incorrect_predictions = np.nonzero(predictions != y_test)[0]
             # print(len(correct_predictions)," classified correctly")
@@ -457,8 +457,8 @@ class KerasTrain(object):
                 cv2.rectangle(image, (startX, startY), (endX, endY), color, 1)
 
         cv2.imwrite(output_path, image)
-        #cv2.imshow(output_path, image)
-        #cv2.waitKey(0)
+        # cv2.imshow(output_path, image)
+        # cv2.waitKey(0)
         #cv2.destroyAllWindows()
 
 
