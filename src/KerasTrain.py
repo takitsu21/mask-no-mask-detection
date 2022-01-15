@@ -1,30 +1,22 @@
 from typing import Union
 import tensorflow as tf
-from tensorflow.keras import layers, Sequential
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow import keras
-from tensorflow.keras import utils
-from tensorflow.keras.optimizers import RMSprop
 from PIL import Image
 from keras.preprocessing import image
 import numpy as np
 import datetime
 from matplotlib import pyplot as plt
 from tensorflow.keras.layers import *
-from keras.utils.vis_utils import plot_model
 import os
 from tqdm import trange
-import types
-import tempfile
 import keras.models
-import pickle
 from tabulate import tabulate
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.applications import MobileNetV2
 from tensorflow.keras.models import Model
-from sklearn.metrics import classification_report
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 import cv2
@@ -33,14 +25,7 @@ import numpy as np
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.applications import ResNet50V2
-from sys import platform
-
-
-def save(model, modelPath: str = "model.pkl"):
-    pickle.dump(model, open(modelPath, "wb+"))
-    print(f"save {modelPath}")
-
+from keras.utils.vis_utils import plot_model
 
 class KerasTrain(object):
     def __init__(self, model=None, batch_size=32, epochs=10, workers=1, use_multiprocessing=False) -> None:
@@ -159,6 +144,7 @@ class KerasTrain(object):
             callbacks=[self.tensorboard_callback]
         )
         self.model.save(modelPath)
+        plot_model(self.model, show_shapes=True)
 
         plt.style.use("ggplot")
         plt.figure()

@@ -1,9 +1,9 @@
 NumPy
 TensorFlow
-tensorflow_hub
 pillow
 matplotlib
 tabulate
 sklearn
 opencv-python
 pyside6
+tqdm
