@@ -457,9 +457,9 @@ class KerasTrain(object):
                 cv2.rectangle(image, (startX, startY), (endX, endY), color, 1)
 
         cv2.imwrite(output_path, image)
-        cv2.imshow(output_path, image)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+        #cv2.imshow(output_path, image)
+        #cv2.waitKey(0)
+        #cv2.destroyAllWindows()
 
 
     def testBatchSize(self):
