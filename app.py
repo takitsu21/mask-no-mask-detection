@@ -16,6 +16,13 @@ from PySide6 import QtWidgets, QtCore, QtGui
 from sys import platform
 import re, time, os
 from PIL import Image
+from PySide6.QtGui import QAction
+
+def find_model(extension: str=".h5", path: str = "."):
+    for file in os.listdir(path):
+        if file.endswith(extension):
+            return file
+
 class MultiView(QtWidgets.QWidget):
 
 
@@ -29,7 +36,42 @@ class MultiView(QtWidgets.QWidget):
         self.layout.addWidget(self.label, alignment=QtCore.Qt.AlignCenter)
         self.setLayout(self.layout)
         self.listWidget = None
+        self.modelPath = find_model()
 
+
+    def loadPredictions(self, path):
+        model = KerasTrain().loadModel(self.modelPath)
+        if path[-4:] == ".png" or path[-4:] == ".xpm" or path[-4:] == ".jpg":
+            split_f = path.split("/")[-1].split(".")
+            output_dir = "output"
+
+            if not os.path.exists(output_dir):
+                os.makedirs(output_dir)
+
+            f_output = f"{output_dir}/outptut-{split_f[0]}.{split_f[1]}"
+            model.detect_face_and_predict(path, f_output)
+            frame = FrameImage(f_output, path, self)
+            frame.show()
+        else:
+
+            model.predictDirectory(dirPath=path)
+            output_dir = "output"
+            directory = QDir(output_dir)
+
+            self.listWidget = MyListWidget(None)
+
+
+
+
+
+            for i, file in enumerate(directory.entryList(), start=1):
+
+                p = f"{output_dir}/{file}"
+
+                if not os.path.isdir(p):
+                    self.listWidget.addMyItem(QListWidgetItem(QIcon(p), f"image-{i}"), p)
+            self.layout.removeWidget(self.label)
+            self.layout.addWidget(self.listWidget)
 
     def dragEnterEvent(self, e):
         """
@@ -46,39 +88,72 @@ class MultiView(QtWidgets.QWidget):
         """
         url = e.mimeData().urls()[0]
         path = url.toLocalFile()
-        print("oooooo"+path)
-
-        model = KerasTrain().loadModel("model-25epochs-steps.h5")
-        if path[-4:] == ".png" or path[-4:] == ".xpm" or path[-4:] == ".jpg":
-            split_f = path.split("/")[-1].split(".")
-            f_output = f"./outptut-{split_f[0]}.{split_f[1]}"
-            model.detect_face_and_predict(path, f_output)
-            frame = FrameImage(f_output, path, self)
-            frame.show()
-        else:
-        
-            model.predictDirectory(dirPath=path)
-            output_dir = "output"
-            directory = QDir(output_dir)
-
-            self.listWidget = MyListWidget(None)
+        self.loadPredictions(path)
 
 
 
+class MenuBar(QtWidgets.QMenuBar):
+
+    def __init__(self, parent: Optional[QtWidgets.QWidget] = ...) -> None:
+        """
+        MenuBar of every window
+        :param bopen: True if main window application opened, otherwise False
+        :param parent: parent widget
+        """
+        super().__init__()
+
+        self.parent = parent
+        self.frame = parent.frame
+        self.fileMenu = self.addMenu("File")
+
+        self.layout: QVBoxLayout = QtWidgets.QVBoxLayout(self)
+        self.importModel = QAction("Import model", self)
+        self.importModel.setShortcut("Ctrl+i")
+        self.importModel.triggered.connect(self.newModelPath)
 
 
-            for i, file in enumerate(directory.entryList(), start=1):
-                # if platform == "win32" :
-                #     p = re.sub("/", "\\\\", f"{path}{file}")
-                # else:
+        self.open = self.fileMenu.addMenu("Open")
 
-                p = f"{output_dir}/{file}"
-                print(p)
-                print(os.path.exists(p))
-                if not os.path.isdir(p):
-                    self.listWidget.addMyItem(QListWidgetItem(QIcon(p), f"image-{i}"), p)
-            self.layout.removeWidget(self.label)
-            self.layout.addWidget(self.listWidget)
+        self.openFile = QAction("Open file", self)
+        self.openFile.setShortcut("Ctrl+o")
+        self.openFile.triggered.connect(self.loadFile)
+        self.open.addAction(self.openFile)
+
+        self.openFold = QAction("Open folder", self)
+        self.openFold.setShortcut("Ctrl+Shift+O")
+        self.openFold.triggered.connect(self.loadFolder)
+        self.open.addAction(self.openFold)
+
+        self.fileMenu.addAction(self.importModel)
+        # self.fileMenu.addAction(self.openFile)
+        # self.fileMenu.addAction(self.openFold)
+
+        self.layout.addWidget(self.fileMenu)
+        self.setLayout(self.layout)
+
+    def newModelPath(self):
+        """
+        Open a file dialog to choose the model path
+        """
+        path = QFileDialog.getOpenFileName(self.parent, "Open file", "", "Model files (*.h5)")[0]
+        if path != "":
+            self.frame.modelPath = path
+
+    def loadFolder(self):
+        """
+        Open a file dialog to choose the folder path
+        """
+        path = QFileDialog.getExistingDirectory(self.parent, "Open folder", "")[0]
+        if path != "":
+            self.frame.loadPredictions(path)
+
+    def loadFile(self):
+        """
+        Open a file dialog to choose the folder path
+        """
+        path = QFileDialog.getOpenFileName(self)[0]
+        if path != "":
+            self.frame.loadPredictions(path)
 
 
 class PredictorVisualizer(QMainWindow):
@@ -95,6 +170,8 @@ class PredictorVisualizer(QMainWindow):
         self.widget.setLayout(self.layout)
         self.setCentralWidget(self.widget)
         self.layout.addWidget(self.frame)
+        self.menu = MenuBar(self)
+        self.layout.setMenuBar(self.menu)
 
 
     def closeEvent(self, event: QtGui.QCloseEvent) -> None:
@@ -103,7 +180,7 @@ class PredictorVisualizer(QMainWindow):
 
 
 
-class imgWidget(QtWidgets.QWidget):
+class ImgWidget(QtWidgets.QWidget):
     def __init__(self,path, parent: Optional[PySide6.QtWidgets.QWidget] = ...) -> None:
         super().__init__(parent)
         self.path = path
@@ -141,15 +218,13 @@ class FrameImage(QMainWindow):
         print(self.fPath)
         print(os.path.exists(self.fPath))
         self.setWindowTitle(self.title)
-        self.frame = imgWidget(self.fPath,self)
+        self.frame = ImgWidget(self.fPath,self)
         self.layout: QVBoxLayout = QtWidgets.QVBoxLayout(self)
         self.widget = QWidget()
         self.widget.setLayout(self.layout)
         self.setCentralWidget(self.widget)
         self.layout.addWidget(self.frame)
 
-
-        # self.show()
 
 
 class MyListWidget(QListWidget):
