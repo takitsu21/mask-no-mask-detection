@@ -119,15 +119,39 @@ class KerasTrain(object):
         # construct the head of the model that will be placed on top of the
         # the base model
         headModel = baseModel.output
-        headModel = AveragePooling2D(pool_size=(5, 5))(headModel)
+
+
+        headModel = Conv2D(32, 5, strides=2, activation="relu")(headModel)
+        headModel = Conv2D(32, 5, activation="relu")(headModel)
+        headModel = MaxPooling2D(3)(headModel)
+
+        headModel = Conv2D(32, 3, activation="relu")(headModel)
+        headModel = Conv2D(32, 3, activation="relu")(headModel)
+        headModel = MaxPooling2D(3)(headModel)
+        headModel = Dropout(0.4)(headModel)
+
+        headModel = Conv2D(64, 3, activation="relu")(headModel)
+        headModel = Conv2D(64, 3, activation="relu")(headModel)
+        headModel = MaxPooling2D(2)(headModel)
+
+        headModel = Dropout(0.4)(headModel)
+        headModel = GlobalMaxPooling2D()(headModel)
+
         headModel = Flatten(name="flatten")(headModel)
         headModel = Dense(128, activation="relu")(headModel)
-        headModel = Dropout(0.5)(headModel)
+
+
+        # headModel = AveragePooling2D(pool_size=(5, 5))(headModel)
+        # headModel = Flatten(name="flatten")(headModel)
+        # headModel = Dense(128, activation="relu")(headModel)
+        # headModel = Dropout(0.5)(headModel)
+
         headModel = Dense(len(self.model_classes_),
                           activation="softmax", name="output")(headModel)
         # place the head FC model on top of the base model (this will become
         # the actual model we will train)
         self.model = Model(inputs=baseModel.input, outputs=headModel)
+
         # loop over all layers in the base model and freeze them so they will
         # *not* be updated during the first training process
         for layer in baseModel.layers:
@@ -218,40 +242,60 @@ class KerasTrain(object):
 
     def detectFaceAndPredict(self, img_path: str, output_path: str):
         try:
-            image = cv2.imread(img_path)
-            image = cv2.resize(image, (700, 700))
+            baseImage = cv2.imread(img_path)
+            image = cv2.resize(baseImage, (700, 700))
+
 
             (h, w) = image.shape[:2]
 
-            blob = cv2.dnn.blobFromImage(image, 1.0, (300, 300),
+            blob = cv2.dnn.blobFromImage(image, 1.0, (250, 250),
                                         (104.0, 177.0, 123.0))
 
             print("[INFO] computing face detections...")
             self.net.setInput(blob)
             detections = self.net.forward()
 
+
+
+            nbFace = [detections[0, 0, x, 2] for x in range(0, detections.shape[2]) if detections[0, 0, x, 2] > 0.5]
+            print("NBFACE : ", nbFace)
             for i in range(0, detections.shape[2]):
                 confidence = detections[0, 0, i, 2]
+
 
                 if confidence > 0.5:
                     box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
                     (startX, startY, endX, endY) = box.astype("int")
 
+
                     (startX, startY) = (max(0, startX), max(0, startY))
                     (endX, endY) = (min(w - 1, endX), min(h - 1, endY))
 
                     face = image[startY:endY, startX:endX]
-                    if not len(face):
-                        break
-                    face = cv2.cvtColor(face, cv2.COLOR_BGR2RGBA)
-                    face = cv2.resize(face, self.size)
-                    face = img_to_array(face)
-                    face = preprocess_input(face)
-                    face = np.expand_dims(face, axis=0)
 
-                    prediction = self.model.predict(face)
+                    # if not len(face):
+                    #     face = cv2.cvtColor(baseImage, cv2.COLOR_BGR2RGB)
+                    #     face = cv2.resize(face, self.size)
+                    #     face = img_to_array(face)
+                    #     face = preprocess_input(face)
+                    #     face = np.expand_dims(face, axis=0)
+                    #     prediction = self.predict(face)
+                    #     (startX, startY, endX, endY) = (0, w, h, 0)
+
+                    # else:
+                    try:
+                        face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
+                        face = cv2.resize(face, self.size)
+                        face = img_to_array(face)
+                        face = preprocess_input(face)
+                        face = np.expand_dims(face, axis=0)
+                        prediction = self.model.predict(face)
+                    except:
+                        continue
+
+
                     (mask, withoutMask) = prediction[0]
-                    # print(mask, withoutMask)
+
 
                     label = "Mask" if mask > withoutMask else "No Mask"
                     color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
