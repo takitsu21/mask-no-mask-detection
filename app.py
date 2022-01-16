@@ -56,6 +56,9 @@ class MultiView(QtWidgets.QWidget):
             model.predictDirectory(dirPath=path)
             output_dir = "output"
             directory = QDir(output_dir)
+            if self.listWidget is not None:
+                self.layout.removeWidget(self.listWidget)
+                self.layout.removeWidget(self.label)
 
             self.listWidget = MyListWidget(None)
 
@@ -138,6 +141,8 @@ class MenuBar(QtWidgets.QMenuBar):
         """
         Open a file dialog to choose the folder path
         """
+       
+
         path = QFileDialog.getExistingDirectory(
             self.parent, "Open folder", "")[0]
         if path != "":
