@@ -25,7 +25,7 @@ from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.optimizers import Adam
 from keras.utils.vis_utils import plot_model
-
+import traceback
 
 class KerasTrain(object):
     def __init__(self, model=None, batch_size=32, epochs=10, workers=1, use_multiprocessing=False) -> None:
@@ -217,54 +217,58 @@ class KerasTrain(object):
                 print(f"{f_output} processed")
 
     def detect_face_and_predict(self, img_path: str, output_path: str):
-        image = cv2.imread(img_path)
-        image = cv2.resize(image, (700, 700))
+        try:
+            image = cv2.imread(img_path)
+            image = cv2.resize(image, (700, 700))
 
-        (h, w) = image.shape[:2]
+            (h, w) = image.shape[:2]
 
-        blob = cv2.dnn.blobFromImage(image, 1.0, (300, 300),
-                                     (104.0, 177.0, 123.0))
+            blob = cv2.dnn.blobFromImage(image, 1.0, (400, 400),
+                                        (104.0, 177.0, 123.0))
 
-        print("[INFO] computing face detections...")
-        self.net.setInput(blob)
-        detections = self.net.forward()
+            print("[INFO] computing face detections...")
+            self.net.setInput(blob)
+            detections = self.net.forward()
 
-        for i in range(0, detections.shape[2]):
-            confidence = detections[0, 0, i, 2]
+            for i in range(0, detections.shape[2]):
+                confidence = detections[0, 0, i, 2]
 
-            if confidence > 0.5:
-                box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
-                (startX, startY, endX, endY) = box.astype("int")
+                if confidence > 0.5:
+                    box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
+                    (startX, startY, endX, endY) = box.astype("int")
 
-                (startX, startY) = (max(0, startX), max(0, startY))
-                (endX, endY) = (min(w - 1, endX), min(h - 1, endY))
+                    (startX, startY) = (max(0, startX), max(0, startY))
+                    (endX, endY) = (min(w - 1, endX), min(h - 1, endY))
 
-                face = image[startY:endY, startX:endX]
-                if not len(face):
-                    break
-                face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
-                face = cv2.resize(face, self.size)
-                face = img_to_array(face)
-                face = preprocess_input(face)
-                face = np.expand_dims(face, axis=0)
+                    face = image[startY:endY, startX:endX]
+                    if not len(face):
+                        break
+                    face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
+                    face = cv2.resize(face, self.size)
+                    face = img_to_array(face)
+                    face = preprocess_input(face)
+                    face = np.expand_dims(face, axis=0)
 
-                prediction = self.model.predict(face)
-                (mask, withoutMask) = prediction[0]
-                # print(mask, withoutMask)
+                    prediction = self.model.predict(face)
+                    (mask, withoutMask) = prediction[0]
+                    # print(mask, withoutMask)
 
-                label = "Mask" if mask > withoutMask else "No Mask"
-                color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
-                coords_msg = f"on face coords -> ({startX}, {startY}) ({endX}, {endY})"
-                self.displayPredictions(prediction, img_path, coords_msg)
+                    label = "Mask" if mask > withoutMask else "No Mask"
+                    color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
+                    coords_msg = f"on face coords -> ({startX}, {startY}) ({endX}, {endY})"
+                    self.displayPredictions(prediction, img_path, coords_msg)
 
-                label = "{}: {:.2f}%".format(
-                    label, max(mask, withoutMask) * 100)
+                    label = "{}: {:.2f}%".format(
+                        label, max(mask, withoutMask) * 100)
 
-                cv2.putText(image, label, (startX, startY - 10),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.3, color, 1)
-                cv2.rectangle(image, (startX, startY), (endX, endY), color, 2)
+                    cv2.putText(image, label, (startX, startY - 10),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.3, color, 1)
+                    cv2.rectangle(image, (startX, startY), (endX, endY), color, 2)
 
-        cv2.imwrite(output_path, image)
+            cv2.imwrite(output_path, image)
+        except Exception:
+            print(f"Cannot detect faces : {traceback.format_exc()}")
+
 
     def testBatchSize(self):
         batches = []
