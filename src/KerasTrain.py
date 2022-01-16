@@ -15,7 +15,7 @@ from tabulate import tabulate
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
 from tensorflow.keras.utils import to_categorical
-from tensorflow.keras.applications import MobileNetV2, ResNet50V2
+from tensorflow.keras.applications import MobileNetV2
 from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
@@ -113,7 +113,7 @@ class KerasTrain(object):
         (x_train, x_test, y_train, y_test) = train_test_split(data, labels,
                                                               test_size=0.20, stratify=labels, random_state=42)
 
-        baseModel = ResNet50V2(weights="imagenet", include_top=False,
+        baseModel = MobileNetV2(weights="imagenet", include_top=False,
                                 input_tensor=Input(shape=(150, 150, 3)))
 
         # construct the head of the model that will be placed on top of the
