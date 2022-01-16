@@ -48,7 +48,7 @@ class MultiView(QtWidgets.QWidget):
                 os.makedirs(output_dir)
 
             f_output = f"{output_dir}/outptut-{split_f[0]}.{split_f[1]}"
-            model.detect_face_and_predict(path, f_output)
+            model.detectFaceAndPredict(path, f_output)
             frame = FrameImage(f_output, path, self)
             frame.show()
         else:
@@ -249,7 +249,6 @@ class MyListWidget(QListWidget):
         name = self.selectedItems()[0].text()
         frame = FrameImage(self.paths[name], name, self)
         frame.show()
-
 
 
 if __name__ == "__main__":

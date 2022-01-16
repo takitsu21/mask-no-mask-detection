@@ -213,17 +213,17 @@ class KerasTrain(object):
 
             f_output = f"{output_dir}/{os.path.basename(split_f[0])}-{i}.{split_f[1]}"
             if f_output[-4:] == ".png" or f_output[-4:] == ".jpg":
-                self.detect_face_and_predict(f, f_output)
+                self.detectFaceAndPredict(f, f_output)
                 print(f"{f_output} processed")
 
-    def detect_face_and_predict(self, img_path: str, output_path: str):
+    def detectFaceAndPredict(self, img_path: str, output_path: str):
         try:
             image = cv2.imread(img_path)
             image = cv2.resize(image, (700, 700))
 
             (h, w) = image.shape[:2]
 
-            blob = cv2.dnn.blobFromImage(image, 1.0, (400, 400),
+            blob = cv2.dnn.blobFromImage(image, 1.0, (300, 300),
                                         (104.0, 177.0, 123.0))
 
             print("[INFO] computing face detections...")
@@ -243,7 +243,7 @@ class KerasTrain(object):
                     face = image[startY:endY, startX:endX]
                     if not len(face):
                         break
-                    face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
+                    face = cv2.cvtColor(face, cv2.COLOR_BGR2RGBA)
                     face = cv2.resize(face, self.size)
                     face = img_to_array(face)
                     face = preprocess_input(face)
