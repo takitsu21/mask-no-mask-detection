@@ -27,7 +27,6 @@ from tensorflow.keras.optimizers import Adam
 from keras.utils.vis_utils import plot_model
 import traceback
 
-
 class KerasTrain(object):
     def __init__(self, model=None, batch_size=32, epochs=10, workers=1, use_multiprocessing=False) -> None:
         super().__init__()
