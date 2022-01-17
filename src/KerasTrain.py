@@ -15,7 +15,7 @@ from tabulate import tabulate
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
 from tensorflow.keras.utils import to_categorical
-from tensorflow.keras.applications import MobileNetV2
+from tensorflow.keras.applications import MobileNetV2, ResNet50V2
 from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
@@ -26,6 +26,7 @@ from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.optimizers import Adam
 from keras.utils.vis_utils import plot_model
 import traceback
+
 
 class KerasTrain(object):
     def __init__(self, model=None, batch_size=32, epochs=10, workers=1, use_multiprocessing=False) -> None:
@@ -113,38 +114,18 @@ class KerasTrain(object):
         (x_train, x_test, y_train, y_test) = train_test_split(data, labels,
                                                               test_size=0.20, stratify=labels, random_state=42)
 
-        baseModel = MobileNetV2(weights="imagenet", include_top=False,
-                                input_tensor=Input(shape=(150, 150, 3)))
+        baseModel = ResNet50V2(weights="imagenet", include_top=False,
+                               input_tensor=Input(shape=(150, 150, 3)))
 
         # construct the head of the model that will be placed on top of the
         # the base model
         headModel = baseModel.output
 
-
-        headModel = Conv2D(32, 5, strides=2, activation="relu")(headModel)
-        headModel = Conv2D(32, 5, activation="relu")(headModel)
-        headModel = MaxPooling2D(3)(headModel)
-
-        headModel = Conv2D(32, 3, activation="relu")(headModel)
-        headModel = Conv2D(32, 3, activation="relu")(headModel)
-        headModel = MaxPooling2D(3)(headModel)
-        headModel = Dropout(0.4)(headModel)
-
-        headModel = Conv2D(64, 3, activation="relu")(headModel)
-        headModel = Conv2D(64, 3, activation="relu")(headModel)
-        headModel = MaxPooling2D(2)(headModel)
-
-        headModel = Dropout(0.4)(headModel)
-        headModel = GlobalMaxPooling2D()(headModel)
-
-        headModel = Flatten(name="flatten")(headModel)
-        headModel = Dense(128, activation="relu")(headModel)
-
-
         # headModel = AveragePooling2D(pool_size=(5, 5))(headModel)
-        # headModel = Flatten(name="flatten")(headModel)
-        # headModel = Dense(128, activation="relu")(headModel)
-        # headModel = Dropout(0.5)(headModel)
+        headModel = Flatten(name="flatten")(headModel)
+        headModel = Dropout(0.4)(headModel)
+        headModel = Dense(128, activation="relu")(headModel)
+        headModel = Dropout(0.5)(headModel)
 
         headModel = Dense(len(self.model_classes_),
                           activation="softmax", name="output")(headModel)
@@ -243,59 +224,53 @@ class KerasTrain(object):
     def detectFaceAndPredict(self, img_path: str, output_path: str):
         try:
             baseImage = cv2.imread(img_path)
-            image = cv2.resize(baseImage, (700, 700))
-
+            bW, bH, bC = baseImage.shape
+            image = cv2.resize(baseImage, (600, 600))
+            resizedW, resizedH, resizedC = image.shape
 
             (h, w) = image.shape[:2]
 
-            blob = cv2.dnn.blobFromImage(image, 1.0, (250, 250),
-                                        (104.0, 177.0, 123.0))
+            blob = cv2.dnn.blobFromImage(image, 1.0, (350, 350),
+                                         (104.0, 177.0, 123.0))
 
             print("[INFO] computing face detections...")
             self.net.setInput(blob)
             detections = self.net.forward()
 
-
-
-            nbFace = [detections[0, 0, x, 2] for x in range(0, detections.shape[2]) if detections[0, 0, x, 2] > 0.5]
-            print("NBFACE : ", nbFace)
             for i in range(0, detections.shape[2]):
                 confidence = detections[0, 0, i, 2]
-
 
                 if confidence > 0.5:
                     box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
                     (startX, startY, endX, endY) = box.astype("int")
 
-
                     (startX, startY) = (max(0, startX), max(0, startY))
                     (endX, endY) = (min(w - 1, endX), min(h - 1, endY))
 
                     face = image[startY:endY, startX:endX]
+                    is_single_img = False
 
-                    # if not len(face):
-                    #     face = cv2.cvtColor(baseImage, cv2.COLOR_BGR2RGB)
-                    #     face = cv2.resize(face, self.size)
-                    #     face = img_to_array(face)
-                    #     face = preprocess_input(face)
-                    #     face = np.expand_dims(face, axis=0)
-                    #     prediction = self.predict(face)
-                    #     (startX, startY, endX, endY) = (0, w, h, 0)
-
-                    # else:
-                    try:
-                        face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
+                    if not len(face):
+                        face = cv2.cvtColor(baseImage, cv2.COLOR_BGR2RGB)
                         face = cv2.resize(face, self.size)
                         face = img_to_array(face)
                         face = preprocess_input(face)
                         face = np.expand_dims(face, axis=0)
-                        prediction = self.model.predict(face)
-                    except:
-                        continue
-
+                        prediction = self.predict(face)
+                        (startX, startY, endX, endY) = (0, w - 5, h - 5, 0)
+                        is_single_img = True
+                    else:
+                        try:
+                            face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
+                            face = cv2.resize(face, self.size)
+                            face = img_to_array(face)
+                            face = preprocess_input(face)
+                            face = np.expand_dims(face, axis=0)
+                            prediction = self.model.predict(face)
+                        except:
+                            continue
 
                     (mask, withoutMask) = prediction[0]
-
 
                     label = "Mask" if mask > withoutMask else "No Mask"
                     color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
@@ -305,14 +280,21 @@ class KerasTrain(object):
                     label = "{}: {:.2f}%".format(
                         label, max(mask, withoutMask) * 100)
 
-                    cv2.putText(image, label, (startX, startY - 10),
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.3, color, 1)
-                    cv2.rectangle(image, (startX, startY), (endX, endY), color, 2)
+                    startX = round((startX / resizedH) * bH)
+                    startY = round((startY / resizedW) * bW)
+                    endX = round((endX / resizedH) * bH)
+                    endY = round((endY / resizedW) * bW)
+                    cv2.putText(baseImage, label, (startX, startY - 10),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.35, color, 1)
+                    cv2.rectangle(baseImage, (startX, startY),
+                                  (endX, endY), color, 2)
 
-            cv2.imwrite(output_path, image)
+                    if is_single_img:
+                        break
+
+            cv2.imwrite(output_path, baseImage)
         except Exception:
             print(f"Cannot detect faces : {traceback.format_exc()}")
-
 
     def testBatchSize(self):
         batches = []
