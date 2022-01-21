@@ -26,9 +26,12 @@ from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.optimizers import Adam
 from keras.utils.vis_utils import plot_model
 import traceback
+# from tensorflow_model_optimization.sparsity import keras as sparsity
+import tempfile
+import zipfile
 
 class KerasTrain(object):
-    def __init__(self, model=None, batch_size=32, epochs=10, workers=1, use_multiprocessing=False) -> None:
+    def __init__(self, model=None, batch_size=32, epochs=25, workers=1, use_multiprocessing=False) -> None:
         super().__init__()
         self.model = model
         self.batch_size = batch_size
@@ -113,6 +116,17 @@ class KerasTrain(object):
         (x_train, x_test, y_train, y_test) = train_test_split(data, labels,
                                                               test_size=0.20, stratify=labels, random_state=42)
 
+        # end_step = np.ceil(1.0 * len(x_train) //
+        #                    self.batch_size).astype(np.int32) * self.epochs
+        # print(end_step)
+
+        # new_pruning_params = {
+        #     'pruning_schedule': sparsity.PolynomialDecay(initial_sparsity=0.50,
+        #                                                  final_sparsity=0.90,
+        #                                                  begin_step=0,
+        #                                                  end_step=end_step,
+        #                                                  frequency=100)
+        # }
         baseModel = ResNet50V2(weights="imagenet", include_top=False,
                                input_tensor=Input(shape=(150, 150, 3)))
 
@@ -120,14 +134,28 @@ class KerasTrain(object):
         # the base model
         headModel = baseModel.output
 
-        # headModel = AveragePooling2D(pool_size=(5, 5))(headModel)
-        headModel = Flatten(name="flatten")(headModel)
-        headModel = Dropout(0.4)(headModel)
-        headModel = Dense(128, activation="relu")(headModel)
+        # # headModel = AveragePooling2D(pool_size=(5, 5))(headModel)
+        # headModel = Flatten(name="flatten")(headModel)
+        # headModel = Dropout(0.5)(headModel)
+        # headModel = Dense(128, activation="relu")(headModel)
+        # headModel = Dropout(0.5)(headModel)
+
+
+
+        headModel = Conv2D(32, kernel_size = 3, activation = 'relu', input_shape = (150, 150, 3))(headModel)
+
+        headModel = Conv2D(64, 3, activation = 'relu')(headModel)
+        headModel = MaxPooling2D(pool_size = (1, 1))(headModel)
+        headModel = Dropout(0.25)(headModel)
+        headModel = Flatten()(headModel)
+        headModel = Dense(128, activation = 'relu')(headModel)
         headModel = Dropout(0.5)(headModel)
+        headModel = Dense(10, activation = 'softmax')(headModel)
+
 
         headModel = Dense(len(self.model_classes_),
                           activation="softmax", name="output")(headModel)
+
         # place the head FC model on top of the base model (this will become
         # the actual model we will train)
         self.model = Model(inputs=baseModel.input, outputs=headModel)
@@ -154,6 +182,44 @@ class KerasTrain(object):
             callbacks=[self.tensorboard_callback]
         )
         self.model.save(modelPath)
+
+        # new_pruned_model = sparsity.prune_low_magnitude(
+        #     self.model, **new_pruning_params)
+        # new_pruned_model.compile(
+        #     loss=tf.keras.losses.categorical_crossentropy,
+        #     optimizer='adam',
+        #     metrics=['accuracy']
+        # )
+        # callbacks = [
+        #     sparsity.UpdatePruningStep(),
+        #     sparsity.PruningSummaries(log_dir=self.logdir, profile_batch=0)
+        # ]
+        # new_pruned_model.fit(aug.flow(x_train, y_train, batch_size=self.batch_size),
+        #     validation_data=(x_test, y_test),
+        #     validation_steps=len(x_test) // self.batch_size,
+        #     epochs=self.epochs,
+        #     steps_per_epoch=len(x_train) // self.batch_size,
+        #     workers=self.workers,
+        #     use_multiprocessing=self.use_multiprocessing,
+        #     callbacks=callbacks)
+
+        # final_model = sparsity.strip_pruning(new_pruned_model)
+        # _, new_pruned_keras_file = tempfile.mkstemp(".h5")
+        # print("Saving pruned model to: ", new_pruned_keras_file)
+        # tf.keras.models.save_model(final_model, new_pruned_keras_file, include_optimizer=False)
+
+        # # Zip the .h5 model file
+        # _, zip3 = tempfile.mkstemp(".zip")
+        # with zipfile.ZipFile(zip3, "w", compression=zipfile.ZIP_DEFLATED) as f:
+        #     f.write(new_pruned_keras_file)
+        # print(
+        #     "Size of the pruned model before compression: %.2f Mb"
+        #     % (os.path.getsize(new_pruned_keras_file) / float(2 ** 20))
+        # )
+        # print(
+        #     "Size of the pruned model after compression: %.2f Mb"
+        #     % (os.path.getsize(zip3) / float(2 ** 20))
+        # )
 
         plt.style.use("ggplot")
         plt.figure()
