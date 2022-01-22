@@ -1,3 +1,5 @@
+import zipfile
+import tempfile
 from typing import Union
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
@@ -15,7 +17,7 @@ from tabulate import tabulate
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
 from tensorflow.keras.utils import to_categorical
-from tensorflow.keras.applications import MobileNetV2, ResNet50V2
+from tensorflow.keras.applications import ResNet50V2
 from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
@@ -24,11 +26,7 @@ import numpy as np
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.optimizers import Adam
-from keras.utils.vis_utils import plot_model
 import traceback
-# from tensorflow_model_optimization.sparsity import keras as sparsity
-import tempfile
-import zipfile
 
 
 class KerasTrain(object):
@@ -131,7 +129,6 @@ class KerasTrain(object):
         headModel = Flatten()(headModel)
         headModel = Dense(128, activation='relu')(headModel)
         headModel = Dropout(0.5)(headModel)
-        # headModel = Dense(10, activation = 'softmax')(headModel)
 
         headModel = Dense(len(self.model_classes_),
                           activation="softmax", name="output")(headModel)

@@ -2,7 +2,6 @@ import json
 from PIL import Image
 import os
 
-import tensorflow as tf
 from pathlib import Path
 import re
 
@@ -97,7 +96,8 @@ class JsonReader(object):
                 if not os.path.exists(f"{os.getcwd()}/{basePath}/{spec.categorie}"):
                     os.makedirs(f"{os.getcwd()}/{basePath}/{spec.categorie}")
                 imgName = f"{img.name}-bb-{bX}x{bY}-{dX-bX}-{dY-bY}.png"
-                pathToSave = Path(f"{os.getcwd()}/{basePath}/{spec.categorie}/{imgName}")
+                pathToSave = Path(
+                    f"{os.getcwd()}/{basePath}/{spec.categorie}/{imgName}")
                 cropped.save(pathToSave)
 
                 print(f"{spec.categorie} Annotated {imgName} has been converted.")
