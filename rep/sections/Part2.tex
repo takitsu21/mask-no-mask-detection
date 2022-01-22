@@ -1,0 +1,255 @@
+
+\part{Detection du port du masque}
+
+\section{Objectif de detection}
+
+Le but de la deuxième partie est de détecter les visages sur des images. Puis de classer ces visages dans une catégorie \textbf{Masque} ou \textbf{Pas masque}.
+Pour cela nous avons dû concevoir une base de données, sélectionner et entrainer un modèle, trouver les meilleurs paramètres pour ce dernier et afficher les résultats prédits.
+
+\section{Choix de conception}
+
+\subsection{Choix des outils}
+
+\begin{itemize}
+\item Technologies : \textbf{Python3.9.9}\\
+Pour réaliser la seconde partie du projet nous avons utilisé les librairies suivantes:\\
+    \begin{itemize}
+        \item PySide6==6.2.2.1 (librairie Qt adapté pour python)
+        \item Pillow==9.0.0 (redimensionner des images)
+        \item tensorflow==2.7.0
+        \item opencv-python==4.5.5.62
+        \item tabulate==0.8.9
+        \item tqdm==4.62.3 
+        \item scikit-learn==1.0
+        \item matplotlib==3.4.3
+        \item numpy==1.22.0
+    \end{itemize}
+\end{itemize}
+
+\subsection{Installation}
+
+Vous pouvez utiliser le fichier \textbf{install.sh}
+
+\begin{verbatim}
+$ chmod u+x install.sh
+$ ./install.sh
+\end{verbatim}
+soit
+
+\begin{verbatim}
+$ python3 -m pip install -r requirements.txt
+\end{verbatim}
+
+
+\section{Comment utiliser}
+
+\subsection{Ligne de commande}
+
+Commande d'aide : \\
+\begin{verbatim}
+$ python3 main.py -h
+
+usage: main.py [-h] [-i IMG_PATH] [-tr TRAIN] [-mp MODEL_PATH] [-e EPOCHS] 
+[-b BATCH_SIZE] [-w WORKERS] [-dir DIR_PREDICT_PATH]
+
+Predict classes of an image
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i IMG_PATH, --image IMG_PATH
+                        Image path (default: None)
+  -tr TRAIN, --train TRAIN
+                        Train the model
+  -mp MODEL_PATH, --model_path MODEL_PATH
+                        Path to the model (default: model.h5)
+  -e EPOCHS, --epochs EPOCHS
+                        Epoch size (default: 25)
+  -b BATCH_SIZE, --batch_size BATCH_SIZE
+                        Batch size (default: 32)
+  -w WORKERS, --workers WORKERS
+                        Number of workers (default: 1, if > 1 activate multiprocessing)
+  -dir DIR_PREDICT_PATH, --dir_predict_path DIR_PREDICT_PATH
+                        Path to the directory with images
+\end{verbatim}
+\\
+\textbf{Entrainer une IA :}
+
+\begin{verbatim}
+python3 main.py --train true -w 8 -mp "model.h5" -e 40 -b 40
+\end{verbatim}
+
+\textit{Entrainement de l'IA et utilisation de 8 workers avec 40 epochs et 40 batchs.
+} \\
+
+\textbf{Prédire une image :} 
+
+\begin{verbatim}
+python3.9 main.py -i img_tests/test.png -w 8 -mp "model.h5"
+\end{verbatim}
+
+\textit{Prédiction de l'image test.png et utilisation de 8 workers avec le modèle "model.h5"}
+
+\begin{center}
+    \includegraphics[scale=0.5]{resources/command_line_prediction.png}
+    \captionof{figure}{Prédiction en ligne de commande sur une image}
+\end{center}
+
+\clearpage
+
+
+\subsection{Interface graphique}
+
+\begin{verbatim}
+    python3 app.py
+\end{verbatim}
+\begin{itemize}
+    \item Pour \textbf{ouvrir un fichier ou un dossier} via la menu-bar ou en effectuant un drag and drop sur la zone prévue à cet effet.
+    \item Pour \textbf{ouvrir une image}, une fois le dossier ouvert, double-cliquez dessus et l'image avec les predictions va s'ouvrir.
+\end{itemize}
+
+\begin{center}
+    \includegraphics[scale=0.4]{resources/software_import_folder.png}
+    \captionof{figure}{Importer un répertoire d'images}
+\end{center}
+
+\begin{center}
+    \includegraphics[scale=0.4]{resources/software_predict_folder.png}
+    \captionof{figure}{Prédiction du répertoire d'images}
+\end{center}
+\begin{itemize}
+    \item CTRL + i : Importer un modèle.
+    \item CTRL + o : Ouvrir un fichier.
+    \item CTRL + SHIFT + O : Ouvrir un dossier.
+\end{itemize}
+
+
+\section{Jeu de Données}
+
+Afin d'entrainer le réseau de neurones nous avons préparé un jeu de données en utilisant le logiciel réalisé dans la première partie. Nous sommes partis d'une banque de 200 images disponibles sur \href{https://www.kaggle.com/swann00/masque-vs-sans-masque}{kaggle.com}, la même que dans la première partie.
+Nous avons ensuite annoté les images en indiquant la présence ou l'absence de masque sur un visage.
+Une fois nos images annotées nous exportons ces informations sous un format JSON que nous couplons aux images mises au bon format (\textbf{.png}).\\
+Par la suite nous recadrons les images en fonction des zones annotées et les plaçons dans un dossier portant le nom de leur catégorie, via un programme de compréhension de notre ficher d'annotations que nous avons réalisé.  \\
+Après quelques tests les résultats étaient présents mais pas assez précis. \\
+Pour que notre modèle ait plus de diversité nous nous sommes basés sur un autre jeu de données d'environ 2000 images pour détecter les masques et 2000 images sans masques, ce dataset est disponible sur \href{https://github.com/balajisrinivas/Face-Mask-Detection/tree/master/dataset}{GitHub}.
+
+Une fois cette étape finie nous pouvons construire un objet en python nommé \textit{ImageDataGenerator} nous permettant de normaliser les images recadrées (même taille, même encodage couleur, ...). Cela nous permet aussi de faire de l'augmentation de données, en produisant des rotations ou des changements de couleurs pour éviter les problèmes liés au surapprentissage (overfitting). \\
+
+\textbf{Arboresence du dossier utilisé pour le jeu de données.}
+\dirtree{%
+.1 dataset.
+.2 Masque.
+.2 Pas Masque.
+}
+
+\section{Implémentation et choix du modèle}
+
+Nous avons décidé de nous appuyer sur un modèle préexistant de l'api \textbf{Keras} nommée \textbf{ResNet50V2} qui nous fournit 50 layers optimisés pour pouvoir entrainer nos IA. \\
+Il en existe d'autres mais nous n'avons pas pu tous les tester par manque de temps et nous avons rapidement eu des résultats convenables avec ce genre de modèle.
+En effet entrainer un modèle est une tâche longue, ce qui nous a ralenti dans notre recherche d'un modèle adapté.
+
+\clearpage
+\section{Test du modèle}
+
+Nous avons vu qu’il était important de faire varier les paramètres dans le but de faire augmenter la précision (accuracy) et diminuer le taux d’erreur.
+Nous avons donc fait varier les paramètres \textbf{epochs} et \textbf{batch\_size} ainsi que les \textbf{layouts}.\\
+
+L'\textit{epoch} est une itération complète sur des échantillons. Le nombre d'epochs correspond au nombre de fois où l'algorithme va s'exécuter. Le nombre d'epoch affecte le résultat de l'étape d'apprentissage.\\
+
+La \textit{Batch Size} définit le nombre d'échantillons d'images qui seront introduits dans chaque itération du modèle. la Batch\_size est l'optimisation du poid du modèle, c'est à dire le nombre d'images effectuées en une étape de l'epoch. Si la Batch\_size est égale à 3, le modèle entrera 3 exemples d'images et seulement après ces 3 entrées, il mettra à jour les poids (weigths).\\
+
+
+La \textit{loss} est une valeur qui représente la somme des erreurs dans notre modèle. elle mesure comment se porte notre modèle. Si les erreurs sont élevées, la Loss sera élevée, ce qui signifie que le modèle ne fait pas du bon travail. Sinon, plus la valeur est basse, mieux notre modèle fonctionne.\\
+
+L'\textit{accuracy} mesure à quel point notre modèle prédit bien en comparant les prédictions du modèle avec les vraies valeurs.
+
+\subsection{Epochs}
+\begin{center}
+    \includegraphics[scale=0.59]{resources/loss-accuracy.png}
+    \captionof{figure}{Accuracy et loss en fonction des epochs}
+\end{center}
+
+Lorsque nous avons fait varier les epochs nous avons choisi de fixer la batch\_size arbitrairement à 40. On peut voir ici qu’à partir de 5 epochs l’accuraccy n’augmente plus de manière significative tandis que la loss diminue encore. Entre 30 et 40 la loss ne diminue quasiment plus. Nous avons donc choisi de garder \textbf{epochs = 40}.\\
+
+\subsection{Batch size}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{resources/loss-accuracy-25-1.png}
+    \caption{Accuracy et loss avec une taille de batch de 1}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{resources/loss-accuracy-25-129.png}
+    \caption{Accuracy et loss avec une taille de batch de 129}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{resources/loss-accuracy-25-257.png}
+    \caption{Accuracy et loss avec une taille de batch de 257}
+  \end{subfigure}
+  \caption{Tests de la variation du batch size de 1 à 257}
+  \label{fig:coffee}
+\end{figure}
+
+On peut voir dans les graphiques ci-dessus qu’avec l’augmentation des batch\_size l’accuracy augmente plus doucement. Plus la batch\_size est grosse plus le nombre d'epochs doit être grand. Il nous faut une batch\_size relativement élevé pour pouvoir reconnaitre une grande variété d’images. 
+
+\clearpage
+\subsection{Layers}
+
+En entrée nous avons utilisé le modèle énnoncé précedemment le modèle \textbf{ResNet50V2}, nous nous sommes appuyés ensuite sur un type de modèle \textbf{CNN} (Convolution Neural Network) spécialisé dans la vision par ordinateur pour la classification d'images. \\
+
+Un \textbf{CNN} est << \textit{un type de réseau de neurones artificiels acycliques (feed-forward), dans lequel le motif de connexion entre les neurones est inspiré par le cortex visuel des animaux. Les neurones de cette région du cerveau sont arrangés de sorte qu'ils correspondent à des régions qui se chevauchent lors du pavage du champ visuel. Leur fonctionnement est inspiré par les processus biologiques, ils consistent en un empilage multicouche de perceptrons, dont le but est de prétraiter de petites quantités d'informations. Les réseaux neuronaux convolutifs ont de larges applications dans la reconnaissance d'image et vidéo, les systèmes de recommandation et le traitement du langage naturel.} >> \\d'après \textbf{Wikipedia.} 
+
+
+\begin{center}
+    \includegraphics[scale=0.6]{resources/cnn.png}
+    \captionof{figure}{Modèle CNN}
+\end{center}
+
+\section{Détection des visages}
+Pour détecter les visages sur une image pour ensuite les analyser avec notre modèle, nous nous sommes servis d'un modèle de détection de visages éxistant via l'api \textbf{\href{https://fileinfo.com/extension/caffemodel}{caffemodel}} combiné à OpenCV qui nous permet d'utiliser des modèles de DeepLearning pour cibler les zones que nous analysons avec notre modèle.
+Une fois la classification de la tranche de l'image faite, nous encadrons le visage et mettons une étiquette de la classe estimée.
+
+\clearpage
+\section{Problèmes rencontrés}
+
+Une fois le modèle trouvé nous avons voulu essayer de classifier les masques FFP2, en tissus et chirurgicaux. Pour cela nous avons complété notre base de données avec plusieurs autres trouvées sur internet ainsi que des images récoltées à la main. Malheureusement cela n’a pas fonctionné. Nous soupçonnons que cela est dû à notre base de données peut-être trop petite ou de mauvaise qualité.
+
+
+\section{Exemples}
+Voici quelques exemples de la détection sur certaines images:\\
+
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{resources/images149-37.jpg}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.34\linewidth}
+    \includegraphics[width=\linewidth]{resources/images218-93.jpg}
+  \end{subfigure}
+  
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{resources/images359-223.jpg}
+  \end{subfigure}
+  \label{fig:coffee}
+   \begin{subfigure}[b]{0.35\linewidth}
+    \includegraphics[width=\linewidth]{resources/images435-291.jpg}
+  \end{subfigure}
+\end{figure}
+
+
+\section{Répartition des tâches}
+
+Lors de cette partie nous avons eu plus de mal à découper le travail en tâches distinctes, nous avons donc codé en simultané via la fonction \textbf{liveshare} de \textbf{Visual Studio Code}. Nous avons effectué des recherches et testé des modèles. 
+Avant de commencer le travail de programmation nous avons fait des sessions d'annotations d'images via notre logiciel.
+Nous avons recherché des jeux de données, téléchargé des images, cela a été une partie non négligeable de notre travail.
+
+
+\section{Améliorations possible du logiciel}
+En terme d'améliorations, nous avons pensé essayer plusieurs modèles et les entrainer sur une longue période avec un jeu de données plus conséquent.
+Nous pourrions aussi extraire d'un flux vidéo, une séquence d'images et appliquer notre modèle en temps réel sur le retour d'image, pour observer la détection, à partir d'une caméra.
+
+\section{Conclusion}
+Ce projet nous a permis de nous rendre compte de la puissance des réseaux de neurones et de la phase d'entrainement souvent cachée. \\
+Nous nous sommes rendus compte qu'entrainer une IA était un processus lourd pour l'ordinateur, génerer une base de données en utilisant le logiciel d'annotations était fastidieu, mais une fois tout cela fait, c'est avec plaisir que nous avons pu observer le fonctionnement de notre IA.
+Nous avons vu plusieurs manières de réaliser un modèle de classification et de détection mais aussi de l'entrainer ou même de construire le jeu de données.

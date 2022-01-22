@@ -1,0 +1,125 @@
+\author{Antoine Cousson \\
+Dylann Batisse \\
+Margaux Schmied
+}
+
+\newcommand{\supervisorone}{Enrico Formenti}
+
+\title{Neural Network and Learning \\Facial recognition: \\the mask/no mask case}
+\date{2021/2022}
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[left=30mm,top=30mm,right=30mm,bottom=30mm]{geometry}
+\usepackage{etoolbox} %required for cover page
+\usepackage{booktabs}
+\usepackage[usestackEOL]{stackengine}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[capitalise]{cleveref}
+\usepackage{enumitem,kantlipsum}
+\usepackage{amssymb}
+\usepackage[square,numbers,sort]{natbib}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{listings}
+\usepackage{minted}
+\usemintedstyle{emacs}
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.9}
+\setlength{\parindent}{0pt}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{dirtree}
+\usepackage{minted}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\bibliographystyle{unsrtnat}
+
+\hypersetup{
+    colorlinks,
+    linkcolor={black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\linespread{1}
+
+\newtheorem{theorem}{Theorem}[section]
+\graphicspath{{figures/}}
+
+\makeatletter
+\def\maketitle{
+  \begin{center}\leavevmode
+       \normalfont
+       \includegraphics[width=0.6\columnwidth]{logo_master.png}
+       \vskip 0.5cm
+       \textsc{\large \department}\\
+       \vskip 1.5cm
+       \rule{\linewidth}{0.2 mm} \\
+       {\large \exam}\\[1 cm]
+       {\huge \bfseries \@title \par}
+       \vspace{1cm}
+	\rule{\linewidth}{0.2 mm} \\[1.5 cm]
+
+	\begin{minipage}[t]{0.45\textwidth}
+		\begin{flushleft} \large
+			\emph{Auteurs:}\\
+			\@author\\
+		\end{flushleft}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\textwidth}
+	    \begin{flushright} \large
+			\ifdefempty{\supervisortwo}{\emph{Supervisor:\\}}{\emph{Professeur:\\}}
+			\supervisorone\\
+			\ifdefempty{\supervisortwo}{}{\supervisortwo\\}
+		\end{flushright}
+	\end{minipage}
+	\vfill
+	{\Large \@date\par}
+   \end{center}
+   %\vfill
+   %\null
+   \cleardoublepage
+  }
+\makeatother
+
+\begin{document}
+
+\pagenumbering{gobble}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+
+\pagenumbering{arabic}
+
+\section{Introduction}
+L’objectif final de ce projet est de reconnaitre si les personnes sur des images portent un masque. Le projet se décompose en deux parties, la première est un logiciel permettant d’annoter des images. Les images annotées nous serviront ensuite pour entrainer le réseau de neurones dans la seconde partie.
+Vous pouvez retrouver le travail de ces deux parties sur les deux repositories suivant : 
+\begin{itemize}
+    \item \href{https://github.com/MonsieurCo/facial-recognition}{Première Partie}
+    \item \href{https://github.com/takitsu21/mask-no-mask-detection}{Seconde Partie}
+\end{itemize}
+
+
+
+\input{sections/Part1}
+\input{sections/Part2}
+
+\end{document}
