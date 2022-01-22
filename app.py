@@ -48,7 +48,7 @@ class MultiView(QtWidgets.QWidget):
                 os.makedirs(output_dir)
 
             f_output = f"{output_dir}/outptut-{split_f[0]}.{split_f[1]}"
-            model.detect_face_and_predict(path, f_output)
+            model.detectFaceAndPredict(path, f_output)
             frame = FrameImage(f_output, path, self)
             frame.show()
         else:
@@ -56,6 +56,9 @@ class MultiView(QtWidgets.QWidget):
             model.predictDirectory(dirPath=path)
             output_dir = "output"
             directory = QDir(output_dir)
+            if self.listWidget is not None:
+                self.layout.removeWidget(self.listWidget)
+                self.layout.removeWidget(self.label)
 
             self.listWidget = MyListWidget(None)
 
@@ -138,6 +141,7 @@ class MenuBar(QtWidgets.QMenuBar):
         """
         Open a file dialog to choose the folder path
         """
+
         path = QFileDialog.getExistingDirectory(
             self.parent, "Open folder", "")[0]
         if path != "":
@@ -189,7 +193,7 @@ class ImgWidget(QtWidgets.QWidget):
 class FrameImage(QMainWindow):
     def __init__(self, fPath, name, parent: Optional[QtWidgets.QWidget] = ...) -> None:
         super().__init__(parent=parent)
-        self.layout: QVBoxLayout = QtWidgets.QVBoxLayout(self)
+        # self.layout: QVBoxLayout = QtWidgets.QVBoxLayout(None)
         self.fPath = fPath
         im: Image = Image.open(self.fPath)
         primaryScreenSize = QScreen.availableGeometry(
@@ -200,21 +204,16 @@ class FrameImage(QMainWindow):
         newWidth = min(newWidth, width)
         newHeight = min(newHeight, height)
         self.resize(newWidth, newHeight)
-        # self.setFixedSize(self.size())
-
-        # self.resize(500,500)
         self.frame = None
         self.title = name
-
-        print(self.fPath)
-        print(os.path.exists(self.fPath))
         self.setWindowTitle(self.title)
         self.frame = ImgWidget(self.fPath, self)
-        self.layout: QVBoxLayout = QtWidgets.QVBoxLayout(self)
+        self.layout: QVBoxLayout = QtWidgets.QVBoxLayout(None)
         self.widget = QWidget()
+        self.layout.addWidget(self.frame)
+
         self.widget.setLayout(self.layout)
         self.setCentralWidget(self.widget)
-        self.layout.addWidget(self.frame)
 
 
 class MyListWidget(QListWidget):
@@ -249,7 +248,6 @@ class MyListWidget(QListWidget):
         name = self.selectedItems()[0].text()
         frame = FrameImage(self.paths[name], name, self)
         frame.show()
-
 
 
 if __name__ == "__main__":

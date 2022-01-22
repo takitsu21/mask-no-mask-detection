@@ -15,7 +15,7 @@ from tabulate import tabulate
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
 from tensorflow.keras.utils import to_categorical
-from tensorflow.keras.applications import MobileNetV2
+from tensorflow.keras.applications import MobileNetV2, ResNet50V2
 from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
@@ -25,10 +25,14 @@ from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.optimizers import Adam
 from keras.utils.vis_utils import plot_model
+import traceback
+# from tensorflow_model_optimization.sparsity import keras as sparsity
+import tempfile
+import zipfile
 
 
 class KerasTrain(object):
-    def __init__(self, model=None, batch_size=32, epochs=10, workers=1, use_multiprocessing=False) -> None:
+    def __init__(self, model=None, batch_size=32, epochs=25, workers=1, use_multiprocessing=False) -> None:
         super().__init__()
         self.model = model
         self.batch_size = batch_size
@@ -113,21 +117,29 @@ class KerasTrain(object):
         (x_train, x_test, y_train, y_test) = train_test_split(data, labels,
                                                               test_size=0.20, stratify=labels, random_state=42)
 
-        baseModel = MobileNetV2(weights="imagenet", include_top=False,
-                                input_tensor=Input(shape=(150, 150, 3)))
+        baseModel = ResNet50V2(weights="imagenet", include_top=False,
+                               input_tensor=Input(shape=(150, 150, 3)))
 
-        # construct the head of the model that will be placed on top of the
-        # the base model
         headModel = baseModel.output
-        headModel = AveragePooling2D(pool_size=(5, 5))(headModel)
-        headModel = Flatten(name="flatten")(headModel)
-        headModel = Dense(128, activation="relu")(headModel)
+
+        headModel = Conv2D(32, kernel_size=(
+            3, 3), activation='relu', input_shape=(150, 150, 3))(headModel)
+
+        headModel = Conv2D(64, (3, 3), activation='relu')(headModel)
+        headModel = MaxPooling2D(pool_size=(1, 1))(headModel)
+        headModel = Dropout(0.25)(headModel)
+        headModel = Flatten()(headModel)
+        headModel = Dense(128, activation='relu')(headModel)
         headModel = Dropout(0.5)(headModel)
+        # headModel = Dense(10, activation = 'softmax')(headModel)
+
         headModel = Dense(len(self.model_classes_),
                           activation="softmax", name="output")(headModel)
+
         # place the head FC model on top of the base model (this will become
         # the actual model we will train)
         self.model = Model(inputs=baseModel.input, outputs=headModel)
+
         # loop over all layers in the base model and freeze them so they will
         # *not* be updated during the first training process
         for layer in baseModel.layers:
@@ -137,7 +149,6 @@ class KerasTrain(object):
         self.model.compile(loss="binary_crossentropy",
                            optimizer=opt,
                            metrics=["accuracy"])
-        plot_model(self.model, show_shapes=True)
 
         history = self.model.fit(
             aug.flow(x_train, y_train, batch_size=self.batch_size),
@@ -201,7 +212,6 @@ class KerasTrain(object):
             files = [dirPath]
 
         for i, f in enumerate(files):
-            # predictions = self.predict(f)
             if "." not in f:
                 continue
             split_f = f.split("/")[-1].split(".")
@@ -213,58 +223,83 @@ class KerasTrain(object):
 
             f_output = f"{output_dir}/{os.path.basename(split_f[0])}-{i}.{split_f[1]}"
             if f_output[-4:] == ".png" or f_output[-4:] == ".jpg":
-                self.detect_face_and_predict(f, f_output)
+                self.detectFaceAndPredict(f, f_output)
                 print(f"{f_output} processed")
 
-    def detect_face_and_predict(self, img_path: str, output_path: str):
-        image = cv2.imread(img_path)
-        image = cv2.resize(image, (700, 700))
+    def detectFaceAndPredict(self, img_path: str, output_path: str):
+        try:
+            baseImage = cv2.imread(img_path)
+            bW, bH, bC = baseImage.shape
+            image = cv2.resize(baseImage, (600, 600))
+            resizedW, resizedH, resizedC = image.shape
 
-        (h, w) = image.shape[:2]
+            (h, w) = image.shape[:2]
 
-        blob = cv2.dnn.blobFromImage(image, 1.0, (300, 300),
-                                     (104.0, 177.0, 123.0))
+            blob = cv2.dnn.blobFromImage(image, 1.0, (350, 350),
+                                         (104.0, 177.0, 123.0))
 
-        print("[INFO] computing face detections...")
-        self.net.setInput(blob)
-        detections = self.net.forward()
+            print("[INFO] computing face detections...")
+            self.net.setInput(blob)
+            detections = self.net.forward()
 
-        for i in range(0, detections.shape[2]):
-            confidence = detections[0, 0, i, 2]
+            for i in range(0, detections.shape[2]):
+                confidence = detections[0, 0, i, 2]
 
-            if confidence > 0.5:
-                box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
-                (startX, startY, endX, endY) = box.astype("int")
+                if confidence > 0.4:
+                    box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
+                    (startX, startY, endX, endY) = box.astype("int")
 
-                (startX, startY) = (max(0, startX), max(0, startY))
-                (endX, endY) = (min(w - 1, endX), min(h - 1, endY))
+                    (startX, startY) = (max(0, startX), max(0, startY))
+                    (endX, endY) = (min(w - 1, endX), min(h - 1, endY))
 
-                face = image[startY:endY, startX:endX]
-                if not len(face):
-                    break
-                face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
-                face = cv2.resize(face, self.size)
-                face = img_to_array(face)
-                face = preprocess_input(face)
-                face = np.expand_dims(face, axis=0)
+                    face = image[startY:endY, startX:endX]
+                    is_single_img = False
+                    try:
+                        if not len(face):
+                            face = cv2.cvtColor(baseImage, cv2.COLOR_BGR2RGB)
+                            face = cv2.resize(face, self.size)
+                            face = img_to_array(face)
+                            face = preprocess_input(face)
+                            face = np.expand_dims(face, axis=0)
+                            prediction = self.predict(face)
+                            (startX, startY, endX, endY) = (0, w - 5, h - 5, 0)
+                            is_single_img = True
+                        else:
+                            face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
+                            face = cv2.resize(face, self.size)
+                            face = img_to_array(face)
+                            face = preprocess_input(face)
+                            face = np.expand_dims(face, axis=0)
+                            prediction = self.model.predict(face)
+                    except Exception:
+                        traceback.print_exc()
+                        continue
 
-                prediction = self.model.predict(face)
-                (mask, withoutMask) = prediction[0]
-                # print(mask, withoutMask)
+                    (mask, withoutMask) = prediction[0]
 
-                label = "Mask" if mask > withoutMask else "No Mask"
-                color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
-                coords_msg = f"on face coords -> ({startX}, {startY}) ({endX}, {endY})"
-                self.displayPredictions(prediction, img_path, coords_msg)
+                    label = "Mask" if mask > withoutMask else "No Mask"
+                    color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
+                    coords_msg = f"on face coords -> ({startX}, {startY}) ({endX}, {endY})"
+                    self.displayPredictions(prediction, img_path, coords_msg)
 
-                label = "{}: {:.2f}%".format(
-                    label, max(mask, withoutMask) * 100)
+                    label = "{}: {:.2f}%".format(
+                        label, max(mask, withoutMask) * 100)
 
-                cv2.putText(image, label, (startX, startY - 10),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.3, color, 1)
-                cv2.rectangle(image, (startX, startY), (endX, endY), color, 2)
+                    startX = round((startX / resizedH) * bH)
+                    startY = round((startY / resizedW) * bW)
+                    endX = round((endX / resizedH) * bH)
+                    endY = round((endY / resizedW) * bW)
+                    cv2.putText(baseImage, label, (startX, startY - 10),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.35, color, 1)
+                    cv2.rectangle(baseImage, (startX, startY),
+                                  (endX, endY), color, 2)
 
-        cv2.imwrite(output_path, image)
+                    if is_single_img:
+                        break
+
+            cv2.imwrite(output_path, baseImage)
+        except Exception:
+            print(f"Cannot detect faces : {traceback.format_exc()}")
 
     def testBatchSize(self):
         batches = []
