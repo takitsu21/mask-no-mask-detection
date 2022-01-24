@@ -63,7 +63,7 @@ chmod u+x build.sh
 -  CTRL + H : Ouvrir ce README.
 
 
-![Logiciel en action](examples\annotation.png "Logiciel en action")
+![Logiciel en action](examples/annotation.png "Logiciel en action")
    
 ## Amélioration possible du logiciel
 
@@ -174,9 +174,9 @@ Interface graphique
     - Pour ouvrir une image, une fois le dossier ouvert, double-cliquez dessus et l'image avec les predictions va s'ouvrir.
 
 
-![alt text](examples\software_import_folder.png "Importer un répertoire d'images")
+![alt text](examples/software_import_folder.png "Importer un répertoire d'images")
 
-![alt text](examples\software_predict_folder.png "Prédiction du répertoire d'images")
+![alt text](examples/software_predict_folder.png "Prédiction du répertoire d'images")
 
 
 - CTRL + i : Importer un modèle.
@@ -233,7 +233,7 @@ L'accuracy mesure à quel point notre modèle prédit bien en comparant les pré
   
 
 
-Lorsque nous avons fait varier les epochs nous avons choisi de fixer la batch\_size arbitrairement à 40. On peut voir ici qu’à partir de 5 epochs l’accuraccy n’augmente plus de manière significative tandis que la loss diminue encore. Entre 30 et 40 la loss ne diminue quasiment plus. Nous avons donc choisi de garder epochs = 40.
+Lorsque nous avons fait varier les epochs nous avons choisi de fixer la batch_size arbitrairement à 40. On peut voir ici qu’à partir de 5 epochs l’accuraccy n’augmente plus de manière significative tandis que la loss diminue encore. Entre 30 et 40 la loss ne diminue quasiment plus. Nous avons donc choisi de garder epochs = 40.
 
 ## Batch size
 
@@ -241,7 +241,7 @@ Lorsque nous avons fait varier les epochs nous avons choisi de fixer la batch\_s
 ![batch-25-129](graphs/loss-accuracy-25-129.png)
 ![batch-25-257](graphs/loss-accuracy-25-257.png)
 
-On peut voir dans les graphiques ci-dessus qu’avec l’augmentation des batch_size l’accuracy augmente plus doucement. Plus la batch_size est grosse plus le nombre d'epochs doit être grand. Il nous faut une batch\_size relativement élevé pour pouvoir reconnaitre une grande variété d’images. 
+On peut voir dans les graphiques ci-dessus qu’avec l’augmentation des batch_size l’accuracy augmente plus doucement. Plus la batch_size est grosse plus le nombre d'epochs doit être grand. Il nous faut une batch_size relativement élevé pour pouvoir reconnaitre une grande variété d’images. 
 
 
 ## Layers
@@ -265,13 +265,10 @@ Une fois le modèle trouvé nous avons voulu essayer de classifier les masques F
 ## Exemples
 Voici quelques exemples de la détection sur certaines images:
 
-
-
-
-![alt text](examples\images149-37.jpg)
-![alt text](examples\images218-93.jpg)
-![alt text](examples\images359-223.jpg)
-![alt text](examples\images435-291.jpg)
+![alt text](examples/images149-37.jpg)
+![alt text](examples/images218-93.jpg)
+![alt text](examples/images359-223.jpg)
+![alt text](examples/images435-291.jpg)
 
 
 
